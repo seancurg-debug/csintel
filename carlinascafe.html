@@ -3,625 +3,568 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Carlina's Café — Congleton</title>
+  <title>Carlina's Café — From My Mum to Yours</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --cream: #FAF6F0;
-      --warm-white: #FEFCFA;
-      --espresso: #1A0F0A;
-      --dark-brown: #2D1810;
-      --medium-brown: #6B3A2A;
-      --caramel: #C8783A;
-      --gold: #D4A853;
-      --sage: #7A8C6E;
-      --terracotta: #C4613A;
-      --muted: #8C7B72;
-      --border: rgba(107,58,42,0.15);
+      --black:      #111111;
+      --dark:       #1a1a1a;
+      --card:       #1f1e1e;
+      --gold:       #e8c44a;
+      --gold-light: #f5d97a;
+      --cream:      #f5eedc;
+      --warm-white: #faf6ef;
+      --muted:      #9a9086;
+      --border:     rgba(232,196,74,0.2);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
-      color: var(--espresso);
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      background: var(--black);
+      color: var(--cream);
       overflow-x: hidden;
     }
 
-    /* ── NAVBAR ── */
+    /* ── NAV ── */
     nav {
       position: fixed;
-      top: 1.25rem;
-      left: 50%;
-      transform: translateX(-50%);
+      top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(26,15,10,0.88);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(212,168,83,0.25);
-      border-radius: 50px;
-      padding: 0.7rem 2rem;
       display: flex;
       align-items: center;
-      gap: 2rem;
-      white-space: nowrap;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 64px;
+      background: linear-gradient(rgba(17,17,17,0.98), rgba(0,0,0,0));
     }
-    nav .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
+    .nav-logo {
+      font-family: 'Caveat', cursive;
+      font-size: 1.8rem;
+      font-weight: 700;
       color: var(--gold);
-      letter-spacing: 0.02em;
-    }
-    nav a {
-      color: rgba(255,255,255,0.75);
       text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.03em;
-      transition: color 0.2s;
     }
-    nav a:hover { color: var(--gold); }
-    nav .cta-nav {
-      background: var(--caramel);
-      color: #fff !important;
+    .nav-links { display: flex; align-items: center; gap: 2.2rem; }
+    .nav-links a {
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 400;
+      opacity: 0.8;
+      transition: opacity 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--gold); }
+    .nav-cta {
+      background: var(--gold) !important;
+      color: var(--black) !important;
+      opacity: 1 !important;
       padding: 0.45rem 1.1rem;
       border-radius: 50px;
-      font-weight: 500;
+      font-weight: 700 !important;
+      letter-spacing: 0.06em !important;
     }
-    nav .cta-nav:hover { background: var(--gold); color: var(--espresso) !important; }
+    .nav-cta:hover { background: var(--gold-light) !important; }
 
     /* ── HERO ── */
     .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      height: 100vh;
+      min-height: 600px;
       position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 6rem;
       overflow: hidden;
-      background:
-        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(200,120,58,0.18) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 80% at 10% 80%, rgba(122,140,110,0.12) 0%, transparent 60%),
-        linear-gradient(160deg, #1A0F0A 0%, #2D1810 40%, #3D2218 70%, #1A0F0A 100%);
     }
-
-    /* steam animation */
-    .hero::before {
-      content: '';
+    .hero-bg {
       position: absolute;
       inset: 0;
-      background-image:
-        radial-gradient(circle at 20% 85%, rgba(212,168,83,0.06) 0%, transparent 40%),
-        radial-gradient(circle at 80% 20%, rgba(200,120,58,0.08) 0%, transparent 40%);
-      animation: shimmer 8s ease-in-out infinite alternate;
+      background-image: url('https://www.carlinascafe.co.uk/images/cafe-photo.jpg');
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.05);
+      animation: heroZoom 12s ease-out forwards;
     }
-    @keyframes shimmer {
-      from { opacity: 0.5; }
-      to   { opacity: 1; }
+    @keyframes heroZoom { to { transform: scale(1); } }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(17,17,17,0.3) 0%, rgba(17,17,17,0.6) 50%, rgba(17,17,17,0.95) 100%);
     }
-
     .hero-content {
       position: relative;
       z-index: 2;
       text-align: center;
-      padding: 2rem 1.5rem;
-      max-width: 780px;
+      padding: 0 1.5rem;
     }
-    .hero-badge {
-      display: inline-block;
-      background: rgba(212,168,83,0.15);
-      border: 1px solid rgba(212,168,83,0.4);
+    .hero-tag {
+      font-family: 'Caveat', cursive;
+      font-size: 2.1rem;
       color: var(--gold);
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.4rem 1.1rem;
-      border-radius: 50px;
-      margin-bottom: 1.8rem;
+      margin-bottom: 0.8rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
     }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 8vw, 6rem);
+    .hero-title {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(3.5rem, 9vw, 7rem);
       font-weight: 700;
       color: var(--warm-white);
-      line-height: 1.05;
-      margin-bottom: 0.4rem;
-    }
-    .hero h1 em {
-      font-style: italic;
-      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.45s forwards;
     }
     .hero-sub {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: rgba(255,255,255,0.55);
-      margin-bottom: 2.5rem;
+      font-size: 1rem;
+      color: rgba(245,238,220,0.65);
+      letter-spacing: 0.08em;
       font-weight: 300;
-      letter-spacing: 0.04em;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.65s forwards;
     }
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: var(--caramel);
-      color: #fff;
-      padding: 0.9rem 2.2rem;
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.85s forwards;
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--black);
+      padding: 0.75rem 2rem;
       border-radius: 50px;
       text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      letter-spacing: 0.02em;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
       transition: background 0.2s, transform 0.2s;
-      margin-right: 0.75rem;
     }
-    .hero-cta:hover { background: var(--gold); color: var(--espresso); transform: translateY(-2px); }
-    .hero-cta-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      border: 1px solid rgba(255,255,255,0.25);
-      color: rgba(255,255,255,0.75);
-      padding: 0.9rem 2.2rem;
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-ghost {
+      border: 1px solid rgba(245,238,220,0.35);
+      color: var(--cream);
+      padding: 0.75rem 2rem;
       border-radius: 50px;
       text-decoration: none;
-      font-weight: 400;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
       transition: border-color 0.2s, color 0.2s, transform 0.2s;
     }
-    .hero-cta-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
 
-    .hero-stats {
+    .delivery-row {
       display: flex;
       justify-content: center;
-      gap: 3rem;
-      margin-top: 4rem;
-      padding-top: 2.5rem;
-      border-top: 1px solid rgba(255,255,255,0.08);
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1.05s forwards;
     }
-    .stat { text-align: center; }
-    .stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      color: var(--gold);
-      font-weight: 700;
+    .delivery-pill {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(245,238,220,0.7);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
     }
-    .stat-label {
-      font-size: 0.72rem;
-      color: rgba(255,255,255,0.4);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-top: 0.2rem;
-    }
+    .delivery-pill:hover { background: rgba(232,196,74,0.12); color: var(--gold); border-color: var(--border); }
 
-    /* scroll indicator */
     .scroll-hint {
       position: absolute;
-      bottom: 2rem;
+      bottom: 1.8rem;
       left: 50%;
       transform: translateX(-50%);
+      color: rgba(245,238,220,0.3);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.4rem;
-      color: rgba(255,255,255,0.3);
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      animation: bounce 2s ease-in-out infinite;
+      gap: 0.5rem;
+      animation: fadeUp 1s ease 1.5s both, bounce 2s ease 2.5s infinite;
     }
-    @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
     .scroll-hint::after {
       content: '';
       width: 1px;
-      height: 36px;
-      background: linear-gradient(to bottom, rgba(212,168,83,0.5), transparent);
+      height: 32px;
+      background: linear-gradient(to bottom, rgba(232,196,74,0.5), transparent);
     }
 
-    /* ── SECTION COMMON ── */
-    section { padding: 5rem 1.5rem; }
-    .container { max-width: 1100px; margin: 0 auto; }
-    .section-label {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--caramel);
-      margin-bottom: 0.8rem;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
-      color: var(--dark-brown);
-      line-height: 1.15;
-      margin-bottom: 1rem;
-    }
-    .section-desc {
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.7;
-      max-width: 560px;
-    }
-
-    /* ── REVEAL ANIMATION ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── ABOUT ── */
-    .about {
-      background: var(--warm-white);
-    }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-    .about-visual {
-      position: relative;
-      height: 480px;
-    }
-    .about-img-main {
-      position: absolute;
-      inset: 0;
-      border-radius: 20px;
-      background:
-        radial-gradient(circle at 30% 60%, rgba(200,120,58,0.35) 0%, transparent 60%),
-        linear-gradient(135deg, #3D2218, #6B3A2A);
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .cafe-icon {
-      font-size: 6rem;
-      opacity: 0.35;
-      filter: drop-shadow(0 4px 24px rgba(212,168,83,0.4));
-    }
-    .about-card {
-      position: absolute;
-      bottom: -1.5rem;
-      right: -1.5rem;
-      background: var(--dark-brown);
-      border-radius: 16px;
-      padding: 1.4rem 1.6rem;
-      border: 1px solid rgba(212,168,83,0.2);
-      min-width: 200px;
-    }
-    .about-card-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      color: var(--gold);
-      font-weight: 700;
-    }
-    .about-card-label {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 0.06em;
-    }
-    .about-quote {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-style: italic;
-      color: var(--medium-brown);
-      line-height: 1.6;
-      margin: 1.8rem 0;
-      padding-left: 1.4rem;
-      border-left: 3px solid var(--caramel);
-    }
-    .about-owner {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-    .owner-avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--caramel), var(--gold));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-    .owner-name { font-weight: 500; font-size: 0.95rem; color: var(--dark-brown); }
-    .owner-title { font-size: 0.78rem; color: var(--muted); }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes bounce { 0%,100% { transform:translateX(-50%) translateY(0); } 50% { transform:translateX(-50%) translateY(7px); } }
 
     /* ── HOURS STRIP ── */
     .hours-strip {
-      background: var(--dark-brown);
-      padding: 2rem 1.5rem;
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: center;
-      gap: 4rem;
+      gap: 0;
       flex-wrap: wrap;
     }
-    .hours-item { text-align: center; }
-    .hours-day {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
+    .hours-cell {
+      padding: 1.4rem 3rem;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .hours-cell:last-child { border-right: none; }
+    .hours-day { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .hours-time { font-family: 'Caveat', cursive; font-size: 1.3rem; color: var(--cream); }
+    .hours-closed { color: var(--muted); font-family: 'Lato', sans-serif; font-size: 0.85rem; font-style: italic; }
+
+    /* ── SHARED SECTION ── */
+    section { padding: 6rem 1.5rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.8rem;
     }
-    .hours-time {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
+    .heading {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
       color: var(--warm-white);
+      line-height: 1.1;
+      margin-bottom: 1rem;
     }
-    .hours-closed { color: rgba(255,255,255,0.3); font-style: italic; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; }
+    .body-text {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      max-width: 560px;
+    }
+
+    /* ── REVEAL ── */
+    .reveal { opacity:0; transform:translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* ── ABOUT ── */
+    .about { background: var(--dark); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-img-wrap { position: relative; }
+    .about-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+    }
+    .about-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      background: var(--gold);
+      color: var(--black);
+      border-radius: 14px;
+      padding: 1.2rem 1.5rem;
+      font-family: 'Caveat', cursive;
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.15;
+      text-align: center;
+    }
+    .about-badge span { display: block; font-family: 'Lato', sans-serif; font-size: 0.7rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; margin-top: 0.2rem; }
+    .about-quote {
+      font-family: 'Caveat', cursive;
+      font-size: 1.4rem;
+      color: var(--gold-light);
+      line-height: 1.5;
+      margin: 1.8rem 0;
+      padding-left: 1.4rem;
+      border-left: 2px solid var(--gold);
+    }
+    .about-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat-num { font-family: 'Caveat', cursive; font-size: 2rem; color: var(--gold); font-weight: 700; }
+    .stat-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; margin-top: 0.1rem; }
+
+    /* ── GALLERY ── */
+    .gallery { background: var(--black); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto;
+      gap: 0.75rem;
+      margin-top: 3rem;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      background: var(--card);
+      cursor: pointer;
+    }
+    .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+      min-height: 180px;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(0,0,0,0), rgba(17,17,17,0.88));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gallery-item:hover::after { opacity: 1; }
 
     /* ── MENU ── */
-    .menu { background: var(--cream); }
+    .menu-section { background: var(--dark); }
     .menu-tabs {
       display: flex;
       gap: 0.5rem;
       flex-wrap: wrap;
       margin: 2.5rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0;
     }
     .tab {
-      padding: 0.55rem 1.25rem;
-      border-radius: 50px;
-      border: 1px solid var(--border);
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px 8px 0 0;
+      border: none;
+      border-bottom: 2px solid transparent;
       background: transparent;
       cursor: pointer;
       font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--medium-brown);
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       transition: all 0.2s;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Lato', sans-serif;
+      margin-bottom: -1px;
     }
-    .tab:hover, .tab.active {
-      background: var(--dark-brown);
-      border-color: var(--dark-brown);
-      color: var(--gold);
-    }
+    .tab:hover { color: var(--cream); }
+    .tab.active { color: var(--gold); border-bottom-color: var(--gold); }
     .menu-panel { display: none; }
-    .menu-panel.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+    .menu-panel.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
     .menu-item {
-      background: var(--warm-white);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.2rem 1.4rem;
+      background: var(--card);
+      padding: 1.1rem 1.4rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      transition: background 0.2s;
     }
-    .menu-item:hover {
-      border-color: var(--caramel);
-      box-shadow: 0 4px 20px rgba(200,120,58,0.1);
-      transform: translateY(-2px);
-    }
-    .menu-item-name { font-weight: 500; font-size: 0.9rem; color: var(--dark-brown); line-height: 1.35; }
+    .menu-item:hover { background: #252424; }
+    .menu-item-name { font-weight: 400; font-size: 0.92rem; color: var(--cream); line-height: 1.3; }
     .menu-item-sub { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; line-height: 1.4; }
-    .menu-item-price {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--caramel);
-      white-space: nowrap;
-    }
+    .menu-item-price { font-family: 'Caveat', cursive; font-size: 1.2rem; font-weight: 700; color: var(--gold); white-space: nowrap; }
 
     /* ── CATERING ── */
-    .catering {
-      background: linear-gradient(135deg, #2D1810 0%, #1A0F0A 50%, #3D2218 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    .catering::before {
-      content: '';
+    .catering { background: var(--black); position: relative; overflow: hidden; }
+    .catering-bg {
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(ellipse 60% 60% at 80% 50%, rgba(200,120,58,0.15) 0%, transparent 60%);
+      background-image: url('https://www.carlinascafe.co.uk/images/img-003bb097.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.18;
     }
     .catering .container { position: relative; z-index: 1; }
-    .catering .section-title { color: var(--warm-white); }
-    .catering .section-desc { color: rgba(255,255,255,0.55); max-width: 600px; }
     .catering-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-    .catering-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(212,168,83,0.15);
-      border-radius: 16px;
-      padding: 2rem 1.6rem;
-      transition: background 0.2s, border-color 0.2s;
-    }
-    .catering-card:hover {
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(212,168,83,0.35);
-    }
-    .catering-icon { font-size: 2rem; margin-bottom: 1rem; }
-    .catering-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--warm-white); margin-bottom: 0.6rem; }
-    .catering-card p { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
-    .catering-price {
-      display: inline-block;
-      margin-top: 1rem;
-      font-size: 0.8rem;
-      color: var(--gold);
-      border: 1px solid rgba(212,168,83,0.3);
-      border-radius: 50px;
-      padding: 0.3rem 0.8rem;
-    }
-
-    /* ── DELIVERY ── */
-    .delivery { background: var(--warm-white); }
-    .delivery-grid {
-      display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      max-width: 520px;
-      margin-top: 2rem;
-    }
-    .delivery-card {
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.6rem;
-      text-align: center;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      text-decoration: none;
-      display: block;
-    }
-    .delivery-card:hover {
-      border-color: var(--caramel);
-      box-shadow: 0 6px 24px rgba(200,120,58,0.1);
-    }
-    .delivery-logo { font-size: 2rem; margin-bottom: 0.6rem; }
-    .delivery-name { font-weight: 600; font-size: 0.95rem; color: var(--dark-brown); }
-    .delivery-tag { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
-
-    /* ── FIND US ── */
-    .find-us { background: var(--cream); }
-    .find-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 3rem;
-      align-items: start;
-    }
-    .contact-list { list-style: none; margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1.2rem; }
-    .contact-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-    .contact-icon {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, var(--caramel), var(--gold));
-      border-radius: 10px;
-      display: flex;
+      gap: 4rem;
       align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
+      margin-top: 1rem;
     }
-    .contact-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
-    .contact-value { font-weight: 500; color: var(--dark-brown); margin-top: 0.15rem; }
-    .map-placeholder {
-      border-radius: 20px;
+    .catering-img {
+      border-radius: 16px;
       overflow: hidden;
-      height: 360px;
-      background: linear-gradient(135deg, #e8d5c0, #d4b896);
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--border);
     }
-    .map-placeholder::before {
+    .catering-img img { width: 100%; display: block; object-fit: cover; aspect-ratio: 4/3; }
+    .catering-img::after {
       content: '';
       position: absolute;
       inset: 0;
-      background:
-        repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(107,58,42,0.07) 30px, rgba(107,58,42,0.07) 31px),
-        repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(107,58,42,0.07) 30px, rgba(107,58,42,0.07) 31px);
+      background: linear-gradient(rgba(0,0,0,0), rgba(17,17,17,0.9));
     }
-    .map-pin { font-size: 3rem; position: relative; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2)); }
-    .map-address {
-      position: absolute;
-      bottom: 1.2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--dark-brown);
-      color: var(--warm-white);
-      padding: 0.6rem 1.2rem;
+    .catering-list { list-style: none; margin: 1.5rem 0; display: flex; flex-direction: column; gap: 0.75rem; }
+    .catering-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: rgba(245,238,220,0.75);
+    }
+    .catering-list li::before { content: '✦'; color: var(--gold); font-size: 0.6rem; flex-shrink: 0; }
+    .catering-price-tag {
+      display: inline-block;
+      border: 1px solid var(--border);
+      color: var(--gold);
+      font-family: 'Caveat', cursive;
+      font-size: 1.3rem;
+      padding: 0.5rem 1.2rem;
       border-radius: 50px;
-      font-size: 0.8rem;
-      white-space: nowrap;
-      border: 1px solid rgba(212,168,83,0.2);
+      margin-top: 0.5rem;
     }
-    .map-cta {
-      display: block;
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 10px; object-fit: contain; }
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      color: var(--cream);
+      font-size: 2rem;
+      cursor: pointer;
+      opacity: 0.7;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+    .lightbox-close:hover { opacity: 1; color: var(--gold); }
+    .lightbox-prev, .lightbox-next {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--cream);
+      font-size: 1.5rem;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .lightbox-prev { left: 1.5rem; }
+    .lightbox-next { right: 1.5rem; }
+    .lightbox-prev:hover, .lightbox-next:hover { background: rgba(232,196,74,0.15); color: var(--gold); }
+
+    /* ── FIND US ── */
+    .find-us { background: var(--dark); }
+    .find-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .info-list { list-style: none; margin-top: 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
+    .info-list li { display: flex; gap: 1rem; align-items: flex-start; }
+    .info-icon {
+      width: 42px; height: 42px;
+      background: rgba(232,196,74,0.1);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .info-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .info-value { color: var(--cream); font-size: 0.95rem; margin-top: 0.2rem; line-height: 1.5; }
+    .info-value a { color: var(--gold); text-decoration: none; }
+    .info-value a:hover { text-decoration: underline; }
+    .map-wrap {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--card);
+      position: relative;
+    }
+    .map-wrap img { width: 100%; display: block; object-fit: cover; aspect-ratio: 4/3; opacity: 0.7; }
+    .map-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(0,0,0,0.15), rgba(17,17,17,0.9));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 1.5rem;
       text-align: center;
-      margin-top: 0.8rem;
-      font-size: 0.8rem;
-      color: var(--caramel);
-      text-decoration: none;
     }
-    .map-cta:hover { text-decoration: underline; }
+    .map-address-text { font-family: 'Caveat', cursive; font-size: 1.3rem; color: var(--warm-white); margin-bottom: 0.8rem; }
+    .map-btn {
+      background: var(--gold);
+      color: var(--black);
+      padding: 0.6rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+      transition: background 0.2s;
+    }
+    .map-btn:hover { background: var(--gold-light); }
 
     /* ── FOOTER ── */
     footer {
-      background: var(--espresso);
-      padding: 3rem 1.5rem 2rem;
+      background: #0a0a0a;
+      border-top: 1px solid var(--border);
+      padding: 3.5rem 1.5rem 2rem;
       text-align: center;
     }
-    .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      color: var(--gold);
-      margin-bottom: 0.5rem;
-    }
-    .footer-tagline {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.35);
-      margin-bottom: 2rem;
-    }
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-    }
-    .footer-links a {
-      color: rgba(255,255,255,0.45);
-      text-decoration: none;
-      font-size: 0.82rem;
-      transition: color 0.2s;
-    }
+    .footer-logo { font-family: 'Caveat', cursive; font-size: 2.2rem; font-weight: 700; color: var(--gold); }
+    .footer-tagline { font-size: 0.82rem; color: var(--muted); letter-spacing: 0.08em; margin: 0.4rem 0 2rem; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
     .footer-links a:hover { color: var(--gold); }
-    .footer-divider {
-      border: none;
-      border-top: 1px solid rgba(255,255,255,0.07);
-      margin-bottom: 1.5rem;
-    }
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
-    .demo-badge {
-      font-size: 0.7rem;
-      color: rgba(255,255,255,0.3);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 50px;
-      padding: 0.3rem 0.8rem;
-    }
-    .demo-badge a { color: var(--caramel); text-decoration: none; }
+    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin-bottom: 1.5rem; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; font-size: 0.75rem; color: rgba(255,255,255,0.2); }
+    .demo-tag { border: 1px solid rgba(255,255,255,0.08); border-radius: 50px; padding: 0.3rem 0.9rem; }
+    .demo-tag a { color: var(--gold); text-decoration: none; opacity: 0.7; }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      nav { gap: 1rem; padding: 0.65rem 1.2rem; }
-      nav a:not(.logo):not(.cta-nav) { display: none; }
-      .about-grid, .find-grid, .catering-grid { grid-template-columns: 1fr; }
-      .about-visual { height: 280px; }
-      .about-card { right: 0; bottom: -1rem; }
-      .delivery-grid { grid-template-columns: 1fr 1fr; max-width: 100%; }
-      .hero-stats { gap: 1.5rem; }
-      .hours-strip { gap: 2rem; }
+    @media (max-width: 900px) {
+      .about-grid, .catering-grid, .find-grid { grid-template-columns: 1fr; }
+      .about-badge { right: 0; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item:first-child { grid-column: span 2; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hours-cell { padding: 1rem 1.5rem; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -629,57 +572,53 @@
 
 <!-- NAV -->
 <nav>
-  <span class="logo">Carlina's Café</span>
-  <a href="#about">About</a>
-  <a href="#menu">Menu</a>
-  <a href="#catering">Catering</a>
-  <a href="#find-us">Find Us</a>
-  <a href="tel:07857889057" class="cta-nav">Call Now</a>
+  <a href="#" class="nav-logo">Carlina's</a>
+  <div class="nav-links">
+    <a href="#about">Our Story</a>
+    <a href="#menu">Menu</a>
+    <a href="#catering">Catering</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#find-us" class="nav-cta">Find Us</a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-badge">☕ Homemade · Local · Loved</div>
-    <h1>Food Made with <em>Heart</em></h1>
-    <p class="hero-sub">Congleton's favourite café — 30+ dishes, brewed daily with love since day one.</p>
-    <a href="#menu" class="hero-cta">View Our Menu</a>
-    <a href="#find-us" class="hero-cta-ghost">Find Us</a>
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-num">30+</div>
-        <div class="stat-label">Menu Items</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">5★</div>
-        <div class="stat-label">Quality</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">93</div>
-        <div class="stat-label">Antrobus St</div>
-      </div>
+    <div class="hero-tag">From My Mum to Yours ♥</div>
+    <h1 class="hero-title">Carlina's Café</h1>
+    <p class="hero-sub">93 Antrobus Street, Congleton &nbsp;·&nbsp; Tue–Sat 8am–2:30pm</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-gold">View Our Menu</a>
+      <a href="#find-us" class="btn-ghost">Find Us</a>
+    </div>
+    <div class="delivery-row">
+      <a href="#" class="delivery-pill">🛵 Uber Eats</a>
+      <a href="#" class="delivery-pill">🍕 Just Eat</a>
     </div>
   </div>
   <div class="scroll-hint">Scroll</div>
 </section>
 
-<!-- HOURS STRIP -->
+<!-- HOURS -->
 <div class="hours-strip">
-  <div class="hours-item">
-    <div class="hours-day">Tue – Sat</div>
+  <div class="hours-cell">
+    <div class="hours-day">Tuesday – Saturday</div>
     <div class="hours-time">8:00am – 2:30pm</div>
   </div>
-  <div class="hours-item">
+  <div class="hours-cell">
     <div class="hours-day">Sunday</div>
     <div class="hours-time hours-closed">Closed</div>
   </div>
-  <div class="hours-item">
+  <div class="hours-cell">
     <div class="hours-day">Monday</div>
     <div class="hours-time hours-closed">Closed</div>
   </div>
-  <div class="hours-item">
-    <div class="hours-day">Delivery</div>
-    <div class="hours-time" style="font-size:0.95rem;color:var(--gold)">Uber Eats · Just Eat</div>
+  <div class="hours-cell">
+    <div class="hours-day">Order Online</div>
+    <div class="hours-time" style="font-size:1rem;color:var(--gold)">Uber Eats &amp; Just Eat</div>
   </div>
 </div>
 
@@ -687,51 +626,101 @@
 <section class="about" id="about">
   <div class="container">
     <div class="about-grid">
-      <div class="about-visual reveal">
-        <div class="about-img-main">
-          <span class="cafe-icon">☕</span>
-        </div>
-        <div class="about-card">
-          <div class="about-card-num">30+</div>
-          <div class="about-card-label">Homemade Dishes</div>
-        </div>
+      <div class="about-img-wrap reveal">
+        <img src="https://www.carlinascafe.co.uk/images/img-a2013ad6.jpg" alt="Carlina's Café food" class="about-img" />
+        <div class="about-badge">30+<span>Homemade Dishes</span></div>
       </div>
       <div class="reveal" style="transition-delay:0.15s">
-        <div class="section-label">Our Story</div>
-        <h2 class="section-title">More than a café — it's a calling</h2>
+        <div class="label">Our Story</div>
+        <h2 class="heading">More Than Just a Café</h2>
         <blockquote class="about-quote">
           "This café is more than just a business — it's my passion, my purpose, and a way to honour my mum's life."
         </blockquote>
-        <p class="section-desc">
-          Founded by Chandelle Jones — a proud mother of five with NVQ Level 2 &amp; 3 qualifications — Carlina's Café was built on love, loss, and a relentless drive to create something meaningful. Every dish is homemade with care, using locally sourced ingredients.
+        <p class="body-text">
+          Hi, I'm Chandelle Jones — a proud mum of five, with NVQ Level 2 and 3 qualifications and years of experience working my way up in the hospitality industry through determination and resilience.
+          <br><br>
+          Carlina's is named in memory of my mum, and everything we do here is driven by her spirit. Whether it's a proper cooked breakfast, a fresh lunch plate, or simply a good cup of coffee — every dish is made with the same care you'd get at home.
         </p>
-        <div class="about-owner">
-          <div class="owner-avatar">👩‍🍳</div>
-          <div>
-            <div class="owner-name">Chandelle Jones</div>
-            <div class="owner-title">Founder &amp; Head Chef · NVQ Level 2 &amp; 3</div>
-          </div>
+        <div class="about-stats">
+          <div><div class="stat-num">30+</div><div class="stat-label">Menu Items</div></div>
+          <div><div class="stat-num">100%</div><div class="stat-label">Homemade</div></div>
+          <div><div class="stat-num">♥</div><div class="stat-label">With Love</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MENU -->
-<section class="menu" id="menu">
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">What's on</div>
-      <h2 class="section-title">Our Menu</h2>
-      <p class="section-desc">Everything prepared fresh daily. Gluten-free and vegetarian options available across the menu.</p>
+      <div class="label">From Our Kitchen</div>
+      <h2 class="heading">See What We Create</h2>
     </div>
+    <div class="gallery-grid reveal" style="transition-delay:0.1s">
+      <div class="gallery-item" onclick="openLightbox(0)">
+        <img src="https://www.carlinascafe.co.uk/images/img-27b63d33.jpg" alt="Carlina's dish" loading="lazy" />
+      </div>
+      <div class="gallery-item" onclick="openLightbox(1)">
+        <img src="https://www.carlinascafe.co.uk/images/img-1af04afa.jpg" alt="Carlina's dish" loading="lazy" />
+      </div>
+      <div class="gallery-item" onclick="openLightbox(2)">
+        <img src="https://www.carlinascafe.co.uk/images/img-f156e566.jpg" alt="Carlina's dish" loading="lazy" />
+      </div>
+      <div class="gallery-item" onclick="openLightbox(3)">
+        <img src="https://www.carlinascafe.co.uk/images/img-bd8f7a57.jpg" alt="Carlina's dish" loading="lazy" />
+      </div>
+      <div class="gallery-item" onclick="openLightbox(4)">
+        <img src="https://www.carlinascafe.co.uk/images/img-20cc6d19.jpg" alt="Carlina's dish" loading="lazy" />
+      </div>
+      <div class="gallery-item" onclick="openLightbox(5)">
+        <img src="https://www.carlinascafe.co.uk/images/img-97368740.jpg" alt="Carlina's dish" loading="lazy" />
+      </div>
+      <div class="gallery-item" onclick="openLightbox(6)">
+        <img src="https://www.carlinascafe.co.uk/images/img-c7607c00.jpg" alt="Carlina's dish" loading="lazy" />
+      </div>
+      <div class="gallery-item" onclick="openLightbox(7)">
+        <img src="https://www.carlinascafe.co.uk/images/img-b9a5c257.jpg" alt="Carlina's dish" loading="lazy" />
+      </div>
+      <div class="gallery-item" onclick="openLightbox(8)">
+        <img src="https://www.carlinascafe.co.uk/images/img-dfb45910.jpg" alt="Carlina's dish" loading="lazy" />
+      </div>
+      <div class="gallery-item" onclick="openLightbox(9)">
+        <img src="https://www.carlinascafe.co.uk/images/img-c896ca6a.jpg" alt="Carlina's dish" loading="lazy" />
+      </div>
+      <div class="gallery-item" onclick="openLightbox(10)">
+        <img src="https://www.carlinascafe.co.uk/images/img-afbbf8a1.jpg" alt="Carlina's dish" loading="lazy" />
+      </div>
+      <div class="gallery-item" onclick="openLightbox(11)">
+        <img src="https://www.carlinascafe.co.uk/images/img-003bb097.jpg" alt="Carlina's dish" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOnBg(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-prev" onclick="lbNav(-1)">‹</button>
+  <img id="lb-img" src="" alt="" />
+  <button class="lightbox-next" onclick="lbNav(1)">›</button>
+</div>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="container">
+    <div class="reveal">
+      <div class="label">What's on</div>
+      <h2 class="heading">Our Menu</h2>
+      <p class="body-text">Everything prepared fresh daily. Gluten-free and vegetarian options available across the menu.</p>
+    </div>
     <div class="menu-tabs reveal" style="transition-delay:0.1s">
-      <button class="tab active" onclick="showTab('breakfasts',this)">🍳 Breakfasts</button>
-      <button class="tab" onclick="showTab('lighter',this)">🥑 Lighter Bites</button>
-      <button class="tab" onclick="showTab('mains',this)">🥘 Mains</button>
-      <button class="tab" onclick="showTab('kids',this)">🧒 Kids</button>
-      <button class="tab" onclick="showTab('drinks',this)">☕ Drinks</button>
+      <button class="tab active" onclick="showTab('breakfasts',this)">Breakfasts</button>
+      <button class="tab" onclick="showTab('lighter',this)">Lighter Bites</button>
+      <button class="tab" onclick="showTab('mains',this)">Mains</button>
+      <button class="tab" onclick="showTab('kids',this)">Kids</button>
+      <button class="tab" onclick="showTab('drinks',this)">Drinks</button>
     </div>
 
     <div id="breakfasts" class="menu-panel active reveal" style="transition-delay:0.2s">
@@ -764,15 +753,16 @@
       <div class="menu-item"><div><div class="menu-item-name">Fresh Salad Bowls</div></div><div class="menu-item-price">from £6.00</div></div>
       <div class="menu-item"><div><div class="menu-item-name">Skin on Fries</div></div><div class="menu-item-price">£4.00</div></div>
       <div class="menu-item"><div><div class="menu-item-name">Side of Fries</div></div><div class="menu-item-price">£2.00</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Loaded Toppings</div></div><div class="menu-item-price">from £1.10</div></div>
     </div>
 
     <div id="kids" class="menu-panel reveal" style="transition-delay:0.2s">
       <div class="menu-item"><div><div class="menu-item-name">Beans on Toast</div></div><div class="menu-item-price">£2.60</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Kids Breakfast</div><div class="menu-item-sub">Includes juice, milk or water</div></div><div class="menu-item-price">£4.95</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Chicken Rocks</div><div class="menu-item-sub">Includes juice, milk or water</div></div><div class="menu-item-price">£4.95</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Sausage, Chips &amp; Beans</div><div class="menu-item-sub">Includes juice, milk or water</div></div><div class="menu-item-price">£4.95</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Kids Jacket Potato</div><div class="menu-item-sub">Includes juice, milk or water</div></div><div class="menu-item-price">£4.95</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Freshly Made Sandwiches</div><div class="menu-item-sub">Includes juice, milk or water</div></div><div class="menu-item-price">£4.95</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Kids Breakfast</div><div class="menu-item-sub">With juice, milk or water</div></div><div class="menu-item-price">£4.95</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Chicken Rocks</div><div class="menu-item-sub">With juice, milk or water</div></div><div class="menu-item-price">£4.95</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Sausage, Chips &amp; Beans</div><div class="menu-item-sub">With juice, milk or water</div></div><div class="menu-item-price">£4.95</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Kids Jacket Potato</div><div class="menu-item-sub">With juice, milk or water</div></div><div class="menu-item-price">£4.95</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Freshly Made Sandwiches</div><div class="menu-item-sub">With juice, milk or water</div></div><div class="menu-item-price">£4.95</div></div>
     </div>
 
     <div id="drinks" class="menu-panel reveal" style="transition-delay:0.2s">
@@ -784,8 +774,8 @@
       <div class="menu-item"><div><div class="menu-item-name">Pot of Tea</div></div><div class="menu-item-price">£2.95</div></div>
       <div class="menu-item"><div><div class="menu-item-name">Hot Chocolate</div></div><div class="menu-item-price">£3.45</div></div>
       <div class="menu-item"><div><div class="menu-item-name">Luxury Hot Chocolate</div></div><div class="menu-item-price">£3.85</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Milk Alternatives</div><div class="menu-item-sub">Almond or Oat milk</div></div><div class="menu-item-price">+£0.25</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Syrup Shots</div><div class="menu-item-sub">Caramel, Vanilla, Gingerbread</div></div><div class="menu-item-price">+£0.30</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Almond / Oat Milk</div></div><div class="menu-item-price">+£0.25</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Syrup Shot</div><div class="menu-item-sub">Caramel, Vanilla, Gingerbread</div></div><div class="menu-item-price">+£0.30</div></div>
       <div class="menu-item"><div><div class="menu-item-name">Soft Drinks</div><div class="menu-item-sub">Pepsi, Diet Pepsi, Tango, Sprite</div></div><div class="menu-item-price">£2.45</div></div>
       <div class="menu-item"><div><div class="menu-item-name">Bottled Water</div></div><div class="menu-item-price">£1.45</div></div>
     </div>
@@ -794,53 +784,27 @@
 
 <!-- CATERING -->
 <section class="catering" id="catering">
+  <div class="catering-bg"></div>
   <div class="container">
-    <div class="reveal">
-      <div class="section-label" style="color:var(--gold)">Corporate &amp; Events</div>
-      <h2 class="section-title">Buffet Catering</h2>
-      <p class="section-desc">We bring Carlina's to your workplace. Fresh buffet spreads for teams across Congleton and surrounding areas — with 24-hour notice.</p>
-    </div>
     <div class="catering-grid">
-      <div class="catering-card reveal" style="transition-delay:0.1s">
-        <div class="catering-icon">🏢</div>
-        <h3>Workplace Catering</h3>
-        <p>Hot and cold buffet spreads delivered to offices and businesses across Congleton and the surrounding area.</p>
-        <span class="catering-price">from £7.50 per head</span>
+      <div class="catering-img reveal">
+        <img src="https://www.carlinascafe.co.uk/images/img-97368740.jpg" alt="Catering platter" loading="lazy" />
       </div>
-      <div class="catering-card reveal" style="transition-delay:0.2s">
-        <div class="catering-icon">🌿</div>
-        <h3>Dietary Options</h3>
-        <p>Gluten-free and vegan selections available as standard, made with the same locally sourced ingredients.</p>
-        <span class="catering-price">Just ask when ordering</span>
-      </div>
-      <div class="catering-card reveal" style="transition-delay:0.3s">
-        <div class="catering-icon">📱</div>
-        <h3>Easy Booking</h3>
-        <p>WhatsApp us with your headcount, dietary needs, and preferred date. We handle the rest.</p>
-        <span class="catering-price">24-hour notice required</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DELIVERY -->
-<section class="delivery">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label">Order Online</div>
-      <h2 class="section-title">Delivery Available</h2>
-      <p class="section-desc">Can't make it in? Get Carlina's delivered straight to your door via your favourite platform.</p>
-      <div class="delivery-grid">
-        <div class="delivery-card">
-          <div class="delivery-logo">🚗</div>
-          <div class="delivery-name">Uber Eats</div>
-          <div class="delivery-tag">Order Now</div>
-        </div>
-        <div class="delivery-card">
-          <div class="delivery-logo">🛵</div>
-          <div class="delivery-name">Just Eat</div>
-          <div class="delivery-tag">Order Now</div>
-        </div>
+      <div class="reveal" style="transition-delay:0.15s">
+        <div class="label">Corporate &amp; Events</div>
+        <h2 class="heading">We Come to You</h2>
+        <p class="body-text">Calling all warehouses, offices, and workplaces! Carlina's offers freshly prepared buffet catering, made to order and delivered with just 24 hours' notice.</p>
+        <ul class="catering-list">
+          <li>Sweet chilli chicken skewers</li>
+          <li>BBQ Korean-style bites</li>
+          <li>Freshly made sandwiches</li>
+          <li>Wide selection of tasty nibbles</li>
+          <li>Gluten-free &amp; vegan options available</li>
+          <li>Locally sourced ingredients</li>
+        </ul>
+        <div class="catering-price-tag">from £7.50 per head</div>
+        <br><br>
+        <a href="https://www.facebook.com/profile.php?id=61584876186761" target="_blank" rel="noopener" class="btn-gold" style="display:inline-block">📘 Message on Facebook</a>
       </div>
     </div>
   </div>
@@ -851,45 +815,54 @@
   <div class="container">
     <div class="find-grid">
       <div class="reveal">
-        <div class="section-label">Visit Us</div>
-        <h2 class="section-title">Come Say Hello</h2>
-        <ul class="contact-list">
+        <div class="label">Visit Us</div>
+        <h2 class="heading">Come Say Hello</h2>
+        <ul class="info-list">
           <li>
-            <div class="contact-icon">📍</div>
+            <div class="info-icon">📍</div>
             <div>
-              <div class="contact-label">Address</div>
-              <div class="contact-value">93 Antrobus Street<br>Congleton CW12 1HE</div>
+              <div class="info-label">Address</div>
+              <div class="info-value">93 Antrobus Street<br>Congleton CW12 1HE</div>
             </div>
           </li>
           <li>
-            <div class="contact-icon">📞</div>
+            <div class="info-icon">🕐</div>
             <div>
-              <div class="contact-label">Phone / WhatsApp</div>
-              <div class="contact-value"><a href="tel:07857889057" style="color:inherit;text-decoration:none">07857 889057</a></div>
+              <div class="info-label">Opening Hours</div>
+              <div class="info-value">Tue–Sat: 8:00am – 2:30pm<br>Sun &amp; Mon: Closed</div>
             </div>
           </li>
           <li>
-            <div class="contact-icon">🕐</div>
+            <div class="info-icon">📞</div>
             <div>
-              <div class="contact-label">Opening Hours</div>
-              <div class="contact-value">Tue – Sat: 8:00am – 2:30pm<br>Sun &amp; Mon: Closed</div>
+              <div class="info-label">Phone / WhatsApp</div>
+              <div class="info-value"><a href="tel:07857889057">07857 889057</a></div>
             </div>
           </li>
           <li>
-            <div class="contact-icon">📘</div>
+            <div class="info-icon">📘</div>
             <div>
-              <div class="contact-label">Social</div>
-              <div class="contact-value"><a href="https://www.facebook.com/profile.php?id=61584876186761" target="_blank" rel="noopener" style="color:var(--caramel);text-decoration:none">Follow on Facebook</a></div>
+              <div class="info-label">Social</div>
+              <div class="info-value"><a href="https://www.facebook.com/profile.php?id=61584876186761" target="_blank" rel="noopener">Follow on Facebook</a></div>
+            </div>
+          </li>
+          <li>
+            <div class="info-icon">🚗</div>
+            <div>
+              <div class="info-label">Delivery</div>
+              <div class="info-value">Available on <a href="#">Uber Eats</a> &amp; <a href="#">Just Eat</a></div>
             </div>
           </li>
         </ul>
       </div>
       <div class="reveal" style="transition-delay:0.15s">
-        <div class="map-placeholder">
-          <span class="map-pin">📍</span>
-          <div class="map-address">93 Antrobus Street, Congleton CW12 1HE</div>
+        <div class="map-wrap">
+          <img src="https://www.carlinascafe.co.uk/images/img-c7607c00.jpg" alt="Carlina's Café" loading="lazy" />
+          <div class="map-overlay">
+            <div class="map-address-text">93 Antrobus Street, Congleton CW12 1HE</div>
+            <a href="https://www.google.com/maps/search/93+Antrobus+Street+Congleton+CW12+1HE" target="_blank" rel="noopener" class="map-btn">Open in Google Maps →</a>
+          </div>
         </div>
-        <a href="https://www.google.com/maps/search/93+Antrobus+Street+Congleton+CW12+1HE" target="_blank" rel="noopener" class="map-cta">Open in Google Maps →</a>
       </div>
     </div>
   </div>
@@ -898,18 +871,19 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Carlina's Café</div>
-  <div class="footer-tagline">Food made with heart · 93 Antrobus Street, Congleton</div>
+  <div class="footer-tagline">From My Mum to Yours · 93 Antrobus Street, Congleton</div>
   <div class="footer-links">
-    <a href="#about">About</a>
+    <a href="#about">Our Story</a>
     <a href="#menu">Menu</a>
     <a href="#catering">Catering</a>
+    <a href="#gallery">Gallery</a>
     <a href="#find-us">Find Us</a>
     <a href="tel:07857889057">07857 889057</a>
   </div>
   <hr class="footer-divider" />
   <div class="footer-bottom">
-    <div class="footer-copy">© 2025 Carlina's Café · All rights reserved</div>
-    <div class="demo-badge">Demo rebuild by <a href="https://csintel.co.uk">CSIntel</a></div>
+    <span>© 2025 Carlina's Café · All rights reserved</span>
+    <span class="demo-tag">Demo rebuild by <a href="https://csintel.co.uk">CSIntel</a></span>
   </div>
 </footer>
 
@@ -924,9 +898,48 @@
 
   // Scroll reveal
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-  }, { threshold: 0.12 });
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Lightbox
+  const lbImgs = [
+    'https://www.carlinascafe.co.uk/images/img-27b63d33.jpg',
+    'https://www.carlinascafe.co.uk/images/img-1af04afa.jpg',
+    'https://www.carlinascafe.co.uk/images/img-f156e566.jpg',
+    'https://www.carlinascafe.co.uk/images/img-bd8f7a57.jpg',
+    'https://www.carlinascafe.co.uk/images/img-20cc6d19.jpg',
+    'https://www.carlinascafe.co.uk/images/img-97368740.jpg',
+    'https://www.carlinascafe.co.uk/images/img-c7607c00.jpg',
+    'https://www.carlinascafe.co.uk/images/img-b9a5c257.jpg',
+    'https://www.carlinascafe.co.uk/images/img-dfb45910.jpg',
+    'https://www.carlinascafe.co.uk/images/img-c896ca6a.jpg',
+    'https://www.carlinascafe.co.uk/images/img-afbbf8a1.jpg',
+    'https://www.carlinascafe.co.uk/images/img-003bb097.jpg',
+  ];
+  let lbIdx = 0;
+  function openLightbox(i) {
+    lbIdx = i;
+    document.getElementById('lb-img').src = lbImgs[i];
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeLightboxOnBg(e) {
+    if (e.target === document.getElementById('lightbox')) closeLightbox();
+  }
+  function lbNav(dir) {
+    lbIdx = (lbIdx + dir + lbImgs.length) % lbImgs.length;
+    document.getElementById('lb-img').src = lbImgs[lbIdx];
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') lbNav(-1);
+    if (e.key === 'ArrowRight') lbNav(1);
+  });
 </script>
 </body>
 </html>
