@@ -6,20 +6,21 @@
   <title>Carlina's Café — From My Mum to Yours</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:      #111111;
-      --dark:       #1a1a1a;
-      --card:       #1f1e1e;
-      --gold:       #e8c44a;
-      --gold-light: #f5d97a;
-      --cream:      #f5eedc;
-      --warm-white: #faf6ef;
-      --muted:      #9a9086;
-      --border:     rgba(232,196,74,0.2);
+      --black:  #111111;
+      --dark:   #1a1a1a;
+      --card:   #1f1e1e;
+      --gold:   #e8c44a;
+      --gold-d: #c9a832;
+      --gold-l: #f5d97a;
+      --cream:  #f5eedc;
+      --white:  #faf6ef;
+      --muted:  #9a9086;
+      --border: rgba(232,196,74,0.18);
     }
 
     html { scroll-behavior: smooth; }
@@ -32,835 +33,862 @@
       overflow-x: hidden;
     }
 
-    /* ── NAV ── */
+    /* ─── GLASSMORPHISM NAV ─── */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
+      top: 1.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 0 2.5rem;
-      height: 64px;
-      background: linear-gradient(rgba(17,17,17,0.98), rgba(0,0,0,0));
+      gap: 0;
+      background: rgba(17,17,17,0.55);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(232,196,74,0.22);
+      border-radius: 100px;
+      padding: 0.55rem 0.55rem 0.55rem 1.6rem;
+      white-space: nowrap;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+      transition: background 0.3s;
     }
     .nav-logo {
       font-family: 'Caveat', cursive;
-      font-size: 1.8rem;
+      font-size: 1.35rem;
       font-weight: 700;
       color: var(--gold);
       text-decoration: none;
+      margin-right: 1.8rem;
+      letter-spacing: 0.01em;
     }
-    .nav-links { display: flex; align-items: center; gap: 2.2rem; }
+    .nav-links { display: flex; align-items: center; gap: 1.6rem; }
     .nav-links a {
-      color: var(--cream);
+      color: rgba(245,238,220,0.7);
       text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       font-weight: 400;
-      opacity: 0.8;
-      transition: opacity 0.2s, color 0.2s;
+      transition: color 0.2s;
     }
-    .nav-links a:hover { opacity: 1; color: var(--gold); }
+    .nav-links a:hover { color: var(--gold); }
     .nav-cta {
-      background: var(--gold) !important;
+      margin-left: 0.8rem;
+      background: var(--gold);
       color: var(--black) !important;
-      opacity: 1 !important;
-      padding: 0.45rem 1.1rem;
-      border-radius: 50px;
+      padding: 0.55rem 1.3rem;
+      border-radius: 100px;
       font-weight: 700 !important;
-      letter-spacing: 0.06em !important;
+      font-size: 0.78rem !important;
+      letter-spacing: 0.08em !important;
+      transition: background 0.2s, transform 0.15s !important;
+      cursor: pointer;
     }
-    .nav-cta:hover { background: var(--gold-light) !important; }
+    .nav-cta:hover { background: var(--gold-l) !important; transform: scale(1.04); }
 
-    /* ── HERO ── */
+    /* ─── HERO ─── */
     .hero {
-      height: 100vh;
-      min-height: 600px;
+      height: 100svh;
+      min-height: 640px;
       position: relative;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      padding-bottom: 6rem;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: 5rem;
     }
-    .hero-bg {
+    .hero-parallax {
       position: absolute;
-      inset: 0;
+      inset: -15%;
       background-image: url('https://www.carlinascafe.co.uk/images/cafe-photo.jpg');
       background-size: cover;
-      background-position: center;
-      transform: scale(1.05);
-      animation: heroZoom 12s ease-out forwards;
+      background-position: center 30%;
+      will-change: transform;
     }
-    @keyframes heroZoom { to { transform: scale(1); } }
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.6;
+    }
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(rgba(17,17,17,0.3) 0%, rgba(17,17,17,0.6) 50%, rgba(17,17,17,0.95) 100%);
+      background:
+        linear-gradient(to bottom,
+          rgba(17,17,17,0.25) 0%,
+          rgba(17,17,17,0.1) 35%,
+          rgba(17,17,17,0.55) 65%,
+          rgba(17,17,17,0.97) 100%
+        );
+      z-index: 1;
     }
     .hero-content {
       position: relative;
       z-index: 2;
-      text-align: center;
-      padding: 0 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 3rem;
+      width: 100%;
     }
-    .hero-tag {
-      font-family: 'Caveat', cursive;
-      font-size: 2.1rem;
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 0.8rem;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 0.2s forwards;
-    }
-    .hero-title {
-      font-family: 'Caveat', cursive;
-      font-size: clamp(3.5rem, 9vw, 7rem);
-      font-weight: 700;
-      color: var(--warm-white);
-      line-height: 1;
       margin-bottom: 1rem;
       opacity: 0;
-      animation: fadeUp 0.8s ease 0.45s forwards;
+      animation: fadeUp 0.9s ease 0.3s forwards;
     }
-    .hero-sub {
-      font-size: 1rem;
-      color: rgba(245,238,220,0.65);
-      letter-spacing: 0.08em;
-      font-weight: 300;
-      margin-bottom: 2rem;
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.6;
+    }
+    .hero-h1 {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(4.5rem, 11vw, 9.5rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 0.9;
+      margin-bottom: 1.4rem;
       opacity: 0;
-      animation: fadeUp 0.8s ease 0.65s forwards;
+      animation: fadeUp 0.9s ease 0.5s forwards;
     }
-    .hero-btns {
+    .hero-h1 span { color: var(--gold); display: block; }
+    .hero-row {
       display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
       opacity: 0;
-      animation: fadeUp 0.8s ease 0.85s forwards;
+      animation: fadeUp 0.9s ease 0.75s forwards;
     }
-    .btn-gold {
+    .hero-desc {
+      max-width: 340px;
+      font-size: 0.9rem;
+      color: rgba(245,238,220,0.6);
+      line-height: 1.7;
+      font-weight: 300;
+      border-left: 1px solid var(--border);
+      padding-left: 1.2rem;
+    }
+    .hero-actions { display: flex; gap: 0.75rem; flex-shrink: 0; }
+    .btn-primary {
       background: var(--gold);
       color: var(--black);
-      padding: 0.75rem 2rem;
-      border-radius: 50px;
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
       text-decoration: none;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.82rem;
       letter-spacing: 0.06em;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
-    .btn-ghost {
-      border: 1px solid rgba(245,238,220,0.35);
-      color: var(--cream);
-      padding: 0.75rem 2rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-size: 0.9rem;
-      letter-spacing: 0.06em;
-      transition: border-color 0.2s, color 0.2s, transform 0.2s;
-    }
-    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
-
-    .delivery-row {
-      display: flex;
-      justify-content: center;
-      gap: 0.8rem;
-      margin-top: 1.5rem;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 1.05s forwards;
-    }
-    .delivery-pill {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: rgba(245,238,220,0.7);
-      padding: 0.4rem 1rem;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      text-decoration: none;
-      transition: background 0.2s, color 0.2s;
-    }
-    .delivery-pill:hover { background: rgba(232,196,74,0.12); color: var(--gold); border-color: var(--border); }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 1.8rem;
-      left: 50%;
-      transform: translateX(-50%);
-      color: rgba(245,238,220,0.3);
-      font-size: 0.7rem;
-      letter-spacing: 0.14em;
       text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+      cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--gold-l); transform: translateY(-2px); }
+    .btn-outline {
+      border: 1px solid rgba(245,238,220,0.25);
+      color: var(--cream);
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+      cursor: pointer;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+    /* hero scroll indicator */
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      right: 3rem;
+      z-index: 2;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 0.5rem;
-      animation: fadeUp 1s ease 1.5s both, bounce 2s ease 2.5s infinite;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.4s forwards;
     }
-    .scroll-hint::after {
-      content: '';
+    .hero-scroll span {
+      writing-mode: vertical-rl;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245,238,220,0.3);
+    }
+    .hero-scroll-line {
       width: 1px;
-      height: 32px;
-      background: linear-gradient(to bottom, rgba(232,196,74,0.5), transparent);
+      height: 60px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollDrop 2s ease-in-out 1.8s infinite;
+    }
+    @keyframes scrollDrop {
+      0% { transform: scaleY(0); transform-origin: top; opacity: 1; }
+      50% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+      100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
     }
 
-    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-    @keyframes bounce { 0%,100% { transform:translateX(-50%) translateY(0); } 50% { transform:translateX(-50%) translateY(7px); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* ── HOURS STRIP ── */
-    .hours-strip {
-      background: var(--dark);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+    /* ─── MARQUEE ─── */
+    .marquee-track {
+      background: var(--gold);
+      overflow: hidden;
+      padding: 0.8rem 0;
+      border-top: none;
+    }
+    .marquee-inner {
       display: flex;
-      justify-content: center;
       gap: 0;
-      flex-wrap: wrap;
+      animation: marquee 30s linear infinite;
+      width: max-content;
     }
-    .hours-cell {
-      padding: 1.4rem 3rem;
-      text-align: center;
-      border-right: 1px solid var(--border);
-    }
-    .hours-cell:last-child { border-right: none; }
-    .hours-day { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
-    .hours-time { font-family: 'Caveat', cursive; font-size: 1.3rem; color: var(--cream); }
-    .hours-closed { color: var(--muted); font-family: 'Lato', sans-serif; font-size: 0.85rem; font-style: italic; }
-
-    /* ── SHARED SECTION ── */
-    section { padding: 6rem 1.5rem; }
-    .container { max-width: 1100px; margin: 0 auto; }
-    .label {
-      font-size: 0.7rem;
+    .marquee-inner span {
+      font-size: 0.72rem;
+      font-weight: 700;
       letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--black);
+      padding: 0 2.5rem;
+      white-space: nowrap;
+    }
+    .marquee-dot {
+      color: rgba(0,0,0,0.35);
+      padding: 0 !important;
+    }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ─── STATS BAR ─── */
+    .stats-bar {
+      background: var(--dark);
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 3rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .stat-cell {
+      padding: 0 2rem;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+    .stat-cell:first-child { padding-left: 0; }
+    .stat-cell:last-child { border-right: none; }
+    .stat-big {
+      font-family: 'Caveat', cursive;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    /* ─── SECTIONS ─── */
+    .section { padding: 7rem 3rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 0.8rem;
     }
-    .heading {
+    .h2 {
       font-family: 'Caveat', cursive;
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
       font-weight: 700;
-      color: var(--warm-white);
-      line-height: 1.1;
+      color: var(--white);
+      line-height: 1.05;
       margin-bottom: 1rem;
     }
-    .body-text {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.75;
-      max-width: 560px;
-    }
+    .body { color: var(--muted); font-size: 0.92rem; line-height: 1.8; max-width: 520px; }
 
-    /* ── REVEAL ── */
-    .reveal { opacity:0; transform:translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
-    .reveal.visible { opacity:1; transform:translateY(0); }
+    /* ─── REVEAL ─── */
+    .r { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .r.v { opacity: 1; transform: translateY(0); }
 
-    /* ── ABOUT ── */
+    /* ─── ABOUT ─── */
     .about { background: var(--dark); }
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 5rem;
+      gap: 6rem;
       align-items: center;
     }
-    .about-img-wrap { position: relative; }
-    .about-img {
+    .about-img-stack { position: relative; }
+    .about-img-main {
       width: 100%;
-      aspect-ratio: 4/5;
+      aspect-ratio: 3/4;
       object-fit: cover;
       border-radius: 16px;
       display: block;
     }
-    .about-badge {
+    .about-img-accent {
       position: absolute;
-      bottom: -1.5rem;
-      right: -1.5rem;
+      bottom: -2rem;
+      right: -2rem;
+      width: 52%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 4px solid var(--dark);
+    }
+    .about-float-badge {
+      position: absolute;
+      top: 2rem;
+      left: -2.5rem;
       background: var(--gold);
       color: var(--black);
-      border-radius: 14px;
-      padding: 1.2rem 1.5rem;
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .badge-num { font-family: 'Caveat', cursive; font-size: 2.2rem; font-weight: 700; line-height: 1; }
+    .badge-text { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 0.2rem; opacity: 0.7; }
+    .about-quote {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--gold-l);
+      line-height: 1.45;
+      margin: 2rem 0;
+      font-weight: 600;
+    }
+    .about-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 1.8rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+    .avatar {
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-d), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .avatar svg { width: 22px; height: 22px; fill: var(--black); }
+    .meta-name { font-weight: 700; font-size: 0.92rem; color: var(--white); }
+    .meta-role { font-size: 0.75rem; color: var(--muted); }
+
+    /* ─── BENTO GALLERY ─── */
+    .gallery { background: var(--black); }
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 200px;
+      gap: 10px;
+      margin-top: 3rem;
+    }
+    .bento-cell {
+      overflow: hidden;
+      border-radius: 12px;
+      position: relative;
+      cursor: pointer;
+      background: var(--card);
+    }
+    .bento-cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: block;
+    }
+    .bento-cell:hover img { transform: scale(1.08); }
+    .bento-cell::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(17,17,17,0);
+      transition: background 0.3s;
+    }
+    .bento-cell:hover::after { background: rgba(232,196,74,0.08); }
+    /* grid placement */
+    .b1  { grid-column: span 5; grid-row: span 3; }
+    .b2  { grid-column: span 4; grid-row: span 2; }
+    .b3  { grid-column: span 3; grid-row: span 2; }
+    .b4  { grid-column: span 4; grid-row: span 1; }
+    .b5  { grid-column: span 3; grid-row: span 1; }
+    .b6  { grid-column: span 4; grid-row: span 2; }
+    .b7  { grid-column: span 3; grid-row: span 2; }
+    .b8  { grid-column: span 2; grid-row: span 2; }
+    .b9  { grid-column: span 5; grid-row: span 2; }
+    .b10 { grid-column: span 4; grid-row: span 2; }
+    .b11 { grid-column: span 3; grid-row: span 1; }
+    .b12 { grid-column: span 5; grid-row: span 1; }
+
+    /* gallery label card */
+    .bento-label {
+      grid-column: span 4;
+      grid-row: span 1;
+      background: var(--gold);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 1rem;
+    }
+    .bento-label span {
       font-family: 'Caveat', cursive;
       font-size: 1.5rem;
       font-weight: 700;
-      line-height: 1.15;
-      text-align: center;
+      color: var(--black);
+      line-height: 1.1;
     }
-    .about-badge span { display: block; font-family: 'Lato', sans-serif; font-size: 0.7rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; margin-top: 0.2rem; }
-    .about-quote {
-      font-family: 'Caveat', cursive;
-      font-size: 1.4rem;
-      color: var(--gold-light);
-      line-height: 1.5;
-      margin: 1.8rem 0;
-      padding-left: 1.4rem;
-      border-left: 2px solid var(--gold);
+    .bento-label small {
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.5);
+      margin-top: 0.3rem;
     }
-    .about-stats {
-      display: flex;
-      gap: 2rem;
-      margin-top: 2rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border);
-    }
-    .stat-num { font-family: 'Caveat', cursive; font-size: 2rem; color: var(--gold); font-weight: 700; }
-    .stat-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; margin-top: 0.1rem; }
 
-    /* ── GALLERY ── */
-    .gallery { background: var(--black); }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: auto;
-      gap: 0.75rem;
-      margin-top: 3rem;
+    /* ─── MENU ─── */
+    .menu-section { background: var(--dark); }
+    .menu-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      gap: 2rem;
+      flex-wrap: wrap;
     }
-    .gallery-item {
+    .menu-tabs {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .tab {
+      padding: 0.55rem 1.2rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: all 0.2s;
+      font-family: 'Lato', sans-serif;
+    }
+    .tab:hover { color: var(--cream); border-color: rgba(245,238,220,0.25); }
+    .tab.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--black);
+      font-weight: 700;
+    }
+    .menu-panel { display: none; }
+    .menu-panel.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1px; border-radius: 14px; overflow: hidden; background: rgba(255,255,255,0.04); }
+    .mi {
+      background: var(--card);
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.2rem;
+      transition: background 0.2s;
+      cursor: default;
+    }
+    .mi:hover { background: #272626; }
+    .mi-name { font-size: 0.9rem; font-weight: 400; color: var(--cream); line-height: 1.3; }
+    .mi-sub { font-size: 0.73rem; color: var(--muted); margin-top: 0.2rem; line-height: 1.4; }
+    .mi-price { font-family: 'Caveat', cursive; font-size: 1.25rem; font-weight: 700; color: var(--gold); white-space: nowrap; }
+
+    /* ─── CATERING FEATURE ─── */
+    .catering { background: var(--black); padding: 0; }
+    .catering-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 680px;
+    }
+    .catering-visual {
       position: relative;
       overflow: hidden;
-      border-radius: 10px;
-      background: var(--card);
-      cursor: pointer;
     }
-    .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
-    .gallery-item img {
+    .catering-visual img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.5s ease;
-      min-height: 180px;
     }
-    .gallery-item:hover img { transform: scale(1.06); }
-    .gallery-item::after {
+    .catering-visual::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(rgba(0,0,0,0), rgba(17,17,17,0.88));
-      opacity: 0;
-      transition: opacity 0.3s;
+      background: linear-gradient(to right, rgba(17,17,17,0) 60%, rgba(17,17,17,1) 100%),
+                  linear-gradient(rgba(17,17,17,0.15), rgba(17,17,17,0.15));
     }
-    .gallery-item:hover::after { opacity: 1; }
-
-    /* ── MENU ── */
-    .menu-section { background: var(--dark); }
-    .menu-tabs {
+    .catering-body {
+      background: var(--dark);
+      padding: 5rem 4rem;
       display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .catering-list {
+      list-style: none;
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+    .catering-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.88rem;
+      color: rgba(245,238,220,0.7);
+    }
+    .check-icon {
+      width: 18px; height: 18px;
+      background: rgba(232,196,74,0.12);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .check-icon svg { width: 9px; height: 9px; stroke: var(--gold); fill: none; stroke-width: 2.5; }
+    .price-chip {
+      display: inline-flex;
+      align-items: center;
       gap: 0.5rem;
-      flex-wrap: wrap;
-      margin: 2.5rem 0 2rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 0;
-    }
-    .tab {
+      border: 1px solid var(--border);
+      border-radius: 100px;
       padding: 0.6rem 1.4rem;
-      border-radius: 8px 8px 0 0;
-      border: none;
-      border-bottom: 2px solid transparent;
-      background: transparent;
-      cursor: pointer;
-      font-size: 0.82rem;
-      font-weight: 400;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: all 0.2s;
-      font-family: 'Lato', sans-serif;
-      margin-bottom: -1px;
+      margin-bottom: 2rem;
     }
-    .tab:hover { color: var(--cream); }
-    .tab.active { color: var(--gold); border-bottom-color: var(--gold); }
-    .menu-panel { display: none; }
-    .menu-panel.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-    .menu-item {
-      background: var(--card);
-      padding: 1.1rem 1.4rem;
+    .price-chip-num { font-family: 'Caveat', cursive; font-size: 1.5rem; color: var(--gold); font-weight: 700; }
+    .price-chip-text { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+    /* ─── PULL QUOTE ─── */
+    .pullquote {
+      background: var(--gold);
+      padding: 5rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .pullquote::before {
+      content: '"';
+      position: absolute;
+      top: -2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Caveat', cursive;
+      font-size: 20rem;
+      color: rgba(0,0,0,0.06);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .pullquote-text {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(2rem, 4.5vw, 3.8rem);
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.2;
+      max-width: 900px;
+      margin: 0 auto 1.5rem;
+      position: relative;
+    }
+    .pullquote-attr {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.45);
+    }
+
+    /* ─── LIGHTBOX ─── */
+    .lb {
+      display: none;
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,0.93);
+      align-items: center; justify-content: center; padding: 2rem;
+    }
+    .lb.open { display: flex; }
+    .lb img { max-width: 88vw; max-height: 82vh; border-radius: 10px; object-fit: contain; }
+    .lb-x {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      color: var(--cream); width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.2s; font-size: 1rem;
+    }
+    .lb-x:hover { background: rgba(232,196,74,0.15); color: var(--gold); }
+    .lb-arr {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      color: var(--cream); width: 48px; height: 48px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.2s; font-size: 1.4rem;
+    }
+    .lb-arr:hover { background: rgba(232,196,74,0.15); color: var(--gold); }
+    .lb-arr.prev { left: 1.5rem; }
+    .lb-arr.next { right: 1.5rem; }
+
+    /* ─── FIND US ─── */
+    .find-section { background: var(--dark); }
+    .find-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .info-rows { margin-top: 2rem; display: flex; flex-direction: column; gap: 0; }
+    .info-row {
+      display: flex;
+      gap: 1.2rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .info-row:first-child { border-top: 1px solid var(--border); }
+    .info-ico {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: rgba(232,196,74,0.08);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 0.1rem;
+    }
+    .info-ico svg { width: 15px; height: 15px; stroke: var(--gold); fill: none; stroke-width: 1.8; }
+    .info-lbl { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .info-val { font-size: 0.92rem; color: var(--cream); margin-top: 0.2rem; line-height: 1.5; }
+    .info-val a { color: var(--gold); text-decoration: none; }
+    .info-val a:hover { text-decoration: underline; }
+
+    .map-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .map-card img { width: 100%; display: block; aspect-ratio: 4/3; object-fit: cover; opacity: 0.65; }
+    .map-glass {
+      position: absolute;
+      bottom: 1.5rem; left: 1.5rem; right: 1.5rem;
+      background: rgba(17,17,17,0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(232,196,74,0.15);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
+    }
+    .map-addr { font-family: 'Caveat', cursive; font-size: 1.15rem; color: var(--white); }
+    .map-link {
+      background: var(--gold); color: var(--black);
+      padding: 0.5rem 1.1rem; border-radius: 100px;
+      text-decoration: none; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.06em; white-space: nowrap;
       transition: background 0.2s;
     }
-    .menu-item:hover { background: #252424; }
-    .menu-item-name { font-weight: 400; font-size: 0.92rem; color: var(--cream); line-height: 1.3; }
-    .menu-item-sub { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; line-height: 1.4; }
-    .menu-item-price { font-family: 'Caveat', cursive; font-size: 1.2rem; font-weight: 700; color: var(--gold); white-space: nowrap; }
+    .map-link:hover { background: var(--gold-l); }
 
-    /* ── CATERING ── */
-    .catering { background: var(--black); position: relative; overflow: hidden; }
-    .catering-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url('https://www.carlinascafe.co.uk/images/img-003bb097.jpg');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.18;
-    }
-    .catering .container { position: relative; z-index: 1; }
-    .catering-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      margin-top: 1rem;
-    }
-    .catering-img {
-      border-radius: 16px;
-      overflow: hidden;
-      position: relative;
-    }
-    .catering-img img { width: 100%; display: block; object-fit: cover; aspect-ratio: 4/3; }
-    .catering-img::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(rgba(0,0,0,0), rgba(17,17,17,0.9));
-    }
-    .catering-list { list-style: none; margin: 1.5rem 0; display: flex; flex-direction: column; gap: 0.75rem; }
-    .catering-list li {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 0.9rem;
-      color: rgba(245,238,220,0.75);
-    }
-    .catering-list li::before { content: '✦'; color: var(--gold); font-size: 0.6rem; flex-shrink: 0; }
-    .catering-price-tag {
-      display: inline-block;
-      border: 1px solid var(--border);
-      color: var(--gold);
-      font-family: 'Caveat', cursive;
-      font-size: 1.3rem;
-      padding: 0.5rem 1.2rem;
-      border-radius: 50px;
-      margin-top: 0.5rem;
-    }
-
-    /* ── LIGHTBOX ── */
-    .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 999;
-      background: rgba(0,0,0,0.92);
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-    .lightbox.open { display: flex; }
-    .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 10px; object-fit: contain; }
-    .lightbox-close {
-      position: absolute;
-      top: 1.5rem; right: 1.5rem;
-      color: var(--cream);
-      font-size: 2rem;
-      cursor: pointer;
-      opacity: 0.7;
-      background: none;
-      border: none;
-      line-height: 1;
-    }
-    .lightbox-close:hover { opacity: 1; color: var(--gold); }
-    .lightbox-prev, .lightbox-next {
-      position: absolute;
-      top: 50%; transform: translateY(-50%);
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: var(--cream);
-      font-size: 1.5rem;
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s;
-    }
-    .lightbox-prev { left: 1.5rem; }
-    .lightbox-next { right: 1.5rem; }
-    .lightbox-prev:hover, .lightbox-next:hover { background: rgba(232,196,74,0.15); color: var(--gold); }
-
-    /* ── FIND US ── */
-    .find-us { background: var(--dark); }
-    .find-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.3fr;
-      gap: 4rem;
-      align-items: start;
-    }
-    .info-list { list-style: none; margin-top: 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
-    .info-list li { display: flex; gap: 1rem; align-items: flex-start; }
-    .info-icon {
-      width: 42px; height: 42px;
-      background: rgba(232,196,74,0.1);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; flex-shrink: 0;
-    }
-    .info-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
-    .info-value { color: var(--cream); font-size: 0.95rem; margin-top: 0.2rem; line-height: 1.5; }
-    .info-value a { color: var(--gold); text-decoration: none; }
-    .info-value a:hover { text-decoration: underline; }
-    .map-wrap {
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--card);
-      position: relative;
-    }
-    .map-wrap img { width: 100%; display: block; object-fit: cover; aspect-ratio: 4/3; opacity: 0.7; }
-    .map-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(rgba(0,0,0,0.15), rgba(17,17,17,0.9));
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      padding: 1.5rem;
-      text-align: center;
-    }
-    .map-address-text { font-family: 'Caveat', cursive; font-size: 1.3rem; color: var(--warm-white); margin-bottom: 0.8rem; }
-    .map-btn {
-      background: var(--gold);
-      color: var(--black);
-      padding: 0.6rem 1.5rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.82rem;
-      letter-spacing: 0.05em;
-      transition: background 0.2s;
-    }
-    .map-btn:hover { background: var(--gold-light); }
-
-    /* ── FOOTER ── */
+    /* ─── FOOTER ─── */
     footer {
-      background: #0a0a0a;
+      background: #0c0c0c;
       border-top: 1px solid var(--border);
-      padding: 3.5rem 1.5rem 2rem;
-      text-align: center;
+      padding: 4rem 3rem 2.5rem;
     }
-    .footer-logo { font-family: 'Caveat', cursive; font-size: 2.2rem; font-weight: 700; color: var(--gold); }
-    .footer-tagline { font-size: 0.82rem; color: var(--muted); letter-spacing: 0.08em; margin: 0.4rem 0 2rem; }
-    .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; }
-    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--gold); }
-    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin-bottom: 1.5rem; }
-    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; font-size: 0.75rem; color: rgba(255,255,255,0.2); }
-    .demo-tag { border: 1px solid rgba(255,255,255,0.08); border-radius: 50px; padding: 0.3rem 0.9rem; }
-    .demo-tag a { color: var(--gold); text-decoration: none; opacity: 0.7; }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .footer-brand { max-width: 280px; }
+    .footer-logo { font-family: 'Caveat', cursive; font-size: 2.4rem; font-weight: 700; color: var(--gold); }
+    .footer-tagline { font-size: 0.8rem; color: var(--muted); margin-top: 0.4rem; line-height: 1.6; }
+    .footer-cols { display: flex; gap: 4rem; flex-wrap: wrap; }
+    .footer-col-title { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .footer-col a, .footer-col p { display: block; color: var(--muted); font-size: 0.82rem; text-decoration: none; line-height: 2; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--cream); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 1rem; flex-wrap: wrap; padding-top: 2rem;
+    }
+    .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.2); }
+    .demo-pill {
+      font-size: 0.68rem; color: rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 100px; padding: 0.3rem 0.9rem;
+    }
+    .demo-pill a { color: var(--gold); opacity: 0.7; text-decoration: none; }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .about-grid, .catering-grid, .find-grid { grid-template-columns: 1fr; }
-      .about-badge { right: 0; }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery-item:first-child { grid-column: span 2; }
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .stat-cell:nth-child(2) { border-right: none; }
+      .bento { grid-auto-rows: 160px; }
+      .catering-inner { grid-template-columns: 1fr; }
+      .catering-visual { height: 360px; }
+      .catering-visual::after { background: linear-gradient(to bottom, rgba(17,17,17,0) 60%, rgba(17,17,17,1) 100%); }
     }
-    @media (max-width: 600px) {
-      nav { padding: 0 1.2rem; }
+    @media (max-width: 768px) {
+      nav { top: 0.8rem; padding: 0.5rem 0.5rem 0.5rem 1.2rem; gap: 0; }
       .nav-links a:not(.nav-cta) { display: none; }
-      .hours-cell { padding: 1rem 1.5rem; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .hero-content { padding: 0 1.5rem; }
+      .hero-row { flex-direction: column; align-items: flex-start; gap: 1.2rem; }
+      .hero-desc { display: none; }
+      .section { padding: 5rem 1.5rem; }
+      .about-grid, .find-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-img-accent { display: none; }
+      .about-float-badge { left: auto; right: 1rem; top: 1rem; }
+      .bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+      .b1  { grid-column: span 2; grid-row: span 2; }
+      .b2,.b3,.b4,.b5,.b6,.b7,.b8,.b9,.b10,.b11,.b12 { grid-column: span 1; grid-row: span 1; }
+      .bento-label { grid-column: span 2; }
+      .catering-body { padding: 3rem 1.5rem; }
+      .footer-top { flex-direction: column; }
+      .stats-bar { padding: 1.5rem; gap: 1rem; }
+      .hero-scroll { display: none; }
+      .pullquote { padding: 3.5rem 1.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-parallax, .bento-cell img { transition: none; }
+      .marquee-inner { animation: none; }
+      .hero-scroll-line { animation: none; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ─── NAV ─── -->
 <nav>
   <a href="#" class="nav-logo">Carlina's</a>
   <div class="nav-links">
-    <a href="#about">Our Story</a>
+    <a href="#about">Story</a>
+    <a href="#gallery">Gallery</a>
     <a href="#menu">Menu</a>
     <a href="#catering">Catering</a>
-    <a href="#gallery">Gallery</a>
     <a href="#find-us" class="nav-cta">Find Us</a>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ─── HERO ─── -->
 <section class="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-parallax" id="heroBg"></div>
+  <div class="hero-grain"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-tag">From My Mum to Yours ♥</div>
-    <h1 class="hero-title">Carlina's Café</h1>
-    <p class="hero-sub">93 Antrobus Street, Congleton &nbsp;·&nbsp; Tue–Sat 8am–2:30pm</p>
-    <div class="hero-btns">
-      <a href="#menu" class="btn-gold">View Our Menu</a>
-      <a href="#find-us" class="btn-ghost">Find Us</a>
-    </div>
-    <div class="delivery-row">
-      <a href="#" class="delivery-pill">🛵 Uber Eats</a>
-      <a href="#" class="delivery-pill">🍕 Just Eat</a>
+    <div class="hero-eyebrow">Congleton's Favourite Café</div>
+    <h1 class="hero-h1">Carlina's<span>Café</span></h1>
+    <div class="hero-row">
+      <p class="hero-desc">93 Antrobus Street, Congleton · Tue–Sat 8am–2:30pm<br>30+ homemade dishes, brewed with love and a story worth telling.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn-primary">View Menu</a>
+        <a href="#find-us" class="btn-outline">Find Us</a>
+      </div>
     </div>
   </div>
-  <div class="scroll-hint">Scroll</div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
 </section>
 
-<!-- HOURS -->
-<div class="hours-strip">
-  <div class="hours-cell">
-    <div class="hours-day">Tuesday – Saturday</div>
-    <div class="hours-time">8:00am – 2:30pm</div>
-  </div>
-  <div class="hours-cell">
-    <div class="hours-day">Sunday</div>
-    <div class="hours-time hours-closed">Closed</div>
-  </div>
-  <div class="hours-cell">
-    <div class="hours-day">Monday</div>
-    <div class="hours-time hours-closed">Closed</div>
-  </div>
-  <div class="hours-cell">
-    <div class="hours-day">Order Online</div>
-    <div class="hours-time" style="font-size:1rem;color:var(--gold)">Uber Eats &amp; Just Eat</div>
+<!-- ─── MARQUEE ─── -->
+<div class="marquee-track" aria-hidden="true">
+  <div class="marquee-inner">
+    <span>Open Tue–Sat</span><span class="marquee-dot">·</span>
+    <span>8:00am – 2:30pm</span><span class="marquee-dot">·</span>
+    <span>Homemade Food</span><span class="marquee-dot">·</span>
+    <span>From My Mum to Yours</span><span class="marquee-dot">·</span>
+    <span>Congleton CW12 1HE</span><span class="marquee-dot">·</span>
+    <span>30+ Dishes</span><span class="marquee-dot">·</span>
+    <span>Uber Eats &amp; Just Eat</span><span class="marquee-dot">·</span>
+    <span>Catering Available</span><span class="marquee-dot">·</span>
+    <!-- duplicate for seamless loop -->
+    <span>Open Tue–Sat</span><span class="marquee-dot">·</span>
+    <span>8:00am – 2:30pm</span><span class="marquee-dot">·</span>
+    <span>Homemade Food</span><span class="marquee-dot">·</span>
+    <span>From My Mum to Yours</span><span class="marquee-dot">·</span>
+    <span>Congleton CW12 1HE</span><span class="marquee-dot">·</span>
+    <span>30+ Dishes</span><span class="marquee-dot">·</span>
+    <span>Uber Eats &amp; Just Eat</span><span class="marquee-dot">·</span>
+    <span>Catering Available</span><span class="marquee-dot">·</span>
   </div>
 </div>
 
-<!-- ABOUT -->
-<section class="about" id="about">
+<!-- ─── STATS ─── -->
+<div class="stats-bar">
+  <div class="stat-cell r">
+    <div class="stat-big" data-count="30" data-suffix="+">0</div>
+    <div class="stat-label">Menu Items</div>
+  </div>
+  <div class="stat-cell r" style="transition-delay:0.1s">
+    <div class="stat-big">100%</div>
+    <div class="stat-label">Homemade</div>
+  </div>
+  <div class="stat-cell r" style="transition-delay:0.2s">
+    <div class="stat-big" data-count="5" data-suffix=" Days">0</div>
+    <div class="stat-label">Days a Week</div>
+  </div>
+  <div class="stat-cell r" style="transition-delay:0.3s">
+    <div class="stat-big">2</div>
+    <div class="stat-label">Delivery Platforms</div>
+  </div>
+</div>
+
+<!-- ─── ABOUT ─── -->
+<section class="about section" id="about">
   <div class="container">
     <div class="about-grid">
-      <div class="about-img-wrap reveal">
-        <img src="https://www.carlinascafe.co.uk/images/img-a2013ad6.jpg" alt="Carlina's Café food" class="about-img" />
-        <div class="about-badge">30+<span>Homemade Dishes</span></div>
-      </div>
-      <div class="reveal" style="transition-delay:0.15s">
-        <div class="label">Our Story</div>
-        <h2 class="heading">More Than Just a Café</h2>
-        <blockquote class="about-quote">
-          "This café is more than just a business — it's my passion, my purpose, and a way to honour my mum's life."
-        </blockquote>
-        <p class="body-text">
-          Hi, I'm Chandelle Jones — a proud mum of five, with NVQ Level 2 and 3 qualifications and years of experience working my way up in the hospitality industry through determination and resilience.
-          <br><br>
-          Carlina's is named in memory of my mum, and everything we do here is driven by her spirit. Whether it's a proper cooked breakfast, a fresh lunch plate, or simply a good cup of coffee — every dish is made with the same care you'd get at home.
-        </p>
-        <div class="about-stats">
-          <div><div class="stat-num">30+</div><div class="stat-label">Menu Items</div></div>
-          <div><div class="stat-num">100%</div><div class="stat-label">Homemade</div></div>
-          <div><div class="stat-num">♥</div><div class="stat-label">With Love</div></div>
+      <div class="about-img-stack r">
+        <img src="https://www.carlinascafe.co.uk/images/img-a2013ad6.jpg" alt="Carlina's Café food" class="about-img-main" />
+        <img src="https://www.carlinascafe.co.uk/images/img-20cc6d19.jpg" alt="Carlina's Café dish" class="about-img-accent" />
+        <div class="about-float-badge">
+          <div class="badge-num">30+</div>
+          <div class="badge-text">Homemade<br>Dishes</div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- GALLERY -->
-<section class="gallery" id="gallery">
-  <div class="container">
-    <div class="reveal">
-      <div class="label">From Our Kitchen</div>
-      <h2 class="heading">See What We Create</h2>
-    </div>
-    <div class="gallery-grid reveal" style="transition-delay:0.1s">
-      <div class="gallery-item" onclick="openLightbox(0)">
-        <img src="https://www.carlinascafe.co.uk/images/img-27b63d33.jpg" alt="Carlina's dish" loading="lazy" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox(1)">
-        <img src="https://www.carlinascafe.co.uk/images/img-1af04afa.jpg" alt="Carlina's dish" loading="lazy" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox(2)">
-        <img src="https://www.carlinascafe.co.uk/images/img-f156e566.jpg" alt="Carlina's dish" loading="lazy" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox(3)">
-        <img src="https://www.carlinascafe.co.uk/images/img-bd8f7a57.jpg" alt="Carlina's dish" loading="lazy" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox(4)">
-        <img src="https://www.carlinascafe.co.uk/images/img-20cc6d19.jpg" alt="Carlina's dish" loading="lazy" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox(5)">
-        <img src="https://www.carlinascafe.co.uk/images/img-97368740.jpg" alt="Carlina's dish" loading="lazy" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox(6)">
-        <img src="https://www.carlinascafe.co.uk/images/img-c7607c00.jpg" alt="Carlina's dish" loading="lazy" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox(7)">
-        <img src="https://www.carlinascafe.co.uk/images/img-b9a5c257.jpg" alt="Carlina's dish" loading="lazy" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox(8)">
-        <img src="https://www.carlinascafe.co.uk/images/img-dfb45910.jpg" alt="Carlina's dish" loading="lazy" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox(9)">
-        <img src="https://www.carlinascafe.co.uk/images/img-c896ca6a.jpg" alt="Carlina's dish" loading="lazy" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox(10)">
-        <img src="https://www.carlinascafe.co.uk/images/img-afbbf8a1.jpg" alt="Carlina's dish" loading="lazy" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox(11)">
-        <img src="https://www.carlinascafe.co.uk/images/img-003bb097.jpg" alt="Carlina's dish" loading="lazy" />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightboxOnBg(event)">
-  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-  <button class="lightbox-prev" onclick="lbNav(-1)">‹</button>
-  <img id="lb-img" src="" alt="" />
-  <button class="lightbox-next" onclick="lbNav(1)">›</button>
-</div>
-
-<!-- MENU -->
-<section class="menu-section" id="menu">
-  <div class="container">
-    <div class="reveal">
-      <div class="label">What's on</div>
-      <h2 class="heading">Our Menu</h2>
-      <p class="body-text">Everything prepared fresh daily. Gluten-free and vegetarian options available across the menu.</p>
-    </div>
-    <div class="menu-tabs reveal" style="transition-delay:0.1s">
-      <button class="tab active" onclick="showTab('breakfasts',this)">Breakfasts</button>
-      <button class="tab" onclick="showTab('lighter',this)">Lighter Bites</button>
-      <button class="tab" onclick="showTab('mains',this)">Mains</button>
-      <button class="tab" onclick="showTab('kids',this)">Kids</button>
-      <button class="tab" onclick="showTab('drinks',this)">Drinks</button>
-    </div>
-
-    <div id="breakfasts" class="menu-panel active reveal" style="transition-delay:0.2s">
-      <div class="menu-item"><div><div class="menu-item-name">Standard Breakfast</div><div class="menu-item-sub">Sausage, bacon, egg, beans, hash brown, toast</div></div><div class="menu-item-price">£6.95</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Traditional Breakfast</div><div class="menu-item-sub">2 sausages, 2 rashers, 2 eggs, beans, hash browns, toast</div></div><div class="menu-item-price">£8.45</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Full Monty</div><div class="menu-item-sub">Sausages, bacon, eggs, beans, hash browns, mushrooms, black pudding, toast/fried bread</div></div><div class="menu-item-price">£9.45</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Vegetarian Breakfast</div><div class="menu-item-sub">Veggie sausages, eggs, beans, mushrooms, hash browns, toast</div></div><div class="menu-item-price">£7.95</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Gluten-Free Breakfast</div><div class="menu-item-sub">Bacon, eggs, beans, mushrooms, hash browns, GF toast</div></div><div class="menu-item-price">£8.45</div></div>
-    </div>
-
-    <div id="lighter" class="menu-panel reveal" style="transition-delay:0.2s">
-      <div class="menu-item"><div><div class="menu-item-name">Breakfast Wrap</div></div><div class="menu-item-price">£5.60</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Build Your Own Oatcake</div></div><div class="menu-item-price">£4.30</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Smashed Avocado on Sourdough</div></div><div class="menu-item-price">£7.95</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Eggs Benedict</div></div><div class="menu-item-price">£7.95</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Eggs on Toast</div></div><div class="menu-item-price">£4.10</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Hot Filled Bap or Sandwich</div></div><div class="menu-item-price">from £3.00</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Toasted Teacake</div></div><div class="menu-item-price">£2.45</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Bloomer Toast &amp; Jam</div></div><div class="menu-item-price">£2.45</div></div>
-    </div>
-
-    <div id="mains" class="menu-panel reveal" style="transition-delay:0.2s">
-      <div class="menu-item"><div><div class="menu-item-name">Jacket Potatoes</div></div><div class="menu-item-price">£6.95</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Paninis &amp; Toasted Wraps</div></div><div class="menu-item-price">£6.00</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Club Sandwich</div></div><div class="menu-item-price">£9.90</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Fish Finger Sandwich</div></div><div class="menu-item-price">£8.90</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Halloumi Melt</div></div><div class="menu-item-price">£8.50</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Chilli Con Carne</div></div><div class="menu-item-price">£9.95</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Garlic Chilli Chicken</div></div><div class="menu-item-price">£9.95</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Fresh Salad Bowls</div></div><div class="menu-item-price">from £6.00</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Skin on Fries</div></div><div class="menu-item-price">£4.00</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Side of Fries</div></div><div class="menu-item-price">£2.00</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Loaded Toppings</div></div><div class="menu-item-price">from £1.10</div></div>
-    </div>
-
-    <div id="kids" class="menu-panel reveal" style="transition-delay:0.2s">
-      <div class="menu-item"><div><div class="menu-item-name">Beans on Toast</div></div><div class="menu-item-price">£2.60</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Kids Breakfast</div><div class="menu-item-sub">With juice, milk or water</div></div><div class="menu-item-price">£4.95</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Chicken Rocks</div><div class="menu-item-sub">With juice, milk or water</div></div><div class="menu-item-price">£4.95</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Sausage, Chips &amp; Beans</div><div class="menu-item-sub">With juice, milk or water</div></div><div class="menu-item-price">£4.95</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Kids Jacket Potato</div><div class="menu-item-sub">With juice, milk or water</div></div><div class="menu-item-price">£4.95</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Freshly Made Sandwiches</div><div class="menu-item-sub">With juice, milk or water</div></div><div class="menu-item-price">£4.95</div></div>
-    </div>
-
-    <div id="drinks" class="menu-panel reveal" style="transition-delay:0.2s">
-      <div class="menu-item"><div><div class="menu-item-name">Cappuccino</div></div><div class="menu-item-price">£3.85</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Latte</div></div><div class="menu-item-price">£3.85</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Americano</div></div><div class="menu-item-price">£3.55</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Mocha</div></div><div class="menu-item-price">£3.95</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Iced Latte</div></div><div class="menu-item-price">£3.85</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Pot of Tea</div></div><div class="menu-item-price">£2.95</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Hot Chocolate</div></div><div class="menu-item-price">£3.45</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Luxury Hot Chocolate</div></div><div class="menu-item-price">£3.85</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Almond / Oat Milk</div></div><div class="menu-item-price">+£0.25</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Syrup Shot</div><div class="menu-item-sub">Caramel, Vanilla, Gingerbread</div></div><div class="menu-item-price">+£0.30</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Soft Drinks</div><div class="menu-item-sub">Pepsi, Diet Pepsi, Tango, Sprite</div></div><div class="menu-item-price">£2.45</div></div>
-      <div class="menu-item"><div><div class="menu-item-name">Bottled Water</div></div><div class="menu-item-price">£1.45</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- CATERING -->
-<section class="catering" id="catering">
-  <div class="catering-bg"></div>
-  <div class="container">
-    <div class="catering-grid">
-      <div class="catering-img reveal">
-        <img src="https://www.carlinascafe.co.uk/images/img-97368740.jpg" alt="Catering platter" loading="lazy" />
-      </div>
-      <div class="reveal" style="transition-delay:0.15s">
-        <div class="label">Corporate &amp; Events</div>
-        <h2 class="heading">We Come to You</h2>
-        <p class="body-text">Calling all warehouses, offices, and workplaces! Carlina's offers freshly prepared buffet catering, made to order and delivered with just 24 hours' notice.</p>
-        <ul class="catering-list">
-          <li>Sweet chilli chicken skewers</li>
-          <li>BBQ Korean-style bites</li>
-          <li>Freshly made sandwiches</li>
-          <li>Wide selection of tasty nibbles</li>
-          <li>Gluten-free &amp; vegan options available</li>
-          <li>Locally sourced ingredients</li>
-        </ul>
-        <div class="catering-price-tag">from £7.50 per head</div>
-        <br><br>
-        <a href="https://www.facebook.com/profile.php?id=61584876186761" target="_blank" rel="noopener" class="btn-gold" style="display:inline-block">📘 Message on Facebook</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FIND US -->
-<section class="find-us" id="find-us">
-  <div class="container">
-    <div class="find-grid">
-      <div class="reveal">
-        <div class="label">Visit Us</div>
-        <h2 class="heading">Come Say Hello</h2>
-        <ul class="info-list">
-          <li>
-            <div class="info-icon">📍</div>
-            <div>
-              <div class="info-label">Address</div>
-              <div class="info-value">93 Antrobus Street<br>Congleton CW12 1HE</div>
-            </div>
-          </li>
-          <li>
-            <div class="info-icon">🕐</div>
-            <div>
-              <div class="info-label">Opening Hours</div>
-              <div class="info-value">Tue–Sat: 8:00am – 2:30pm<br>Sun &amp; Mon: Closed</div>
-            </div>
-          </li>
-          <li>
-            <div class="info-icon">📞</div>
-            <div>
-              <div class="info-label">Phone / WhatsApp</div>
-              <div class="info-value"><a href="tel:07857889057">07857 889057</a></div>
-            </div>
-          </li>
-          <li>
-            <div class="info-icon">📘</div>
-            <div>
-              <div class="info-label">Social</div>
-              <div class="info-value"><a href="https://www.facebook.com/profile.php?id=61584876186761" target="_blank" rel="noopener">Follow on Facebook</a></div>
-            </div>
-          </li>
-          <li>
-            <div class="info-icon">🚗</div>
-            <div>
-              <div class="info-label">Delivery</div>
-              <div class="info-value">Available on <a href="#">Uber Eats</a> &amp; <a href="#">Just Eat</a></div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div class="reveal" style="transition-delay:0.15s">
-        <div class="map-wrap">
-          <img src="https://www.carlinascafe.co.uk/images/img-c7607c00.jpg" alt="Carlina's Café" loading="lazy" />
-          <div class="map-overlay">
-            <div class="map-address-text">93 Antrobus Street, Congleton CW12 1HE</div>
-            <a href="https://www.google.com/maps/search/93+Antrobus+Street+Congleton+CW12+1HE" target="_blank" rel="noopener" class="map-btn">Open in Google Maps →</a>
+      <div class="r" style="transition-delay:0.15s">
+        <div class="eyebrow">Our Story</div>
+        <h2 class="h2">More Than<br>Just a Café</h2>
+        <blockquote class="about-quote">"This café is more than just a business — it's my passion, my purpose, and a way to honour my mum's life."</blockquote>
+        <p class="body">Hi, I'm Chandelle Jones — a proud mum of five, with NVQ Level 2 and 3 qualifications and years of experience working my way up in the hospitality industry. Carlina's is named in memory of my mum, and everything we do is driven by her spirit.</p>
+        <div class="about-meta">
+          <div class="avatar">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+          </div>
+          <div>
+            <div class="meta-name">Chandelle Jones</div>
+            <div class="meta-role">Founder · NVQ Level 2 &amp; 3 · Hospitality Professional</div>
           </div>
         </div>
       </div>
@@ -868,27 +896,279 @@
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo">Carlina's Café</div>
-  <div class="footer-tagline">From My Mum to Yours · 93 Antrobus Street, Congleton</div>
-  <div class="footer-links">
-    <a href="#about">Our Story</a>
-    <a href="#menu">Menu</a>
-    <a href="#catering">Catering</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#find-us">Find Us</a>
-    <a href="tel:07857889057">07857 889057</a>
+<!-- ─── GALLERY ─── -->
+<section class="gallery section" id="gallery">
+  <div class="container">
+    <div class="r">
+      <div class="eyebrow">From Our Kitchen</div>
+      <h2 class="h2">See What We Create</h2>
+    </div>
+    <div class="bento r" style="transition-delay:0.1s">
+      <div class="bento-cell b1" onclick="lb(0)"><img src="https://www.carlinascafe.co.uk/images/img-27b63d33.jpg" alt="Dish" loading="lazy" /></div>
+      <div class="bento-cell b2" onclick="lb(1)"><img src="https://www.carlinascafe.co.uk/images/img-1af04afa.jpg" alt="Dish" loading="lazy" /></div>
+      <div class="bento-cell b3" onclick="lb(2)"><img src="https://www.carlinascafe.co.uk/images/img-f156e566.jpg" alt="Dish" loading="lazy" /></div>
+      <div class="bento-label"><span>Fresh Daily</span><small>Every plate made with love</small></div>
+      <div class="bento-cell b4" onclick="lb(3)"><img src="https://www.carlinascafe.co.uk/images/img-bd8f7a57.jpg" alt="Dish" loading="lazy" /></div>
+      <div class="bento-cell b5" onclick="lb(4)"><img src="https://www.carlinascafe.co.uk/images/img-20cc6d19.jpg" alt="Dish" loading="lazy" /></div>
+      <div class="bento-cell b6" onclick="lb(5)"><img src="https://www.carlinascafe.co.uk/images/img-97368740.jpg" alt="Dish" loading="lazy" /></div>
+      <div class="bento-cell b7" onclick="lb(6)"><img src="https://www.carlinascafe.co.uk/images/img-c7607c00.jpg" alt="Dish" loading="lazy" /></div>
+      <div class="bento-cell b8" onclick="lb(7)"><img src="https://www.carlinascafe.co.uk/images/img-b9a5c257.jpg" alt="Dish" loading="lazy" /></div>
+      <div class="bento-cell b9" onclick="lb(8)"><img src="https://www.carlinascafe.co.uk/images/img-dfb45910.jpg" alt="Dish" loading="lazy" /></div>
+      <div class="bento-cell b10" onclick="lb(9)"><img src="https://www.carlinascafe.co.uk/images/img-c896ca6a.jpg" alt="Dish" loading="lazy" /></div>
+      <div class="bento-cell b11" onclick="lb(10)"><img src="https://www.carlinascafe.co.uk/images/img-afbbf8a1.jpg" alt="Dish" loading="lazy" /></div>
+      <div class="bento-cell b12" onclick="lb(11)"><img src="https://www.carlinascafe.co.uk/images/img-003bb097.jpg" alt="Dish" loading="lazy" /></div>
+    </div>
   </div>
-  <hr class="footer-divider" />
+</section>
+
+<!-- ─── LIGHTBOX ─── -->
+<div class="lb" id="lbox" onclick="lbBg(event)">
+  <button class="lb-x" onclick="lbClose()" aria-label="Close">✕</button>
+  <button class="lb-arr prev" onclick="lbNav(-1)" aria-label="Previous">‹</button>
+  <img id="lbImg" src="" alt="Gallery photo" />
+  <button class="lb-arr next" onclick="lbNav(1)" aria-label="Next">›</button>
+</div>
+
+<!-- ─── MENU ─── -->
+<section class="menu-section section" id="menu">
+  <div class="container">
+    <div class="menu-header">
+      <div class="r">
+        <div class="eyebrow">What's On</div>
+        <h2 class="h2">Our Menu</h2>
+      </div>
+      <div class="menu-tabs r" style="transition-delay:0.1s">
+        <button class="tab active" onclick="showTab('bk',this)">Breakfasts</button>
+        <button class="tab" onclick="showTab('lb',this)">Lighter Bites</button>
+        <button class="tab" onclick="showTab('mn',this)">Mains</button>
+        <button class="tab" onclick="showTab('kd',this)">Kids</button>
+        <button class="tab" onclick="showTab('dk',this)">Drinks</button>
+      </div>
+    </div>
+
+    <div id="bk" class="menu-panel active r" style="transition-delay:0.15s">
+      <div class="mi"><div><div class="mi-name">Standard Breakfast</div><div class="mi-sub">Sausage, bacon, egg, beans, hash brown, toast</div></div><div class="mi-price">£6.95</div></div>
+      <div class="mi"><div><div class="mi-name">Traditional Breakfast</div><div class="mi-sub">2 sausages, 2 rashers, 2 eggs, beans, hash browns, toast</div></div><div class="mi-price">£8.45</div></div>
+      <div class="mi"><div><div class="mi-name">Full Monty</div><div class="mi-sub">Sausages, bacon, eggs, beans, hash browns, mushrooms, black pudding, toast/fried bread</div></div><div class="mi-price">£9.45</div></div>
+      <div class="mi"><div><div class="mi-name">Vegetarian Breakfast</div><div class="mi-sub">Veggie sausages, eggs, beans, mushrooms, hash browns, toast</div></div><div class="mi-price">£7.95</div></div>
+      <div class="mi"><div><div class="mi-name">Gluten-Free Breakfast</div><div class="mi-sub">Bacon, eggs, beans, mushrooms, hash browns, GF toast</div></div><div class="mi-price">£8.45</div></div>
+    </div>
+
+    <div id="lb" class="menu-panel r" style="transition-delay:0.15s">
+      <div class="mi"><div><div class="mi-name">Breakfast Wrap</div></div><div class="mi-price">£5.60</div></div>
+      <div class="mi"><div><div class="mi-name">Build Your Own Oatcake</div></div><div class="mi-price">£4.30</div></div>
+      <div class="mi"><div><div class="mi-name">Smashed Avocado on Sourdough</div></div><div class="mi-price">£7.95</div></div>
+      <div class="mi"><div><div class="mi-name">Eggs Benedict</div></div><div class="mi-price">£7.95</div></div>
+      <div class="mi"><div><div class="mi-name">Eggs on Toast</div></div><div class="mi-price">£4.10</div></div>
+      <div class="mi"><div><div class="mi-name">Hot Filled Bap or Sandwich</div></div><div class="mi-price">from £3.00</div></div>
+      <div class="mi"><div><div class="mi-name">Toasted Teacake</div></div><div class="mi-price">£2.45</div></div>
+      <div class="mi"><div><div class="mi-name">Bloomer Toast &amp; Jam</div></div><div class="mi-price">£2.45</div></div>
+    </div>
+
+    <div id="mn" class="menu-panel r" style="transition-delay:0.15s">
+      <div class="mi"><div><div class="mi-name">Jacket Potatoes</div></div><div class="mi-price">£6.95</div></div>
+      <div class="mi"><div><div class="mi-name">Paninis &amp; Toasted Wraps</div></div><div class="mi-price">£6.00</div></div>
+      <div class="mi"><div><div class="mi-name">Club Sandwich</div></div><div class="mi-price">£9.90</div></div>
+      <div class="mi"><div><div class="mi-name">Fish Finger Sandwich</div></div><div class="mi-price">£8.90</div></div>
+      <div class="mi"><div><div class="mi-name">Halloumi Melt</div></div><div class="mi-price">£8.50</div></div>
+      <div class="mi"><div><div class="mi-name">Chilli Con Carne</div></div><div class="mi-price">£9.95</div></div>
+      <div class="mi"><div><div class="mi-name">Garlic Chilli Chicken</div></div><div class="mi-price">£9.95</div></div>
+      <div class="mi"><div><div class="mi-name">Fresh Salad Bowls</div></div><div class="mi-price">from £6.00</div></div>
+      <div class="mi"><div><div class="mi-name">Skin on Fries</div></div><div class="mi-price">£4.00</div></div>
+      <div class="mi"><div><div class="mi-name">Side of Fries</div></div><div class="mi-price">£2.00</div></div>
+      <div class="mi"><div><div class="mi-name">Loaded Toppings</div></div><div class="mi-price">from £1.10</div></div>
+    </div>
+
+    <div id="kd" class="menu-panel r" style="transition-delay:0.15s">
+      <div class="mi"><div><div class="mi-name">Beans on Toast</div></div><div class="mi-price">£2.60</div></div>
+      <div class="mi"><div><div class="mi-name">Kids Breakfast</div><div class="mi-sub">With juice, milk or water</div></div><div class="mi-price">£4.95</div></div>
+      <div class="mi"><div><div class="mi-name">Chicken Rocks</div><div class="mi-sub">With juice, milk or water</div></div><div class="mi-price">£4.95</div></div>
+      <div class="mi"><div><div class="mi-name">Sausage, Chips &amp; Beans</div><div class="mi-sub">With juice, milk or water</div></div><div class="mi-price">£4.95</div></div>
+      <div class="mi"><div><div class="mi-name">Kids Jacket Potato</div><div class="mi-sub">With juice, milk or water</div></div><div class="mi-price">£4.95</div></div>
+      <div class="mi"><div><div class="mi-name">Freshly Made Sandwiches</div><div class="mi-sub">With juice, milk or water</div></div><div class="mi-price">£4.95</div></div>
+    </div>
+
+    <div id="dk" class="menu-panel r" style="transition-delay:0.15s">
+      <div class="mi"><div><div class="mi-name">Cappuccino</div></div><div class="mi-price">£3.85</div></div>
+      <div class="mi"><div><div class="mi-name">Latte</div></div><div class="mi-price">£3.85</div></div>
+      <div class="mi"><div><div class="mi-name">Americano</div></div><div class="mi-price">£3.55</div></div>
+      <div class="mi"><div><div class="mi-name">Mocha</div></div><div class="mi-price">£3.95</div></div>
+      <div class="mi"><div><div class="mi-name">Iced Latte</div></div><div class="mi-price">£3.85</div></div>
+      <div class="mi"><div><div class="mi-name">Pot of Tea</div></div><div class="mi-price">£2.95</div></div>
+      <div class="mi"><div><div class="mi-name">Hot Chocolate</div></div><div class="mi-price">£3.45</div></div>
+      <div class="mi"><div><div class="mi-name">Luxury Hot Chocolate</div></div><div class="mi-price">£3.85</div></div>
+      <div class="mi"><div><div class="mi-name">Almond / Oat Milk</div></div><div class="mi-price">+£0.25</div></div>
+      <div class="mi"><div><div class="mi-name">Syrup Shot</div><div class="mi-sub">Caramel, Vanilla, Gingerbread</div></div><div class="mi-price">+£0.30</div></div>
+      <div class="mi"><div><div class="mi-name">Soft Drinks</div><div class="mi-sub">Pepsi, Diet Pepsi, Tango, Sprite</div></div><div class="mi-price">£2.45</div></div>
+      <div class="mi"><div><div class="mi-name">Bottled Water</div></div><div class="mi-price">£1.45</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PULL QUOTE ─── -->
+<div class="pullquote r">
+  <p class="pullquote-text">"Every dish is made with the same care you'd get at home."</p>
+  <p class="pullquote-attr">Chandelle Jones · Founder, Carlina's Café</p>
+</div>
+
+<!-- ─── CATERING ─── -->
+<section class="catering" id="catering">
+  <div class="catering-inner">
+    <div class="catering-visual r">
+      <img src="https://www.carlinascafe.co.uk/images/img-97368740.jpg" alt="Catering platter" loading="lazy" />
+    </div>
+    <div class="catering-body r" style="transition-delay:0.15s">
+      <div class="eyebrow">Corporate &amp; Events</div>
+      <h2 class="h2">We Come<br>to You</h2>
+      <p class="body">Freshly prepared buffet catering for warehouses, offices, and workplaces across Congleton — with just 24 hours' notice. All food made fresh on the day with locally sourced ingredients.</p>
+      <ul class="catering-list">
+        <li><span class="check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>Sweet chilli chicken skewers</li>
+        <li><span class="check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>BBQ Korean-style bites</li>
+        <li><span class="check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>Freshly made sandwiches &amp; nibbles</li>
+        <li><span class="check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>Gluten-free &amp; vegan options available</li>
+        <li><span class="check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>Locally sourced, high-quality ingredients</li>
+      </ul>
+      <div class="price-chip">
+        <span class="price-chip-num">from £7.50</span>
+        <span class="price-chip-text">per head · minimum order applies</span>
+      </div>
+      <a href="https://www.facebook.com/profile.php?id=61584876186761" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block; width:fit-content">Message on Facebook</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FIND US ─── -->
+<section class="find-section section" id="find-us">
+  <div class="container">
+    <div class="find-grid">
+      <div class="r">
+        <div class="eyebrow">Visit Us</div>
+        <h2 class="h2">Come Say<br>Hello</h2>
+        <div class="info-rows">
+          <div class="info-row">
+            <div class="info-ico">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <div>
+              <div class="info-lbl">Address</div>
+              <div class="info-val">93 Antrobus Street, Congleton CW12 1HE</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-ico">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="info-lbl">Opening Hours</div>
+              <div class="info-val">Tue–Sat: 8:00am – 2:30pm<br><span style="color:var(--muted)">Sun &amp; Mon: Closed</span></div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-ico">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.03 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="info-lbl">Phone / WhatsApp</div>
+              <div class="info-val"><a href="tel:07857889057">07857 889057</a></div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-ico">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </div>
+            <div>
+              <div class="info-lbl">Social</div>
+              <div class="info-val"><a href="https://www.facebook.com/profile.php?id=61584876186761" target="_blank" rel="noopener">Follow on Facebook</a></div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-ico">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+            </div>
+            <div>
+              <div class="info-lbl">Delivery</div>
+              <div class="info-val"><a href="#">Uber Eats</a> &amp; <a href="#">Just Eat</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="r" style="transition-delay:0.15s">
+        <div class="map-card">
+          <img src="https://www.carlinascafe.co.uk/images/img-c7607c00.jpg" alt="Carlina's Café interior" loading="lazy" />
+          <div class="map-glass">
+            <div class="map-addr">93 Antrobus Street, Congleton</div>
+            <a href="https://www.google.com/maps/search/93+Antrobus+Street+Congleton+CW12+1HE" target="_blank" rel="noopener" class="map-link">Get Directions</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">Carlina's Café</div>
+      <p class="footer-tagline">From My Mum to Yours.<br>Homemade food with heart, every single day.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <div class="footer-col-title">Navigate</div>
+        <a href="#about">Our Story</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#menu">Menu</a>
+        <a href="#catering">Catering</a>
+        <a href="#find-us">Find Us</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Visit</div>
+        <p>93 Antrobus Street</p>
+        <p>Congleton CW12 1HE</p>
+        <p>Tue–Sat: 8am–2:30pm</p>
+        <a href="tel:07857889057">07857 889057</a>
+      </div>
+    </div>
+  </div>
   <div class="footer-bottom">
-    <span>© 2025 Carlina's Café · All rights reserved</span>
-    <span class="demo-tag">Demo rebuild by <a href="https://csintel.co.uk">CSIntel</a></span>
+    <span class="footer-copy">© 2025 Carlina's Café · All rights reserved</span>
+    <span class="demo-pill">Demo rebuild by <a href="https://csintel.co.uk">CSIntel</a></span>
   </div>
 </footer>
 
 <script>
-  // Tab switching
+  // ─ Parallax
+  const heroBg = document.getElementById('heroBg');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY < window.innerHeight) {
+      heroBg.style.transform = `translateY(${window.scrollY * 0.35}px)`;
+    }
+  }, { passive: true });
+
+  // ─ Reveal
+  const ro = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('v'); }), { threshold: 0.1 });
+  document.querySelectorAll('.r').forEach(el => ro.observe(el));
+
+  // ─ Counters
+  const co = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = +el.dataset.count;
+      const suffix = el.dataset.suffix || '';
+      let start = 0;
+      const step = Math.ceil(target / 40);
+      const t = setInterval(() => {
+        start = Math.min(start + step, target);
+        el.textContent = start + suffix;
+        if (start >= target) clearInterval(t);
+      }, 35);
+      co.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach(el => co.observe(el));
+
+  // ─ Tabs
   function showTab(id, btn) {
     document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -896,14 +1176,8 @@
     btn.classList.add('active');
   }
 
-  // Scroll reveal
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // Lightbox
-  const lbImgs = [
+  // ─ Lightbox
+  const imgs = [
     'https://www.carlinascafe.co.uk/images/img-27b63d33.jpg',
     'https://www.carlinascafe.co.uk/images/img-1af04afa.jpg',
     'https://www.carlinascafe.co.uk/images/img-f156e566.jpg',
@@ -917,29 +1191,12 @@
     'https://www.carlinascafe.co.uk/images/img-afbbf8a1.jpg',
     'https://www.carlinascafe.co.uk/images/img-003bb097.jpg',
   ];
-  let lbIdx = 0;
-  function openLightbox(i) {
-    lbIdx = i;
-    document.getElementById('lb-img').src = lbImgs[i];
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function closeLightboxOnBg(e) {
-    if (e.target === document.getElementById('lightbox')) closeLightbox();
-  }
-  function lbNav(dir) {
-    lbIdx = (lbIdx + dir + lbImgs.length) % lbImgs.length;
-    document.getElementById('lb-img').src = lbImgs[lbIdx];
-  }
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') lbNav(-1);
-    if (e.key === 'ArrowRight') lbNav(1);
-  });
+  let ci = 0;
+  function lb(i) { ci = i; document.getElementById('lbImg').src = imgs[i]; document.getElementById('lbox').classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function lbClose() { document.getElementById('lbox').classList.remove('open'); document.body.style.overflow = ''; }
+  function lbBg(e) { if (e.target === document.getElementById('lbox')) lbClose(); }
+  function lbNav(d) { ci = (ci + d + imgs.length) % imgs.length; document.getElementById('lbImg').src = imgs[ci]; }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') lbClose(); if (e.key === 'ArrowLeft') lbNav(-1); if (e.key === 'ArrowRight') lbNav(1); });
 </script>
 </body>
 </html>
