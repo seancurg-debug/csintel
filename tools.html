@@ -7,14 +7,14 @@
   <title>Tools &amp; Projects — CSIntel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <!-- ── Floating Nav ── -->
   <nav class="nav-float" aria-label="Main navigation">
-    <div class="nav-pill">
+    <div class="nav-pill" id="nav-pill">
       <a href="index.html" class="nav-logo" aria-label="CSIntel home">CS<span>Intel</span></a>
       <ul class="nav-links" role="list">
         <li><a href="index.html">Home</a></li>
@@ -36,19 +36,20 @@
 
     <!-- ── Page Hero ── -->
     <div class="page-hero">
-      <div class="container">
+      <div class="page-hero-dots" aria-hidden="true"></div>
+      <div class="container" style="position: relative; z-index: 1;">
         <p class="section-label reveal">Projects</p>
-        <h1 class="reveal reveal-delay-1" style="font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700; letter-spacing: -0.035em; color: #09090B; margin-bottom: 16px; max-width: 640px;">
+        <h1 class="reveal reveal-delay-1" style="font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700; letter-spacing: -0.04em; color: var(--text); margin-bottom: 16px; max-width: 640px;">
           Tools &amp; Projects
         </h1>
-        <p class="reveal reveal-delay-2" style="color: #71717a; font-size: 1rem; max-width: 480px; line-height: 1.75; margin-bottom: 0;">
+        <p class="reveal reveal-delay-2" style="color: var(--text-muted); font-size: 1rem; max-width: 480px; line-height: 1.75; margin-bottom: 0;">
           AI tools, web apps, and automation projects — built, documented, and shipped. More added as ideas move from backlog to live.
         </p>
       </div>
     </div>
 
     <!-- ── Projects Grid ── -->
-    <section>
+    <section class="projects-section">
       <div class="container">
 
         <!-- Filter row -->
@@ -61,13 +62,20 @@
         <div class="card-grid" id="projects-grid">
 
           <article class="card reveal reveal-delay-1" data-status="wip">
+            <div class="card-glow"></div>
+            <div class="card-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                <circle cx="12" cy="13" r="4"/>
+              </svg>
+            </div>
             <span class="card-tag tag-wip">In Progress</span>
             <h3>AI Recipe Generator</h3>
             <p>
               Photograph your fridge contents and get an instant, tailored recipe suggestion back. Handles missing ingredients intelligently and adapts to dietary preferences.
             </p>
-            <p style="font-size: 0.82rem; color: #a1a1aa; margin-bottom: 12px;">
-              Built with Claude's vision API. Mobile-first interface designed for quick, single-handed use.
+            <p style="font-size: 0.82rem; color: var(--text-faint); margin-bottom: 12px;">
+              Built with Claude's vision API. Mobile-first interface for quick, single-handed use.
             </p>
             <div class="card-tags">
               <span class="card-tech">Claude Vision</span>
@@ -78,12 +86,20 @@
           </article>
 
           <article class="card reveal reveal-delay-2" data-status="wip">
+            <div class="card-glow"></div>
+            <div class="card-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
             <span class="card-tag tag-wip">In Progress</span>
             <h3>Chef Social App</h3>
             <p>
               A social platform for sharing, discovering, and saving recipes. AI handles auto-tagging, smart categorisation, and personalised discovery feeds.
             </p>
-            <p style="font-size: 0.82rem; color: #a1a1aa; margin-bottom: 12px;">
+            <p style="font-size: 0.82rem; color: var(--text-faint); margin-bottom: 12px;">
               Users post recipes, AI enriches them. Think Instagram for food — with a brain behind it.
             </p>
             <div class="card-tags">
@@ -95,12 +111,19 @@
           </article>
 
           <article class="card reveal reveal-delay-3" data-status="soon">
+            <div class="card-glow"></div>
+            <div class="card-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <path d="M8 21h8M12 17v4M7 8h.01M11 8h6"/>
+              </svg>
+            </div>
             <span class="card-tag tag-soon">Coming Soon</span>
             <h3>Custom Claude Agents</h3>
             <p>
               Purpose-built agents for specific workflows — research assistants, document summarisers, email drafters, and task automation helpers.
             </p>
-            <p style="font-size: 0.82rem; color: #a1a1aa; margin-bottom: 12px;">
+            <p style="font-size: 0.82rem; color: var(--text-faint); margin-bottom: 12px;">
               Each agent is tuned for a narrow job and deployed as a standalone tool or API endpoint.
             </p>
             <div class="card-tags">
@@ -112,12 +135,18 @@
           </article>
 
           <article class="card reveal reveal-delay-1" data-status="soon">
+            <div class="card-glow"></div>
+            <div class="card-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
             <span class="card-tag tag-soon">Coming Soon</span>
             <h3>Workflow Automation</h3>
             <p>
               AI-powered pipelines that connect your tools, cut manual steps, and handle repetitive tasks — from data processing to content scheduling.
             </p>
-            <p style="font-size: 0.82rem; color: #a1a1aa; margin-bottom: 12px;">
+            <p style="font-size: 0.82rem; color: var(--text-faint); margin-bottom: 12px;">
               Integrates with common services. Triggered by webhooks, schedules, or events.
             </p>
             <div class="card-tags">
@@ -129,12 +158,19 @@
           </article>
 
           <article class="card reveal reveal-delay-2" data-status="soon">
+            <div class="card-glow"></div>
+            <div class="card-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="23 7 16 12 23 17 23 7"/>
+                <rect x="1" y="5" width="15" height="14" rx="2"/>
+              </svg>
+            </div>
             <span class="card-tag tag-soon">Coming Soon</span>
             <h3>TikTok Content Tools</h3>
             <p>
               A pipeline for short-form video content — AI-assisted ideation, hook generation, script writing, and scheduling. Built around how content actually gets made.
             </p>
-            <p style="font-size: 0.82rem; color: #a1a1aa; margin-bottom: 12px;">
+            <p style="font-size: 0.82rem; color: var(--text-faint); margin-bottom: 12px;">
               Reduces the bottleneck between "I have an idea" and "this is ready to post."
             </p>
             <div class="card-tags">
@@ -146,12 +182,19 @@
           </article>
 
           <article class="card reveal reveal-delay-3" data-status="soon">
+            <div class="card-glow"></div>
+            <div class="card-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+              </svg>
+            </div>
             <span class="card-tag tag-soon">Coming Soon</span>
             <h3>AI Web Tools</h3>
             <p>
               Small, focused utilities with a single purpose each. Text processors, converters, generators — built fast with AI assistance and deployed as instant-load pages.
             </p>
-            <p style="font-size: 0.82rem; color: #a1a1aa; margin-bottom: 12px;">
+            <p style="font-size: 0.82rem; color: var(--text-faint); margin-bottom: 12px;">
               No accounts, no tracking. Just tools that work.
             </p>
             <div class="card-tags">
@@ -163,12 +206,19 @@
           </article>
 
           <article class="card reveal reveal-delay-1" data-status="soon">
+            <div class="card-glow"></div>
+            <div class="card-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+              </svg>
+            </div>
             <span class="card-tag tag-soon">Coming Soon</span>
             <h3>AI Integrations</h3>
             <p>
               Connecting AI models to real services — calendar, messaging, documents, and more. Built as standalone integrations or combined into larger workflows.
             </p>
-            <p style="font-size: 0.82rem; color: #a1a1aa; margin-bottom: 12px;">
+            <p style="font-size: 0.82rem; color: var(--text-faint); margin-bottom: 12px;">
               Practical connectors that make existing tools significantly smarter.
             </p>
             <div class="card-tags">
@@ -180,12 +230,19 @@
           </article>
 
           <article class="card reveal reveal-delay-2" data-status="soon">
+            <div class="card-glow"></div>
+            <div class="card-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+              </svg>
+            </div>
             <span class="card-tag tag-soon">Coming Soon</span>
             <h3>More in the Pipeline</h3>
             <p>
               New tools added regularly as ideas move from backlog to shipped. Got a suggestion or want to see something specific built?
             </p>
-            <p style="font-size: 0.82rem; color: #a1a1aa; margin-bottom: 12px;">
+            <p style="font-size: 0.82rem; color: var(--text-faint); margin-bottom: 12px;">
               Collaborations and suggestions welcome.
             </p>
             <div class="card-tags">
@@ -206,6 +263,7 @@
         <p class="reveal reveal-delay-1">Ideas, feedback, and collaborations are always welcome.</p>
         <div class="hero-actions reveal reveal-delay-2">
           <a href="contact.html" class="btn btn-blue">Get in touch</a>
+          <a href="index.html" class="btn btn-outline">Back to Home</a>
         </div>
       </div>
     </div>
@@ -241,6 +299,12 @@
     revealEls.forEach(el => observer.observe(el));
     document.querySelectorAll('.page-hero .reveal').forEach(el => el.classList.add('visible'));
 
+    // Nav scrolled state
+    const navPill = document.getElementById('nav-pill');
+    window.addEventListener('scroll', () => {
+      navPill.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
     // Mobile nav
     const hamburger = document.getElementById('hamburger');
     const mobileNav = document.getElementById('mobile-nav');
@@ -258,7 +322,6 @@
     // Filter
     const filterBtns = document.querySelectorAll('.filter-btn');
     const cards = document.querySelectorAll('#projects-grid .card');
-
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         filterBtns.forEach(b => b.classList.remove('active'));
