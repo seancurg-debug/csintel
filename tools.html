@@ -3,124 +3,274 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CSIntel — Tools and projects built with AI.">
-  <title>Tools — CSIntel</title>
+  <meta name="description" content="CSIntel — AI tools, web apps, and automation projects built by Sean. Claude-powered software, documented and shared.">
+  <title>Tools &amp; Projects — CSIntel</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <nav>
-    <div class="nav-inner">
-      <a href="index.html" class="nav-logo">CS<span>Intel</span></a>
-      <ul class="nav-links">
+  <!-- ── Floating Nav ── -->
+  <nav class="nav-float" aria-label="Main navigation">
+    <div class="nav-pill">
+      <a href="index.html" class="nav-logo" aria-label="CSIntel home">CS<span>Intel</span></a>
+      <ul class="nav-links" role="list">
         <li><a href="index.html">Home</a></li>
-        <li><a href="tools.html" class="active">Tools</a></li>
+        <li><a href="tools.html" class="active" aria-current="page">Tools</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
+      <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </nav>
+  <nav class="nav-mobile" id="mobile-nav" aria-label="Mobile navigation">
+    <a href="index.html">Home</a>
+    <a href="tools.html" class="active">Tools</a>
+    <a href="contact.html">Contact</a>
   </nav>
 
   <main>
+
+    <!-- ── Page Hero ── -->
+    <div class="page-hero">
+      <div class="container">
+        <p class="section-label reveal">Projects</p>
+        <h1 class="reveal reveal-delay-1" style="font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700; letter-spacing: -0.035em; color: #09090B; margin-bottom: 16px; max-width: 640px;">
+          Tools &amp; Projects
+        </h1>
+        <p class="reveal reveal-delay-2" style="color: #71717a; font-size: 1rem; max-width: 480px; line-height: 1.75; margin-bottom: 0;">
+          AI tools, web apps, and automation projects — built, documented, and shipped. More added as ideas move from backlog to live.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── Projects Grid ── -->
     <section>
       <div class="container">
 
-        <p class="section-label">Projects</p>
-        <h1 class="section-title">Tools &amp; Projects</h1>
-        <p class="section-sub">
-          AI tools, web apps, and automation projects — built, documented, and shared here.
-        </p>
+        <!-- Filter row -->
+        <div class="filter-row reveal" role="group" aria-label="Filter projects">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="wip">In Progress</button>
+          <button class="filter-btn" data-filter="soon">Coming Soon</button>
+        </div>
 
-        <div class="card-grid">
+        <div class="card-grid" id="projects-grid">
 
-          <div class="card">
+          <article class="card reveal reveal-delay-1" data-status="wip">
             <span class="card-tag tag-wip">In Progress</span>
             <h3>AI Recipe Generator</h3>
             <p>
-              Photograph your fridge contents and get a recipe suggestion back instantly.
-              Built with Claude's vision API and a minimal mobile-first interface.
+              Photograph your fridge contents and get an instant, tailored recipe suggestion back. Handles missing ingredients intelligently and adapts to dietary preferences.
             </p>
-          </div>
+            <p style="font-size: 0.82rem; color: #a1a1aa; margin-bottom: 12px;">
+              Built with Claude's vision API. Mobile-first interface designed for quick, single-handed use.
+            </p>
+            <div class="card-tags">
+              <span class="card-tech">Claude Vision</span>
+              <span class="card-tech">Python</span>
+              <span class="card-tech">Mobile-first</span>
+              <span class="card-tech">REST API</span>
+            </div>
+          </article>
 
-          <div class="card">
+          <article class="card reveal reveal-delay-2" data-status="wip">
             <span class="card-tag tag-wip">In Progress</span>
             <h3>Chef Social App</h3>
             <p>
-              A social platform for sharing and discovering recipes. AI handles tagging,
-              categorisation, and recommendations behind the scenes.
+              A social platform for sharing, discovering, and saving recipes. AI handles auto-tagging, smart categorisation, and personalised discovery feeds.
             </p>
-          </div>
+            <p style="font-size: 0.82rem; color: #a1a1aa; margin-bottom: 12px;">
+              Users post recipes, AI enriches them. Think Instagram for food — with a brain behind it.
+            </p>
+            <div class="card-tags">
+              <span class="card-tech">Claude API</span>
+              <span class="card-tech">React</span>
+              <span class="card-tech">Node.js</span>
+              <span class="card-tech">Social</span>
+            </div>
+          </article>
 
-          <div class="card">
+          <article class="card reveal reveal-delay-3" data-status="soon">
             <span class="card-tag tag-soon">Coming Soon</span>
             <h3>Custom Claude Agents</h3>
             <p>
-              Purpose-built agents for specific tasks — research assistants, summarisers,
-              and workflow helpers configured for real use cases.
+              Purpose-built agents for specific workflows — research assistants, document summarisers, email drafters, and task automation helpers.
             </p>
-          </div>
+            <p style="font-size: 0.82rem; color: #a1a1aa; margin-bottom: 12px;">
+              Each agent is tuned for a narrow job and deployed as a standalone tool or API endpoint.
+            </p>
+            <div class="card-tags">
+              <span class="card-tech">Claude API</span>
+              <span class="card-tech">Python</span>
+              <span class="card-tech">Agents</span>
+              <span class="card-tech">Automation</span>
+            </div>
+          </article>
 
-          <div class="card">
+          <article class="card reveal reveal-delay-1" data-status="soon">
             <span class="card-tag tag-soon">Coming Soon</span>
             <h3>Workflow Automation</h3>
             <p>
-              AI-powered pipelines that connect tools, reduce manual steps, and handle
-              repetitive tasks — from data processing to content scheduling.
+              AI-powered pipelines that connect your tools, cut manual steps, and handle repetitive tasks — from data processing to content scheduling.
             </p>
-          </div>
-
-          <div class="card">
-            <span class="card-tag tag-soon">Coming Soon</span>
-            <h3>AI Web Tools</h3>
-            <p>
-              Small, focused utilities built fast with AI-assisted development. Single-purpose
-              tools that do one thing well and load instantly.
+            <p style="font-size: 0.82rem; color: #a1a1aa; margin-bottom: 12px;">
+              Integrates with common services. Triggered by webhooks, schedules, or events.
             </p>
-          </div>
+            <div class="card-tags">
+              <span class="card-tech">Python</span>
+              <span class="card-tech">Webhooks</span>
+              <span class="card-tech">Claude API</span>
+              <span class="card-tech">Pipelines</span>
+            </div>
+          </article>
 
-          <div class="card">
+          <article class="card reveal reveal-delay-2" data-status="soon">
             <span class="card-tag tag-soon">Coming Soon</span>
             <h3>TikTok Content Tools</h3>
             <p>
-              Tools to support building a content pipeline — from ideation and scripting
-              to scheduling and analytics for short-form video.
+              A pipeline for short-form video content — AI-assisted ideation, hook generation, script writing, and scheduling. Built around how content actually gets made.
             </p>
-          </div>
+            <p style="font-size: 0.82rem; color: #a1a1aa; margin-bottom: 12px;">
+              Reduces the bottleneck between "I have an idea" and "this is ready to post."
+            </p>
+            <div class="card-tags">
+              <span class="card-tech">Claude API</span>
+              <span class="card-tech">Python</span>
+              <span class="card-tech">Content</span>
+              <span class="card-tech">Scripting</span>
+            </div>
+          </article>
 
-          <div class="card">
+          <article class="card reveal reveal-delay-3" data-status="soon">
+            <span class="card-tag tag-soon">Coming Soon</span>
+            <h3>AI Web Tools</h3>
+            <p>
+              Small, focused utilities with a single purpose each. Text processors, converters, generators — built fast with AI assistance and deployed as instant-load pages.
+            </p>
+            <p style="font-size: 0.82rem; color: #a1a1aa; margin-bottom: 12px;">
+              No accounts, no tracking. Just tools that work.
+            </p>
+            <div class="card-tags">
+              <span class="card-tech">JavaScript</span>
+              <span class="card-tech">HTML</span>
+              <span class="card-tech">Claude API</span>
+              <span class="card-tech">Utilities</span>
+            </div>
+          </article>
+
+          <article class="card reveal reveal-delay-1" data-status="soon">
             <span class="card-tag tag-soon">Coming Soon</span>
             <h3>AI Integrations</h3>
             <p>
-              Connecting AI models to real services — calendar, messaging, documents,
-              and more. Built as standalone integrations or combined into larger workflows.
+              Connecting AI models to real services — calendar, messaging, documents, and more. Built as standalone integrations or combined into larger workflows.
             </p>
-          </div>
+            <p style="font-size: 0.82rem; color: #a1a1aa; margin-bottom: 12px;">
+              Practical connectors that make existing tools significantly smarter.
+            </p>
+            <div class="card-tags">
+              <span class="card-tech">Claude API</span>
+              <span class="card-tech">APIs</span>
+              <span class="card-tech">Python</span>
+              <span class="card-tech">Integrations</span>
+            </div>
+          </article>
 
-          <div class="card">
+          <article class="card reveal reveal-delay-2" data-status="soon">
             <span class="card-tag tag-soon">Coming Soon</span>
-            <h3>More Projects</h3>
+            <h3>More in the Pipeline</h3>
             <p>
-              New tools added regularly as ideas get built out. Got a suggestion or want
-              to collaborate? <a href="contact.html" style="color: var(--accent); text-decoration: none;">Get in touch.</a>
+              New tools added regularly as ideas move from backlog to shipped. Got a suggestion or want to see something specific built?
             </p>
-          </div>
+            <p style="font-size: 0.82rem; color: #a1a1aa; margin-bottom: 12px;">
+              Collaborations and suggestions welcome.
+            </p>
+            <div class="card-tags">
+              <span class="card-tech">TBD</span>
+              <span class="card-tech"><a href="contact.html" style="color: inherit; text-decoration: none;">Suggest one →</a></span>
+            </div>
+          </article>
 
         </div>
+
       </div>
     </section>
+
+    <!-- ── CTA ── -->
+    <div class="cta-strip" aria-labelledby="cta-heading">
+      <div class="container">
+        <h2 id="cta-heading" class="reveal">Want to collaborate or follow the build?</h2>
+        <p class="reveal reveal-delay-1">Ideas, feedback, and collaborations are always welcome.</p>
+        <div class="hero-actions reveal reveal-delay-2">
+          <a href="contact.html" class="btn btn-blue">Get in touch</a>
+        </div>
+      </div>
+    </div>
+
   </main>
 
+  <!-- ── Footer ── -->
   <footer>
     <div class="container">
       <div class="footer-inner">
-        <a href="index.html" class="footer-logo">CS<span>Intel</span></a>
-        <p>&copy; 2025 CSIntel</p>
-        <ul class="footer-links">
+        <a href="index.html" class="footer-logo" aria-label="CSIntel home">CS<span>Intel</span></a>
+        <p>&copy; 2026 CSIntel</p>
+        <ul class="footer-links" role="list">
           <li><a href="index.html">Home</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="https://github.com/seancurg-debug" target="_blank" rel="noopener noreferrer">GitHub</a></li>
         </ul>
       </div>
     </div>
   </footer>
+
+  <script>
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+    document.querySelectorAll('.page-hero .reveal').forEach(el => el.classList.add('visible'));
+
+    // Mobile nav
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Filter
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('#projects-grid .card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        cards.forEach(card => {
+          if (filter === 'all' || card.dataset.status === filter) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+  </script>
 
 </body>
 </html>

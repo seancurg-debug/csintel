@@ -3,120 +3,364 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CSIntel — AI integrations, tools, agents and workflows. Built and documented.">
+  <meta name="description" content="CSIntel — AI tools, agents and workflows, built and documented by Sean. UK-based AI builder.">
   <title>CSIntel — AI Portfolio</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <nav>
-    <div class="nav-inner">
-      <a href="index.html" class="nav-logo">CS<span>Intel</span></a>
-      <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
+  <!-- ── Floating Nav ── -->
+  <nav class="nav-float" aria-label="Main navigation">
+    <div class="nav-pill">
+      <a href="index.html" class="nav-logo" aria-label="CSIntel home">CS<span>Intel</span></a>
+      <ul class="nav-links" role="list">
+        <li><a href="index.html" class="active" aria-current="page">Home</a></li>
         <li><a href="tools.html">Tools</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
+      <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </nav>
+  <nav class="nav-mobile" id="mobile-nav" aria-label="Mobile navigation">
+    <a href="index.html" class="active">Home</a>
+    <a href="tools.html">Tools</a>
+    <a href="contact.html">Contact</a>
   </nav>
 
   <main>
 
-    <!-- Hero -->
-    <section class="hero">
+    <!-- ── Hero ── -->
+    <section class="hero hero-bg" aria-labelledby="hero-heading">
       <div class="container">
-        <span class="hero-eyebrow">AI Portfolio</span>
-        <h1>Building with <em>AI</em> — tools, agents &amp; workflows</h1>
-        <p class="hero-sub">
-          CSIntel is a personal showcase of AI integrations, web tools, and automation projects.
-          Practical things, built and documented.
+        <span class="hero-eyebrow reveal">AI Portfolio &nbsp;·&nbsp; Based in the UK</span>
+        <h1 id="hero-heading" class="reveal reveal-delay-1">
+          Building with <em>AI</em> —<br>tools, agents &amp; workflows
+        </h1>
+        <p class="hero-sub reveal reveal-delay-2">
+          CSIntel is a living portfolio of working software. Powered by Claude, driven by curiosity. Practical things, built and documented.
         </p>
-        <div class="hero-actions">
-          <a href="tools.html" class="btn btn-primary">View Projects</a>
-          <a href="contact.html" class="btn btn-ghost">Get in touch</a>
+        <div class="hero-actions reveal reveal-delay-3">
+          <a href="tools.html" class="btn btn-dark">
+            View Projects
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+              <path d="M2 7.5h11M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="contact.html" class="btn btn-outline">Get in touch</a>
         </div>
       </div>
     </section>
 
-    <hr class="divider">
-
-    <!-- About strip -->
-    <div class="about-strip">
+    <!-- ── Stats ── -->
+    <div class="stats-strip" aria-label="Key stats">
       <div class="container">
-        <div class="inner">
-          <p class="section-label">About</p>
-          <h2>What is CSIntel?</h2>
-          <p>
-            A living portfolio for projects built around AI — from recipe tools and social apps to
-            custom Claude agents, workflow automation, and more. It's part showcase, part
-            documentation of what's possible when you build with modern AI tools.
-          </p>
+        <div class="stats-grid">
+          <div class="stat-item reveal">
+            <div class="stat-value">2+</div>
+            <div class="stat-label">Projects Active</div>
+          </div>
+          <div class="stat-item reveal reveal-delay-1">
+            <div class="stat-value">Claude</div>
+            <div class="stat-label">AI Powered</div>
+          </div>
+          <div class="stat-item reveal reveal-delay-2">
+            <div class="stat-value">UK</div>
+            <div class="stat-label">Based</div>
+          </div>
+          <div class="stat-item reveal reveal-delay-3">
+            <div class="stat-value">Open</div>
+            <div class="stat-label">To Collaborate</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Featured section -->
-    <section>
+    <!-- ── About ── -->
+    <section aria-labelledby="about-heading">
       <div class="container">
-        <p class="section-label">Projects</p>
-        <h2 class="section-title">What's being built</h2>
-        <p class="section-sub">A selection of tools and experiments — more added over time.</p>
-        <div class="card-grid">
-
-          <div class="card">
-            <span class="card-tag tag-wip">In Progress</span>
-            <h3>AI Recipe Generator</h3>
-            <p>Take a photo of your fridge and get a recipe back. Built with Claude vision and a clean mobile interface.</p>
+        <div class="about-grid">
+          <div class="about-text">
+            <p class="section-label reveal">About</p>
+            <h2 id="about-heading" class="section-title reveal reveal-delay-1">What is CSIntel?</h2>
+            <p class="reveal reveal-delay-2">
+              I'm Sean — a UK-based builder obsessed with what modern AI makes possible. CSIntel started as a personal lab and turned into a place where ideas actually get shipped.
+            </p>
+            <p class="reveal reveal-delay-3">
+              From recipe tools and social apps to custom Claude agents and workflow automation — everything here is built, tested, and documented. Part showcase, part ongoing experiment in what AI can do.
+            </p>
+            <p class="reveal reveal-delay-4">
+              The goal isn't perfection. It's to build real things, learn by doing, and share what works.
+            </p>
+            <a href="contact.html" class="reveal reveal-delay-5" aria-label="Get in touch with Sean">
+              Get in touch
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M1.5 7h11M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
           </div>
 
-          <div class="card">
-            <span class="card-tag tag-wip">In Progress</span>
-            <h3>Chef Social App</h3>
-            <p>A social platform for sharing recipes, built with AI-assisted tagging and discovery features.</p>
+          <div class="code-terminal reveal reveal-delay-2" aria-hidden="true" role="presentation">
+            <div class="terminal-header">
+              <div class="terminal-dot" style="background:#ef4444;"></div>
+              <div class="terminal-dot" style="background:#eab308;"></div>
+              <div class="terminal-dot" style="background:#22c55e;"></div>
+              <span class="terminal-title">csintel.py</span>
+            </div>
+            <div class="terminal-body">
+              <p class="t-comment"># CSIntel — what's being built</p>
+              <p class="t-base">&nbsp;</p>
+              <p class="t-base"><span class="t-var">projects</span> = [</p>
+              <p class="t-indent t-base"><span class="t-str">"AI Recipe Generator"</span>,</p>
+              <p class="t-indent t-base"><span class="t-str">"Chef Social App"</span>,</p>
+              <p class="t-indent t-base"><span class="t-str">"Custom Claude Agents"</span>,</p>
+              <p class="t-indent t-comment"># more shipping soon...</p>
+              <p class="t-base">]</p>
+              <p class="t-base">&nbsp;</p>
+              <p class="t-base"><span class="t-var">stack</span> = {</p>
+              <p class="t-indent t-base"><span class="t-key">"ai"</span>: <span class="t-str">"Claude API"</span>,</p>
+              <p class="t-indent t-base"><span class="t-key">"backend"</span>: <span class="t-str">"Python"</span>,</p>
+              <p class="t-indent t-base"><span class="t-key">"frontend"</span>: <span class="t-str">"JavaScript"</span>,</p>
+              <p class="t-indent t-base"><span class="t-key">"status"</span>: <span class="t-str">"actively building"</span>,</p>
+              <p class="t-base">}</p>
+              <p class="t-base">&nbsp;</p>
+              <p class="t-comment"># location: United Kingdom 🇬🇧</p>
+              <p class="t-comment"># open to: collaboration</p>
+            </div>
           </div>
-
-          <div class="card">
-            <span class="card-tag tag-soon">Coming Soon</span>
-            <h3>Claude Agents</h3>
-            <p>Custom Claude agents for specific workflows — research, summarisation, task automation and more.</p>
-          </div>
-
-          <div class="card">
-            <span class="card-tag tag-soon">Coming Soon</span>
-            <h3>Workflow Automation</h3>
-            <p>AI-powered automation pipelines for real tasks — connecting tools, reducing friction.</p>
-          </div>
-
-          <div class="card">
-            <span class="card-tag tag-soon">Coming Soon</span>
-            <h3>Web Tools</h3>
-            <p>Small, focused web utilities built fast using AI-assisted development and deployed instantly.</p>
-          </div>
-
-          <div class="card">
-            <span class="card-tag tag-soon">Coming Soon</span>
-            <h3>More to come</h3>
-            <p>New projects added regularly. Ideas are in progress — check back or get in touch to follow along.</p>
-          </div>
-
         </div>
       </div>
     </section>
 
+    <!-- ── Featured Projects ── -->
+    <section style="background:#fff; border-top: 1px solid #e4e4e7; border-bottom: 1px solid #e4e4e7;" aria-labelledby="projects-heading">
+      <div class="container">
+        <p class="section-label reveal">Projects</p>
+        <h2 id="projects-heading" class="section-title reveal reveal-delay-1">What's being built</h2>
+        <p class="section-sub reveal reveal-delay-2" style="margin-bottom: 48px;">A selection of tools and experiments — more added over time.</p>
+
+        <div class="card-grid">
+
+          <article class="card reveal reveal-delay-1">
+            <span class="card-tag tag-wip">In Progress</span>
+            <h3>AI Recipe Generator</h3>
+            <p>Photograph your fridge contents and get an instant recipe suggestion. Built with Claude's vision API and a minimal mobile-first interface.</p>
+            <div class="card-tags">
+              <span class="card-tech">Claude Vision</span>
+              <span class="card-tech">Python</span>
+              <span class="card-tech">Mobile-first</span>
+            </div>
+          </article>
+
+          <article class="card reveal reveal-delay-2">
+            <span class="card-tag tag-wip">In Progress</span>
+            <h3>Chef Social App</h3>
+            <p>A social platform for sharing and discovering recipes. AI handles tagging, categorisation, and recommendations behind the scenes.</p>
+            <div class="card-tags">
+              <span class="card-tech">Claude API</span>
+              <span class="card-tech">React</span>
+              <span class="card-tech">Social</span>
+            </div>
+          </article>
+
+          <article class="card reveal reveal-delay-3">
+            <span class="card-tag tag-soon">Coming Soon</span>
+            <h3>Custom Claude Agents</h3>
+            <p>Purpose-built agents for specific tasks — research assistants, summarisers, and workflow helpers configured for real use cases.</p>
+            <div class="card-tags">
+              <span class="card-tech">Claude API</span>
+              <span class="card-tech">Agents</span>
+              <span class="card-tech">Automation</span>
+            </div>
+          </article>
+
+          <article class="card reveal reveal-delay-1">
+            <span class="card-tag tag-soon">Coming Soon</span>
+            <h3>Workflow Automation</h3>
+            <p>AI-powered pipelines that connect tools, reduce manual steps, and handle repetitive tasks — from data processing to content scheduling.</p>
+            <div class="card-tags">
+              <span class="card-tech">Python</span>
+              <span class="card-tech">Webhooks</span>
+              <span class="card-tech">AI</span>
+            </div>
+          </article>
+
+          <article class="card reveal reveal-delay-2">
+            <span class="card-tag tag-soon">Coming Soon</span>
+            <h3>TikTok Content Tools</h3>
+            <p>Tools to support a content pipeline — from AI-assisted ideation and scripting to scheduling and analytics for short-form video.</p>
+            <div class="card-tags">
+              <span class="card-tech">Claude API</span>
+              <span class="card-tech">Python</span>
+              <span class="card-tech">Content</span>
+            </div>
+          </article>
+
+          <article class="card reveal reveal-delay-3">
+            <span class="card-tag tag-soon">Coming Soon</span>
+            <h3>AI Web Tools</h3>
+            <p>Small, focused utilities built fast with AI-assisted development. Single-purpose tools that do one thing well and load instantly.</p>
+            <div class="card-tags">
+              <span class="card-tech">JavaScript</span>
+              <span class="card-tech">HTML</span>
+              <span class="card-tech">Claude</span>
+            </div>
+          </article>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 48px;" class="reveal">
+          <a href="tools.html" class="btn btn-outline">
+            See all projects
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M1.5 7h11M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Tech Stack ── -->
+    <section class="stack-section" aria-labelledby="stack-heading">
+      <div class="container" style="text-align: center;">
+        <p class="section-label reveal">Tech Stack</p>
+        <h2 id="stack-heading" class="section-title reveal reveal-delay-1" style="margin-bottom: 12px;">Built with the best tools</h2>
+        <p style="color: #71717a; font-size: 0.95rem; margin-bottom: 48px; max-width: 400px; margin-left: auto; margin-right: auto;" class="reveal reveal-delay-2">
+          The technologies behind everything at CSIntel.
+        </p>
+        <div class="stack-grid reveal reveal-delay-2">
+          <div class="stack-item">
+            <!-- Anthropic -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.304 3.541 12 16.836 6.696 3.541H3L10.348 20.46h3.304L21 3.541z"/></svg>
+            Claude API
+          </div>
+          <div class="stack-item">
+            <!-- Python -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M11.93 2c-1.15.01-2.23.1-3.17.28C6.19 2.7 5.87 3.61 5.87 5.01V7h6.12v.75H3.87C2.51 7.75 1.32 8.59.88 10.25c-.5 1.9-.52 3.08 0 5.06.39 1.48 1.31 2.47 2.68 2.47h1.73v-2.23c0-1.53 1.33-2.88 2.88-2.88h6.11c1.28 0 2.31-1.06 2.31-2.35V5.01c0-1.26-.92-2.2-2.31-2.4-.79-.12-1.61-.17-2.35-.16zM8.94 4.88c.48 0 .87.4.87.88 0 .49-.39.88-.87.88a.877.877 0 0 1-.88-.88c0-.48.39-.88.88-.88z" fill="#3776AB"/>
+              <path d="M18.38 7.75v2.17c0 1.59-1.36 2.94-2.88 2.94H9.39c-1.26 0-2.31 1.07-2.31 2.35v4.41c0 1.26.95 2 2.31 2.35 1.45.4 2.86.47 4.61 0 1.16-.33 2.31-1 2.31-2.35V17H9.89v-.75h6.12c1.35 0 1.85-1.01 2.31-2.47.48-1.5.46-2.94 0-4.87-.33-1.39-1.05-2.16-2.31-2.16H14.5V9.0M14.93 19.25c.48 0 .87.39.87.87 0 .49-.39.88-.87.88a.877.877 0 0 1-.88-.88c0-.48.39-.87.88-.87z" fill="#FFD43B"/>
+            </svg>
+            Python
+          </div>
+          <div class="stack-item">
+            <!-- JavaScript -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#F7DF1E" aria-hidden="true"><rect width="24" height="24" rx="3"/><path d="M8 18.5c.4.7 1 1.2 2 1.2 1.1 0 1.8-.55 1.8-1.5 0-1-.6-1.4-1.7-1.9l-.6-.25c-1.7-.72-2.8-1.62-2.8-3.52 0-1.75 1.33-3.1 3.4-3.1 1.47 0 2.53.52 3.3 1.87l-1.8 1.16c-.4-.72-.83-1-1.5-1-.68 0-1.1.43-1.1 1 0 .7.43 1 1.43 1.44l.6.25c2 .86 3.1 1.73 3.1 3.7 0 2.1-1.66 3.27-3.88 3.27-2.17 0-3.57-1.04-4.26-2.4L8 18.5zm8.6.2c.47.83 1.05 1.44 2.1 1.44 1.07 0 1.75-.52 1.75-1.27 0-.89-.7-1.2-1.88-1.72l-.64-.27C16.2 16.1 15.3 15.2 15.3 13.4c0-1.72 1.3-3.03 3.33-3.03 1.44 0 2.47.5 3.2 1.83l-1.74 1.12c-.38-.7-.8-.97-1.46-.97-.65 0-1.07.42-1.07.97 0 .68.42.96 1.4 1.38l.63.28c2.06.87 2.97 1.77 2.97 3.67 0 2.1-1.64 3.27-3.84 3.27-2.15 0-3.55-1.03-4.22-2.38l1.9-1.14z" fill="#000"/>
+            </svg>
+            JavaScript
+          </div>
+          <div class="stack-item">
+            <!-- React -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#61DAFB" aria-hidden="true"><circle cx="12" cy="12" r="2.2"/><path d="M12 6.3c2.7 0 5.2.4 7 1.1 2.1.8 3 1.9 3 2.6 0 .8-.9 1.9-3 2.6C17.2 13.3 14.7 13.6 12 13.6c-2.7 0-5.2-.3-7-1-2.1-.7-3-1.8-3-2.6 0-.8.9-1.8 3-2.6 1.8-.7 4.3-1.1 7-1.1z" fill="none" stroke="#61DAFB" stroke-width="1"/><path d="M8.6 9.15c1.35-2.34 3-4.2 4.5-5.3 1.7-1.2 3-.9 3.5-.2.5.8.3 2-.6 3.4C14.7 8.35 13 9.9 11 11.15c-2 1.2-4 2-5.6 2.1-1.7.2-2.7-.4-3-1.2-.3-.8.3-2 1.7-3.1l.1-.1a19.7 19.7 0 0 1 4.4-.7z" fill="none" stroke="#61DAFB" stroke-width="1"/><path d="M8.6 14.85c-1.35-2.34-2-4.7-2-6.5 0-2.1.7-3.1 1.5-3.1.8 0 1.7.8 2.6 2.4.8 1.4 1.6 3.4 2 5.7.4 2.3.5 4.4.2 6-.4 1.7-1.2 2.4-2 2.4-.8 0-1.7-.9-2.3-2.7v-.2a19.7 19.7 0 0 1 0-4.4-.3z" fill="none" stroke="#61DAFB" stroke-width="1"/></svg>
+            React
+          </div>
+          <div class="stack-item">
+            <!-- Node.js -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#339933" aria-hidden="true"><path d="M12 1.85c-.27 0-.55.07-.76.2l-7.44 4.3c-.47.27-.76.77-.76 1.3v8.6c0 .53.29 1.03.76 1.3l7.44 4.3c.21.13.49.2.76.2.27 0 .55-.07.76-.2l7.44-4.3c.47-.27.76-.77.76-1.3V7.65c0-.53-.29-1.03-.76-1.3L12.76 2.05c-.21-.13-.49-.2-.76-.2zm0 1.5l7 4.05v8.1l-7 4.05L5 15.5V7.4l7-4.05z"/></svg>
+            Node.js
+          </div>
+          <div class="stack-item">
+            <!-- GitHub -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </div>
+          <div class="stack-item">
+            <!-- HTML5 -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#E34F26" aria-hidden="true"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/></svg>
+            HTML / CSS
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── How I Build ── -->
+    <section aria-labelledby="process-heading">
+      <div class="container">
+        <p class="section-label reveal">Process</p>
+        <h2 id="process-heading" class="section-title reveal reveal-delay-1">How I build</h2>
+        <p class="section-sub reveal reveal-delay-2" style="margin-bottom: 48px;">Three phases I run through on every project.</p>
+        <div class="process-grid">
+          <div class="process-step reveal reveal-delay-1">
+            <div class="process-num">01</div>
+            <h3>Identify</h3>
+            <p>Find a real problem or an interesting use case — something worth solving, or something that reveals what AI can actually do when pushed.</p>
+          </div>
+          <div class="process-step reveal reveal-delay-2">
+            <div class="process-num">02</div>
+            <h3>Build</h3>
+            <p>Use Claude and the best available tools to ship fast. Iterate in the open. Don't wait for perfect — get something working and learn from it.</p>
+          </div>
+          <div class="process-step reveal reveal-delay-3">
+            <div class="process-num">03</div>
+            <h3>Document</h3>
+            <p>Share what works, what didn't, and what's next. The build log matters as much as the thing itself — this is how others (and future me) learn from it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <div class="cta-strip" aria-labelledby="cta-heading">
+      <div class="container">
+        <h2 id="cta-heading" class="reveal">Interested in what's being built?</h2>
+        <p class="reveal reveal-delay-1">Have an idea, want to collaborate, or just want to follow along.</p>
+        <div class="hero-actions reveal reveal-delay-2">
+          <a href="contact.html" class="btn btn-blue">Get in touch</a>
+          <a href="tools.html" class="btn btn-outline" style="color: #a1a1aa; border-color: #27272a;">See all projects</a>
+        </div>
+      </div>
+    </div>
+
   </main>
 
+  <!-- ── Footer ── -->
   <footer>
     <div class="container">
       <div class="footer-inner">
-        <a href="index.html" class="footer-logo">CS<span>Intel</span></a>
-        <p>&copy; 2025 CSIntel</p>
-        <ul class="footer-links">
+        <a href="index.html" class="footer-logo" aria-label="CSIntel home">CS<span>Intel</span></a>
+        <p>&copy; 2026 CSIntel</p>
+        <ul class="footer-links" role="list">
           <li><a href="tools.html">Tools</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="https://github.com/seancurg-debug" target="_blank" rel="noopener noreferrer">GitHub</a></li>
         </ul>
       </div>
     </div>
   </footer>
+
+  <script>
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(el => observer.observe(el));
+
+    // Trigger hero reveals immediately
+    document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('visible'));
+
+    // Mobile nav
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close mobile nav on link click
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
 
 </body>
 </html>
