@@ -1,124 +1,107 @@
 <!DOCTYPE html>
 <!--
 DESIGN RATIONALE — 5 lines
-1. IBM Plex Mono handles all structural metadata (dates, IDs, status, labels, footer);
-   Source Serif 4 carries prose. The typographic contrast is the entire visual system.
-2. Signal orange (#E8521A) appears on exactly two elements: the wordmark initial cap
-   and the "shipped" status marker. Scarcity makes it a genuine signal, not decoration.
-3. Log format (LOG 001 / date / tech / status) makes the page read like source-control
-   history — a working document, not a curated portfolio.
-4. Hairline 1px solid rules divide major sections; 1px dashed rules divide log entries.
-   No shadows, no fills, no gradients. Structure through line weights alone.
-5. The word "parked" is the conceptual core of the site: it earns trust by admitting
-   incompleteness where every other portfolio would say "coming soon."
+1. The page is formatted as an engineering drawing sheet: hairline rules, a status
+   legend, and a real title block (REV / DATE / AUTHOR / SHEET) as the footer.
+2. Two typefaces carry the whole system: Source Serif 4 for prose, IBM Plex Mono for
+   every piece of metadata. No other visual decoration exists.
+3. One accent — signal orange #E8521A — appears only on "shipped" markers. Scarcity
+   keeps it a signal, not a theme.
+4. Status markers are drawn in CSS (filled / half-filled / outline squares), so the
+   legend reads like a drawing key and survives any font or platform.
+5. Honesty is structural: "parked" is printed where every portfolio says "coming
+   soon", and the footer records the page itself as a revisioned document.
 
-SELF-CRITIQUE — 5 weaknesses identified and fixed before shipping
-
-W1: Initial draft placed LOG ID and date in a flex row — at 390px the date was forced
-    onto a new line mid-string, reading as broken metadata.
-    FIX: LOG ID and date stacked vertically as separate display:block spans inside
-    .log-meta; date reads as a subordinate label, not a peer.
-
-W2: The stack line used white-space:pre, which caused a horizontal scrollbar on mobile
-    when the full tech list exceeded the 342px content width.
-    FIX: Removed white-space:pre; the // prefix is a styled <span> that stays bound
-    to the first tech item so the comment never orphans on a new line.
-
-W3: Nav links initially inherited the base anchor underline style, making the header
-    read as a run of body text with link underlines.
-    FIX: Explicit text-decoration:none on nav a, with color transition on :hover
-    providing the only affordance — consistent with the spec-sheet register.
-
-W4: All section labels were set at 0.625rem (10px), dropping below legible minimum
-    on some Android devices at default text size.
-    FIX: Bumped to 0.6875rem (11px); retested at 390px — readable and still subtle.
-
-W5: The intro section had no top breathing room after the header rule — the opening
-    sentence collided visually with the border.
-    FIX: Intro section padding-top: 36px matches all other sections; consistent rhythm
-    throughout the document.
+SELF-CRITIQUE — 5 weaknesses found in the draft, all fixed before shipping
+W1: The container was margin:0 auto — centered, directly against "asymmetry over
+    centering". FIX: on desktop the sheet sits left, with a fixed left offset and
+    open space to the right, like a document on a desk.
+W2: Status was a bare colored word; color alone carried meaning (fails WCAG 1.4.1
+    and reads thin). FIX: drawn square markers (filled/half/outline) plus a legend
+    under the Build Log label — meaning survives in pure black and white.
+W3: First draft put the title block in the header, crowding the wordmark and
+    front-loading the gimmick. FIX: moved to the footer — where title blocks live
+    on real drawing sheets — leaving the header sparse.
+W4: Log metadata sat inline above each title on desktop, wasting the wider
+    viewport. FIX: ≥720px a 120px left rail holds LOG ID, date and status; entry
+    text keeps its own measure. Mobile keeps the stacked order.
+W5: Accent was spread across wordmark, statuses and hovers — three uses is a
+    palette, not a signal. FIX: accent now appears only on shipped markers and
+    their word; everything else is ink.
 
 MEMORABILITY TEST
-A visitor will remember this as the site where one entry says "parked" — that single
-honest word, in place of "coming soon," signals a real working developer and not a pitch.
+A visitor will remember that the page is literally a drawing sheet: it ends in an
+engineering title block — REV 0.4.0, dated, signed — and one entry honestly says
+"parked" where every other site would say "coming soon".
 -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CSIntel — build log. Sean, a UK-based self-taught developer documenting AI tools, agents and workflows built with Claude.">
-  <title>CSIntel</title>
+  <meta name="description" content="CSIntel — the public build log of Sean, a UK-based self-taught developer documenting tools, agents and workflows built with Claude.">
+  <title>CSIntel — Build Log</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
   <style>
-    /* ─── Reset ─── */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* ─── Custom properties ─── */
     :root {
-      --bg:         #FAF8F4;
-      --ink:        #1C1A16;
-      --ink-mid:    #4A453E;
-      --ink-muted:  #7A7268;
-      --rule:       #D0CBC2;
-      --rule-light: #E0DCD6;
-      --accent:     #E8521A;
-      --mono:       'IBM Plex Mono', 'Courier New', monospace;
-      --serif:      'Source Serif 4', Georgia, serif;
+      --bg:        #FAF8F4;
+      --ink:       #1C1A16;
+      --ink-mid:   #4A453E;
+      --ink-low:   #7A7268;
+      --rule:      #C9C3B8;
+      --accent:    #E8521A;
+      --mono:      'IBM Plex Mono', 'Courier New', monospace;
+      --serif:     'Source Serif 4', Georgia, serif;
     }
 
-    /* ─── Base ─── */
     html {
-      font-size: 16px;
-      -webkit-text-size-adjust: 100%;
       background: var(--bg);
+      -webkit-text-size-adjust: 100%;
     }
 
     body {
       background: var(--bg);
       color: var(--ink);
       font-family: var(--serif);
-      line-height: 1.65;
-      padding: 0 24px;
+      font-size: 1rem;
+      line-height: 1.68;
+      padding: 0 22px;
     }
 
-    /* ─── Container ─── */
-    .wrap {
-      max-width: 62ch;
-      margin: 0 auto;
+    /* The sheet: mobile-first single column; on desktop it sits left, not centered */
+    .sheet {
+      max-width: 63ch;
+      margin: 0;
+    }
+    @media (min-width: 900px) {
+      .sheet {
+        margin: 0 0 0 11vw;
+      }
     }
 
-    /* ─── Links ─── */
     a {
       color: inherit;
       text-decoration: underline;
+      text-decoration-thickness: 1px;
       text-decoration-color: var(--rule);
       text-underline-offset: 3px;
       transition: text-decoration-color 0.15s ease;
     }
-    a:hover {
-      text-decoration-color: var(--ink);
-    }
+    a:hover { text-decoration-color: var(--ink); }
 
-    /* ─── Header ─── */
+    /* ── Header ── */
     header {
-      padding: 32px 0 26px;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .header-inner {
+      padding: 30px 0 24px;
+      border-bottom: 1px solid var(--ink);
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
-
-    @media (min-width: 500px) {
-      .header-inner {
+    @media (min-width: 480px) {
+      header {
         flex-direction: row;
         align-items: baseline;
         justify-content: space-between;
@@ -129,280 +112,341 @@ honest word, in place of "coming soon," signals a real working developer and not
       font-family: var(--mono);
       font-size: 0.9375rem;
       font-weight: 500;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-decoration: none;
-      color: var(--ink);
-      line-height: 1;
-    }
-    .wordmark .c {
-      color: var(--accent);
     }
 
     nav {
       font-family: var(--mono);
       font-size: 0.8125rem;
-      letter-spacing: 0.02em;
     }
     nav a {
-      color: var(--ink-muted);
       text-decoration: none;
-      margin-left: 18px;
+      color: var(--ink-low);
+      margin-right: 18px;
       transition: color 0.15s ease;
     }
-    nav a:first-child {
-      margin-left: 0;
-    }
-    nav a:hover {
-      color: var(--ink);
-    }
+    nav a:last-child { margin-right: 0; }
+    nav a:hover,
+    nav a[aria-current="page"] { color: var(--ink); }
 
-    /* ─── Sections ─── */
-    .section {
-      padding: 36px 0;
+    /* ── Sections ── */
+    section {
+      padding: 34px 0;
       border-bottom: 1px solid var(--rule);
     }
 
-    .section-label {
+    .label {
       font-family: var(--mono);
       font-size: 0.6875rem;
       font-weight: 500;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--ink-muted);
-      padding-bottom: 11px;
-      border-bottom: 1px solid var(--rule);
-      margin-bottom: 28px;
+      color: var(--ink-low);
     }
+    h2.label { margin-bottom: 24px; }
 
-    /* ─── Intro ─── */
-    .intro-text {
-      font-size: 1rem;
-      line-height: 1.72;
+    /* ── Intro ── */
+    .intro p {
       color: var(--ink-mid);
+      max-width: 58ch;
     }
-    .intro-text strong {
-      color: var(--ink);
-      font-weight: 600;
-    }
+    .intro strong { color: var(--ink); font-weight: 600; }
 
-    /* ─── Log list ─── */
-    .log-list {
-      list-style: none;
+    /* ── Status markers: drawn squares, no glyph dependency ── */
+    .marker {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border: 1px solid var(--ink);
+      position: relative;
+      vertical-align: baseline;
+      margin-right: 7px;
     }
+    .marker--shipped  { background: var(--accent); border-color: var(--accent); }
+    .marker--building::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 50%;
+      background: var(--ink);
+    }
+    .marker--parked { border-color: var(--ink-low); }
 
-    .log-entry {
+    /* ── Build log ── */
+    .log-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 6px 20px;
+      margin-bottom: 24px;
+    }
+    .log-head h2 { margin-bottom: 0; }
+
+    .legend {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      color: var(--ink-low);
+      letter-spacing: 0.04em;
+    }
+    .legend span { margin-right: 14px; white-space: nowrap; }
+    .legend span:last-child { margin-right: 0; }
+    .legend .marker { width: 7px; height: 7px; margin-right: 5px; }
+
+    .log { list-style: none; }
+
+    .entry {
       padding: 26px 0;
       border-top: 1px dashed var(--rule);
     }
-    .log-entry:first-child {
-      border-top: none;
-      padding-top: 0;
-    }
+    .entry:first-child { border-top: none; padding-top: 0; }
 
-    .log-meta {
+    .entry-meta {
       font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      color: var(--ink-low);
       margin-bottom: 8px;
     }
-    .log-id {
-      display: block;
-      font-size: 0.6875rem;
+    .entry-meta .id {
       font-weight: 500;
-      letter-spacing: 0.1em;
-      color: var(--ink-muted);
-      margin-bottom: 1px;
-    }
-    .log-date {
-      display: block;
-      font-size: 0.6875rem;
-      color: var(--ink-muted);
-      opacity: 0.75;
-    }
-
-    .log-title {
-      font-family: var(--serif);
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--ink);
-      line-height: 1.3;
-      margin-bottom: 3px;
-    }
-
-    .log-tech {
-      font-family: var(--mono);
-      font-size: 0.6875rem;
-      color: var(--ink-muted);
-      letter-spacing: 0.03em;
-      margin-bottom: 13px;
-      line-height: 1.5;
-    }
-
-    .log-desc {
-      font-size: 0.9375rem;
-      line-height: 1.67;
       color: var(--ink-mid);
-      margin-bottom: 16px;
+      display: block;
     }
+    .entry-meta .date { display: block; margin-top: 1px; }
+    .entry-meta .status {
+      display: block;
+      margin-top: 8px;
+      color: var(--ink);
+    }
+    .entry-meta .status--shipped { color: var(--accent); }
+    .entry-meta .status--parked  { color: var(--ink-low); }
 
-    .status {
+    .entry-title {
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 2px;
+    }
+    .entry-tech {
       font-family: var(--mono);
       font-size: 0.6875rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
+      color: var(--ink-low);
+      letter-spacing: 0.03em;
+      margin-bottom: 12px;
     }
-    .status::before {
-      content: '▸ ';
+    .entry-desc {
+      font-size: 0.9375rem;
+      color: var(--ink-mid);
+      max-width: 56ch;
     }
-    .status--shipped  { color: var(--accent); }
-    .status--building { color: var(--ink); }
-    .status--parked   { color: var(--ink-muted); }
 
-    /* ─── Stack ─── */
-    .stack-block {
+    /* Desktop: metadata moves into a left rail — asymmetric, spec-sheet structure */
+    @media (min-width: 720px) {
+      .entry {
+        display: grid;
+        grid-template-columns: 128px 1fr;
+        column-gap: 28px;
+      }
+      .entry-meta { margin-bottom: 0; padding-top: 4px; }
+      .entry-body { min-width: 0; }
+    }
+
+    /* ── Stack ── */
+    .stack {
       font-family: var(--mono);
       font-size: 0.8125rem;
-      line-height: 1.8;
-      color: var(--ink-muted);
-      word-break: break-word;
+      line-height: 1.9;
+      color: var(--ink-mid);
     }
-    .stack-comment {
-      color: var(--ink-muted);
-      opacity: 0.6;
-    }
+    .stack .label { display: inline; margin-right: 12px; }
 
-    /* ─── Contact ─── */
-    .contact-list {
-      list-style: none;
-    }
-    .contact-list li {
+    /* ── Contact ── */
+    .contact {
       font-family: var(--mono);
       font-size: 0.875rem;
-      line-height: 2.4;
+      line-height: 2.1;
     }
-    .contact-list a {
-      text-decoration-color: var(--rule);
-    }
-    .contact-list a:hover {
-      text-decoration-color: var(--ink);
-    }
+    .contact .label { display: inline; margin-right: 12px; }
 
-    /* ─── Footer ─── */
-    footer {
-      padding: 22px 0 44px;
-    }
-    .footer-meta {
+    /* ── Footer: engineering-drawing title block ── */
+    footer { padding: 34px 0 48px; }
+
+    .titleblock {
+      border: 1px solid var(--ink);
       font-family: var(--mono);
-      font-size: 0.625rem;
-      color: var(--ink-muted);
-      letter-spacing: 0.08em;
-      opacity: 0.8;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .titleblock .cell {
+      padding: 9px 12px 10px;
+      border-top: 1px solid var(--ink);
+      border-left: 1px solid var(--ink);
+      min-width: 0;
+    }
+    .titleblock .cell--full {
+      grid-column: 1 / -1;
+      border-top: none;
+    }
+    /* Cells that start a row carry no left border (2-col layout: title, then 2×2) */
+    .titleblock .cell--full,
+    .titleblock .cell:nth-child(2),
+    .titleblock .cell:nth-child(4) { border-left: none; }
+    .titleblock .k {
+      display: block;
+      font-size: 0.5625rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-low);
+      margin-bottom: 2px;
+    }
+    .titleblock .v {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--ink);
+      letter-spacing: 0.04em;
+      overflow-wrap: break-word;
+    }
+    @media (min-width: 720px) {
+      /* One row of four below the title; only the row-leading cell drops its border */
+      .titleblock { grid-template-columns: 2fr 1fr 1fr 1fr; }
+      .titleblock .cell:nth-child(4) { border-left: 1px solid var(--ink); }
     }
 
-    /* ─── Desktop refinements ─── */
-    @media (min-width: 600px) {
-      body {
-        font-size: 1.0625rem;
-      }
-      .log-desc {
-        font-size: 1rem;
-      }
-    }
-
-    /* ─── Reduced motion ─── */
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <div class="sheet">
 
     <header>
-      <div class="header-inner">
-        <a href="prototype.html" class="wordmark"><span class="c">C</span>SIntel</a>
-        <nav aria-label="Main navigation">
-          <a href="prototype.html" aria-current="page">Log</a>
-          <a href="tools.html">Tools</a>
-          <a href="contact.html">Contact</a>
-        </nav>
-      </div>
+      <a class="wordmark" href="prototype.html">CSINTEL</a>
+      <nav aria-label="Main">
+        <a href="#log" aria-current="page">Log</a>
+        <a href="tools.html">Tools</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </header>
 
-    <section class="section" aria-label="Introduction">
-      <p class="intro-text">
-        I'm <strong>Sean</strong> — a self-taught developer based in the UK. I build tools,
-        agents and workflows using Claude, and document them here as I go. This is a
-        working log, not a portfolio: some things are shipped, some are still being
-        built, and a few have been set aside.
+    <section class="intro" aria-label="Introduction">
+      <p>
+        I'm <strong>Sean</strong>, a self-taught developer in the UK. I build tools,
+        agents and workflows with Claude, and I write down what actually happened —
+        what shipped, what's still in progress, and what I set aside. This site is
+        the log.
       </p>
     </section>
 
-    <section class="section" aria-labelledby="log-heading">
-      <h2 id="log-heading" class="section-label">Build Log</h2>
-      <ul class="log-list" role="list">
+    <section id="log" aria-labelledby="log-title">
+      <div class="log-head">
+        <h2 id="log-title" class="label">Build Log</h2>
+        <p class="legend" aria-hidden="true">
+          <span><i class="marker marker--shipped"></i>shipped</span>
+          <span><i class="marker marker--building"></i>building</span>
+          <span><i class="marker marker--parked"></i>parked</span>
+        </p>
+      </div>
 
-        <li class="log-entry">
-          <div class="log-meta">
-            <span class="log-id">LOG 001</span>
-            <span class="log-date">2025-09-12</span>
-          </div>
-          <h3 class="log-title">Research Assistant</h3>
-          <p class="log-tech">TypeScript · Claude Agent SDK · parent/subagent orchestration</p>
-          <p class="log-desc">
-            A multi-agent research tool. A parent agent receives a query, routes it to
-            typed subagents, and synthesises their outputs into a structured report.
-            Built on the Claude Agent SDK's native orchestration primitives in TypeScript.
+      <ul class="log" role="list">
+
+        <li class="entry">
+          <p class="entry-meta">
+            <span class="id">LOG 001</span>
+            <span class="date">2025-09-12</span>
+            <span class="status status--shipped"><i class="marker marker--shipped"></i>shipped</span>
           </p>
-          <span class="status status--shipped">shipped</span>
+          <div class="entry-body">
+            <h3 class="entry-title">Research Assistant</h3>
+            <p class="entry-tech">TypeScript · Claude Agent SDK · parent/subagent orchestration</p>
+            <p class="entry-desc">
+              A multi-agent research tool. A parent agent takes a query, dispatches it
+              to specialised subagents, and assembles their findings into a single
+              structured report. Built in TypeScript on the Claude Agent SDK's
+              orchestration primitives.
+            </p>
+          </div>
         </li>
 
-        <li class="log-entry">
-          <div class="log-meta">
-            <span class="log-id">LOG 002</span>
-            <span class="log-date">2025-11-28</span>
-          </div>
-          <h3 class="log-title">AI Recipe Generator</h3>
-          <p class="log-tech">Python · Claude Vision API</p>
-          <p class="log-desc">
-            Photograph the contents of your fridge. Claude Vision identifies the
-            ingredients and generates a recipe from what is actually there.
+        <li class="entry">
+          <p class="entry-meta">
+            <span class="id">LOG 002</span>
+            <span class="date">2025-11-28</span>
+            <span class="status status--building"><i class="marker marker--building"></i>building</span>
           </p>
-          <span class="status status--building">building</span>
+          <div class="entry-body">
+            <h3 class="entry-title">AI Recipe Generator</h3>
+            <p class="entry-tech">Claude vision</p>
+            <p class="entry-desc">
+              Photograph the inside of your fridge; Claude's vision model identifies
+              the ingredients and writes a recipe from what is actually there. The
+              ingredient recognition works; the recipe output still needs tuning.
+            </p>
+          </div>
         </li>
 
-        <li class="log-entry">
-          <div class="log-meta">
-            <span class="log-id">LOG 003</span>
-            <span class="log-date">2026-02-14</span>
-          </div>
-          <h3 class="log-title">Chef Social App</h3>
-          <p class="log-tech">React · Claude API</p>
-          <p class="log-desc">
-            A recipe-sharing platform with AI-assisted tagging and discovery. Paused
-            to focus on LOG 001 and LOG 002.
+        <li class="entry">
+          <p class="entry-meta">
+            <span class="id">LOG 003</span>
+            <span class="date">2026-02-14</span>
+            <span class="status status--parked"><i class="marker marker--parked"></i>parked</span>
           </p>
-          <span class="status status--parked">parked</span>
+          <div class="entry-body">
+            <h3 class="entry-title">Chef Social App</h3>
+            <p class="entry-tech">React · recipe sharing</p>
+            <p class="entry-desc">
+              A recipe-sharing app in React. Set aside, not abandoned — LOG 001 and
+              LOG 002 are the priority right now. It will come back when they don't
+              need daily attention.
+            </p>
+          </div>
         </li>
 
       </ul>
     </section>
 
-    <section class="section" aria-labelledby="stack-heading">
-      <h2 id="stack-heading" class="section-label">Stack</h2>
-      <p class="stack-block">
-        <span class="stack-comment">// </span>TypeScript · Python · React · Claude Agent SDK · Claude Vision · Node.js
+    <section aria-labelledby="stack-title">
+      <p class="stack">
+        <span id="stack-title" class="label">Stack</span>
+        TypeScript · Python · React · Node.js · Claude Agent SDK · Claude API
       </p>
     </section>
 
-    <section class="section" aria-labelledby="contact-heading" style="border-bottom: none;">
-      <h2 id="contact-heading" class="section-label">Contact</h2>
-      <ul class="contact-list" role="list">
-        <li><a href="mailto:sean.curg@gmail.com">sean.curg@gmail.com</a></li>
-        <li><a href="https://github.com/seancurg-debug" target="_blank" rel="noopener noreferrer">github.com/seancurg-debug</a></li>
-      </ul>
+    <section id="contact" aria-labelledby="contact-title">
+      <p class="contact-line contact">
+        <span id="contact-title" class="label">Contact</span>
+        <a href="mailto:sean.curg@gmail.com">sean.curg@gmail.com</a>
+        &nbsp;·&nbsp;
+        <a href="https://github.com/seancurg-debug" rel="noopener">github.com/seancurg-debug</a>
+      </p>
     </section>
 
     <footer>
-      <p class="footer-meta">v0.3.1 &middot; last updated 2026-06-12</p>
+      <div class="titleblock" role="contentinfo" aria-label="Document information">
+        <div class="cell cell--full">
+          <span class="k">Document</span>
+          <span class="v">CSINTEL — PUBLIC BUILD LOG</span>
+        </div>
+        <div class="cell">
+          <span class="k">Author</span>
+          <span class="v">SEAN · UK</span>
+        </div>
+        <div class="cell">
+          <span class="k">Rev</span>
+          <span class="v">0.4.0</span>
+        </div>
+        <div class="cell">
+          <span class="k">Updated</span>
+          <span class="v">2026-06-12</span>
+        </div>
+        <div class="cell">
+          <span class="k">Tooling</span>
+          <span class="v">HTML/CSS, NO FRAMEWORK</span>
+        </div>
+      </div>
     </footer>
 
   </div>
