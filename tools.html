@@ -3,254 +3,279 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CSIntel — AI tools, web apps, and automation projects built by Sean. Claude-powered software, documented and shared.">
-  <title>Tools &amp; Projects — CSIntel</title>
+  <meta name="theme-color" content="#0A0A0A">
+  <title>CSIntel — AI Builder, UK | Tools &amp; Projects</title>
+  <meta name="description" content="The full project index for CSIntel — multi-agent research assistant, AI recipe generator, restaurant chatbot demo, and workflow automation. Claude-powered tools built by Sean Curgenven.">
+  <link rel="canonical" href="https://csintel.co.uk/tools.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CSIntel — Tools &amp; Projects">
+  <meta property="og:description" content="The full project index — multi-agent research assistant, AI recipe generator, restaurant chatbot demo, and more.">
+  <meta property="og:image" content="https://csintel.co.uk/assets/og-image.png">
+  <meta property="og:url" content="https://csintel.co.uk/tools.html">
+  <meta name="twitter:card" content="summary_large_image">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+  <a href="#main" class="skip-link">SKIP TO CONTENT</a>
 
-  <!-- ── Floating Nav ── -->
-  <nav class="nav-float" aria-label="Main navigation">
-    <div class="nav-pill" id="nav-pill">
-      <a href="index.html" class="nav-logo" aria-label="CSIntel home">CS<span>Intel</span></a>
-      <ul class="nav-links" role="list">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="tools.html" class="active" aria-current="page">Tools</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" id="hamburger">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="sheet-frame" aria-hidden="true"></div>
+  <div class="zone-marks" aria-hidden="true">
+    <span class="zm-t1">A</span><span class="zm-t2">B</span><span class="zm-t3">C</span>
+    <span class="zm-l1">1</span><span class="zm-l2">2</span><span class="zm-l3">3</span>
+    <span class="zm-ref">SHEET 02 / 03</span>
+  </div>
+  <div class="page-wipe" aria-hidden="true"><span class="wipe-label">LOADING ░ NEXT SHEET</span></div>
+
+  <nav class="nav-bar" aria-label="Main navigation">
+    <a href="index.html" class="nav-brand" aria-label="CSIntel home">
+      <span class="nav-wordmark">CS<b>Intel</b></span>
+      <span class="nav-doc">DOC&nbsp;CSI-2026<br>REV&nbsp;05</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html"><span class="sq"></span><span class="idx">00</span>HOME</a></li>
+      <li><a href="tools.html" class="active" aria-current="page"><span class="sq"></span><span class="idx">01</span>TOOLS</a></li>
+      <li><a href="contact.html"><span class="sq"></span><span class="idx">02</span>CONTACT</a></li>
+    </ul>
+    <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
-  <nav class="nav-mobile" id="mobile-nav" aria-label="Mobile navigation">
-    <a href="index.html">Home</a>
-    <a href="tools.html" class="active">Tools</a>
-    <a href="contact.html">Contact</a>
+  <nav class="nav-mobile" id="nav-mobile" aria-label="Mobile navigation">
+    <a href="index.html">HOME</a>
+    <a href="tools.html" class="active">TOOLS</a>
+    <a href="contact.html">CONTACT</a>
   </nav>
 
-  <main>
+  <main id="main">
 
-    <!-- ── Page Hero ── -->
+    <!-- ── PAGE HERO ── -->
     <div class="page-hero">
-      <div class="page-hero-dots" aria-hidden="true"></div>
-      <div class="container" style="position: relative; z-index: 1;">
-        <p class="section-label reveal">Projects</p>
-        <h1 class="reveal reveal-delay-1" style="font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700; letter-spacing: -0.04em; color: var(--text); margin-bottom: 16px; max-width: 640px;">
-          Tools &amp; Projects
-        </h1>
-        <p class="reveal reveal-delay-2" style="color: var(--text-muted); font-size: 1rem; max-width: 480px; line-height: 1.75; margin-bottom: 0;">
-          AI tools, web apps, and automation projects — built, documented, and shipped. More added as ideas move from backlog to live.
+      <div class="container">
+        <p class="sec-label" data-reveal><span class="sec-no">01</span> Project index</p>
+        <h1 data-reveal>Tools &amp; Projects</h1>
+        <p class="sec-sub" data-reveal>
+          Every build, tracked by reference number and status. Shipped systems, live demos, and what's
+          on the bench in testing — plus the raw build log for anyone who wants to see the workings.
         </p>
       </div>
     </div>
 
-    <!-- ── Projects Grid ── -->
-    <section class="projects-section">
+    <!-- ── PROJECTS ── -->
+    <section>
       <div class="container">
 
-        <!-- Filter row -->
-        <div class="filter-row reveal" role="group" aria-label="Filter projects">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="wip">In Progress</button>
-          <button class="filter-btn" data-filter="soon">Coming Soon</button>
+        <div class="filter-row" role="group" aria-label="Filter projects by status" data-reveal>
+          <button class="filter-btn active" data-filter="all" aria-pressed="true">ALL</button>
+          <button class="filter-btn" data-filter="shipped" aria-pressed="false">SHIPPED</button>
+          <button class="filter-btn" data-filter="live" aria-pressed="false">LIVE</button>
+          <button class="filter-btn" data-filter="testing" aria-pressed="false">TESTING</button>
+          <button class="filter-btn" data-filter="queue" aria-pressed="false">IN QUEUE</button>
         </div>
 
         <div class="card-grid" id="projects-grid">
 
-          <article class="card reveal reveal-delay-1" data-status="wip">
-            <div class="card-glow"></div>
-            <div class="card-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-                <circle cx="12" cy="13" r="4"/>
+          <!-- 001 — SHIPPED -->
+          <article class="spec-card" id="research-assistant" data-status="shipped">
+            <div class="callout" aria-hidden="true"><span class="callout-label">REF&nbsp;001 · SHIPPED</span><span class="callout-line"></span></div>
+            <div class="card-fig" aria-hidden="true">
+              <svg viewBox="0 0 280 110" preserveAspectRatio="xMidYMid meet">
+                <circle class="fig-accent" cx="60" cy="55" r="16"/>
+                <line class="fig-stroke" x1="76" y1="55" x2="130" y2="35"/>
+                <line class="fig-stroke" x1="76" y1="55" x2="130" y2="55"/>
+                <line class="fig-stroke" x1="76" y1="55" x2="130" y2="75"/>
+                <circle class="fig-faint" cx="140" cy="35" r="9"/>
+                <circle class="fig-faint" cx="140" cy="55" r="9"/>
+                <circle class="fig-faint" cx="140" cy="75" r="9"/>
+                <line class="fig-faint fig-dash" x1="149" y1="55" x2="210" y2="55"/>
+                <rect class="fig-stroke" x="210" y="47" width="16" height="16"/>
               </svg>
             </div>
-            <span class="card-tag tag-wip">In Progress</span>
-            <h3>AI Recipe Generator</h3>
-            <p>
-              Photograph your fridge contents and get an instant, tailored recipe suggestion back. Handles missing ingredients intelligently and adapts to dietary preferences.
-            </p>
-            <p style="font-size: 0.82rem; color: var(--text-faint); margin-bottom: 12px;">
-              Built with Claude's vision API. Mobile-first interface for quick, single-handed use.
-            </p>
-            <div class="card-tags">
-              <span class="card-tech">Claude Vision</span>
-              <span class="card-tech">Python</span>
-              <span class="card-tech">Mobile-first</span>
-              <span class="card-tech">REST API</span>
+            <div class="card-head"><span class="card-ref">CSI-001</span><span class="tag tag-shipped">SHIPPED</span></div>
+            <div class="card-body">
+              <h3>CSIntel Research Assistant</h3>
+              <p>A multi-agent research tool built on the Claude Agent SDK. A parent orchestrator decomposes a question, spawns specialised subagents to investigate in parallel, then synthesises their findings into a single answer.</p>
+              <p>This is LOG 001 from the original build log — the system CSIntel is named for. It demonstrates parent/subagent orchestration end to end, with each agent scoped to a narrow task and reporting back up the chain.</p>
+              <div class="card-tech"><span>Agent SDK</span><span>Python</span><span>Orchestration</span><span>Claude API</span></div>
             </div>
           </article>
 
-          <article class="card reveal reveal-delay-2" data-status="wip">
-            <div class="card-glow"></div>
-            <div class="card-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+          <!-- 002 — LIVE DEMO -->
+          <article class="spec-card" id="carlinas-cafe" data-status="live">
+            <div class="callout" aria-hidden="true"><span class="callout-label">REF&nbsp;002 · LIVE</span><span class="callout-line"></span></div>
+            <div class="card-fig" aria-hidden="true">
+              <svg viewBox="0 0 280 110" preserveAspectRatio="xMidYMid meet">
+                <rect class="fig-faint" x="40" y="22" width="200" height="66" rx="4"/>
+                <circle class="fig-accent" cx="70" cy="50" r="10"/>
+                <line class="fig-stroke" x1="95" y1="42" x2="190" y2="42"/>
+                <line class="fig-stroke" x1="95" y1="54" x2="215" y2="54"/>
+                <rect class="fig-fill-accent" x="95" y="64" width="48" height="9"/>
               </svg>
             </div>
-            <span class="card-tag tag-wip">In Progress</span>
-            <h3>Chef Social App</h3>
-            <p>
-              A social platform for sharing, discovering, and saving recipes. AI handles auto-tagging, smart categorisation, and personalised discovery feeds.
-            </p>
-            <p style="font-size: 0.82rem; color: var(--text-faint); margin-bottom: 12px;">
-              Users post recipes, AI enriches them. Think Instagram for food — with a brain behind it.
-            </p>
-            <div class="card-tags">
-              <span class="card-tech">Claude API</span>
-              <span class="card-tech">React</span>
-              <span class="card-tech">Node.js</span>
-              <span class="card-tech">Social</span>
+            <div class="card-head"><span class="card-ref">CSI-002</span><span class="tag tag-live">LIVE DEMO</span></div>
+            <div class="card-body">
+              <h3>Carlina's Café Chatbot</h3>
+              <p>A restaurant AI assistant demo built into a fully branded café site. The assistant fields menu questions, opening hours, and booking enquiries in natural conversation.</p>
+              <p>A worked example of dropping an AI concierge into a real small-business front end — proof of how a local business could put Claude to work without a single line of glue code on their side.</p>
+              <div class="card-tech"><span>Claude API</span><span>JavaScript</span><span>Conversational UI</span><span>Demo</span></div>
+              <a href="carlinascafe.html" class="card-link">OPEN LIVE DEMO →</a>
             </div>
           </article>
 
-          <article class="card reveal reveal-delay-3" data-status="soon">
-            <div class="card-glow"></div>
-            <div class="card-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="3" width="20" height="14" rx="2"/>
-                <path d="M8 21h8M12 17v4M7 8h.01M11 8h6"/>
+          <!-- 003 — SHIPPED (agents) -->
+          <article class="spec-card" data-status="shipped">
+            <div class="callout" aria-hidden="true"><span class="callout-label">REF&nbsp;003 · SHIPPED</span><span class="callout-line"></span></div>
+            <div class="card-fig" aria-hidden="true">
+              <svg viewBox="0 0 280 110" preserveAspectRatio="xMidYMid meet">
+                <rect class="fig-stroke" x="50" y="30" width="40" height="50" rx="3"/>
+                <rect class="fig-faint" x="120" y="20" width="40" height="30" rx="3"/>
+                <rect class="fig-faint" x="120" y="60" width="40" height="30" rx="3"/>
+                <line class="fig-accent" x1="90" y1="45" x2="120" y2="35"/>
+                <line class="fig-accent" x1="90" y1="65" x2="120" y2="75"/>
+                <line class="fig-faint fig-dash" x1="160" y1="35" x2="220" y2="35"/>
+                <line class="fig-faint fig-dash" x1="160" y1="75" x2="220" y2="75"/>
+                <circle class="fig-fill-accent" cx="224" cy="35" r="3"/>
+                <circle class="fig-fill-accent" cx="224" cy="75" r="3"/>
               </svg>
             </div>
-            <span class="card-tag tag-soon">Coming Soon</span>
-            <h3>Custom Claude Agents</h3>
-            <p>
-              Purpose-built agents for specific workflows — research assistants, document summarisers, email drafters, and task automation helpers.
-            </p>
-            <p style="font-size: 0.82rem; color: var(--text-faint); margin-bottom: 12px;">
-              Each agent is tuned for a narrow job and deployed as a standalone tool or API endpoint.
-            </p>
-            <div class="card-tags">
-              <span class="card-tech">Claude API</span>
-              <span class="card-tech">Python</span>
-              <span class="card-tech">Agents</span>
-              <span class="card-tech">Automation</span>
+            <div class="card-head"><span class="card-ref">CSI-003</span><span class="tag tag-shipped">SHIPPED</span></div>
+            <div class="card-body">
+              <h3>Custom Claude Agents</h3>
+              <p>Purpose-built agents tuned for narrow jobs — research assistants, document summarisers, email drafters, and task automation helpers. Each is scoped tightly and deployed as a standalone tool or API endpoint.</p>
+              <p>Three are live and in regular use. The pattern is deliberately small: one agent, one job, done well — then composed into larger workflows when it earns its place.</p>
+              <div class="card-tech"><span>Claude API</span><span>Python</span><span>Agents</span><span>Automation</span></div>
             </div>
           </article>
 
-          <article class="card reveal reveal-delay-1" data-status="soon">
-            <div class="card-glow"></div>
-            <div class="card-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          <!-- 004 — IN TESTING -->
+          <article class="spec-card" id="recipe-generator" data-status="testing">
+            <div class="callout" aria-hidden="true"><span class="callout-label">REF&nbsp;004 · TESTING</span><span class="callout-line"></span></div>
+            <div class="card-fig" aria-hidden="true">
+              <svg viewBox="0 0 280 110" preserveAspectRatio="xMidYMid meet">
+                <rect class="fig-stroke" x="55" y="20" width="70" height="70" rx="4"/>
+                <path class="fig-faint" d="M55 72 L80 50 L100 66 L125 42"/>
+                <circle class="fig-fill-accent" cx="100" cy="66" r="3"/>
+                <line class="fig-accent" x1="145" y1="55" x2="175" y2="55"/>
+                <path class="fig-stroke" d="M175 48 L186 55 L175 62"/>
+                <rect class="fig-faint fig-dash" x="200" y="35" width="40" height="40" rx="4"/>
               </svg>
             </div>
-            <span class="card-tag tag-soon">Coming Soon</span>
-            <h3>Workflow Automation</h3>
-            <p>
-              AI-powered pipelines that connect your tools, cut manual steps, and handle repetitive tasks — from data processing to content scheduling.
-            </p>
-            <p style="font-size: 0.82rem; color: var(--text-faint); margin-bottom: 12px;">
-              Integrates with common services. Triggered by webhooks, schedules, or events.
-            </p>
-            <div class="card-tags">
-              <span class="card-tech">Python</span>
-              <span class="card-tech">Webhooks</span>
-              <span class="card-tech">Claude API</span>
-              <span class="card-tech">Pipelines</span>
+            <div class="card-head"><span class="card-ref">CSI-004</span><span class="tag tag-testing">IN TESTING</span></div>
+            <div class="card-body">
+              <h3>AI Recipe Generator</h3>
+              <p>Photograph your fridge contents and get an instant, tailored recipe back. Handles missing ingredients intelligently and adapts to dietary preferences on the fly.</p>
+              <p>Built on Claude's vision API with a mobile-first interface for quick, single-handed use. Currently in testing — ingredient recognition is the part getting hammered before release.</p>
+              <div class="card-tech"><span>Claude Vision</span><span>Python</span><span>Mobile-first</span><span>REST API</span></div>
             </div>
           </article>
 
-          <article class="card reveal reveal-delay-2" data-status="soon">
-            <div class="card-glow"></div>
-            <div class="card-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <polygon points="23 7 16 12 23 17 23 7"/>
-                <rect x="1" y="5" width="15" height="14" rx="2"/>
+          <!-- 005 — IN TESTING -->
+          <article class="spec-card" data-status="testing">
+            <div class="callout" aria-hidden="true"><span class="callout-label">REF&nbsp;005 · TESTING</span><span class="callout-line"></span></div>
+            <div class="card-fig" aria-hidden="true">
+              <svg viewBox="0 0 280 110" preserveAspectRatio="xMidYMid meet">
+                <circle class="fig-faint" cx="80" cy="55" r="14"/>
+                <circle class="fig-faint" cx="150" cy="35" r="11"/>
+                <circle class="fig-faint" cx="160" cy="78" r="11"/>
+                <circle class="fig-accent" cx="215" cy="55" r="9"/>
+                <line class="fig-stroke" x1="94" y1="50" x2="139" y2="37"/>
+                <line class="fig-stroke" x1="94" y1="60" x2="149" y2="74"/>
+                <line class="fig-faint fig-dash" x1="161" y1="35" x2="206" y2="52"/>
+                <line class="fig-faint fig-dash" x1="171" y1="76" x2="206" y2="58"/>
               </svg>
             </div>
-            <span class="card-tag tag-soon">Coming Soon</span>
-            <h3>TikTok Content Tools</h3>
-            <p>
-              A pipeline for short-form video content — AI-assisted ideation, hook generation, script writing, and scheduling. Built around how content actually gets made.
-            </p>
-            <p style="font-size: 0.82rem; color: var(--text-faint); margin-bottom: 12px;">
-              Reduces the bottleneck between "I have an idea" and "this is ready to post."
-            </p>
-            <div class="card-tags">
-              <span class="card-tech">Claude API</span>
-              <span class="card-tech">Python</span>
-              <span class="card-tech">Content</span>
-              <span class="card-tech">Scripting</span>
+            <div class="card-head"><span class="card-ref">CSI-005</span><span class="tag tag-testing">IN TESTING</span></div>
+            <div class="card-body">
+              <h3>Chef Social App</h3>
+              <p>A social platform for sharing, discovering, and saving recipes. Users post; AI enriches — auto-tagging, smart categorisation, and personalised discovery feeds running behind the scenes.</p>
+              <p>Think Instagram for food, with a brain behind it. In testing now, with the recommendation engine and feed ranking being tuned against real posts.</p>
+              <div class="card-tech"><span>Claude API</span><span>React</span><span>Node.js</span><span>Social</span></div>
             </div>
           </article>
 
-          <article class="card reveal reveal-delay-3" data-status="soon">
-            <div class="card-glow"></div>
-            <div class="card-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="16 18 22 12 16 6"/>
-                <polyline points="8 6 2 12 8 18"/>
+          <!-- 006 — IN QUEUE -->
+          <article class="spec-card" data-status="queue">
+            <div class="callout" aria-hidden="true"><span class="callout-label">REF&nbsp;006 · QUEUE</span><span class="callout-line"></span></div>
+            <div class="card-fig" aria-hidden="true">
+              <svg viewBox="0 0 280 110" preserveAspectRatio="xMidYMid meet">
+                <rect class="fig-stroke" x="45" y="45" width="22" height="22" rx="3"/>
+                <line class="fig-faint fig-dash" x1="67" y1="56" x2="105" y2="56"/>
+                <rect class="fig-faint" x="105" y="38" width="22" height="36" rx="3"/>
+                <line class="fig-faint fig-dash" x1="127" y1="56" x2="165" y2="56"/>
+                <rect class="fig-accent" x="165" y="45" width="22" height="22" rx="3"/>
+                <line class="fig-faint fig-dash" x1="187" y1="56" x2="225" y2="56"/>
+                <path class="fig-stroke" d="M225 49 L235 56 L225 63"/>
               </svg>
             </div>
-            <span class="card-tag tag-soon">Coming Soon</span>
-            <h3>AI Web Tools</h3>
-            <p>
-              Small, focused utilities with a single purpose each. Text processors, converters, generators — built fast with AI assistance and deployed as instant-load pages.
-            </p>
-            <p style="font-size: 0.82rem; color: var(--text-faint); margin-bottom: 12px;">
-              No accounts, no tracking. Just tools that work.
-            </p>
-            <div class="card-tags">
-              <span class="card-tech">JavaScript</span>
-              <span class="card-tech">HTML</span>
-              <span class="card-tech">Claude API</span>
-              <span class="card-tech">Utilities</span>
+            <div class="card-head"><span class="card-ref">CSI-006</span><span class="tag tag-queue">IN QUEUE</span></div>
+            <div class="card-body">
+              <h3>Workflow Automation</h3>
+              <p>AI-powered pipelines that connect tools, cut manual steps, and handle repetitive work — from data processing to content scheduling. Triggered by webhooks, schedules, or events.</p>
+              <p>Next up on the bench. The groundwork is in the Custom Agents project; this packages it into reusable, connectable pipelines. Targeting a first build in the coming weeks.</p>
+              <div class="card-tech"><span>Python</span><span>Webhooks</span><span>Claude API</span><span>Pipelines</span></div>
             </div>
           </article>
 
-          <article class="card reveal reveal-delay-1" data-status="soon">
-            <div class="card-glow"></div>
-            <div class="card-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+          <!-- 007 — IN QUEUE -->
+          <article class="spec-card" data-status="queue">
+            <div class="callout" aria-hidden="true"><span class="callout-label">REF&nbsp;007 · QUEUE</span><span class="callout-line"></span></div>
+            <div class="card-fig" aria-hidden="true">
+              <svg viewBox="0 0 280 110" preserveAspectRatio="xMidYMid meet">
+                <rect class="fig-faint" x="60" y="28" width="90" height="54" rx="4"/>
+                <polygon class="fig-accent" points="100,42 100,68 122,55"/>
+                <line class="fig-stroke" x1="170" y1="40" x2="220" y2="40"/>
+                <line class="fig-stroke" x1="170" y1="55" x2="210" y2="55"/>
+                <line class="fig-faint" x1="170" y1="70" x2="200" y2="70"/>
               </svg>
             </div>
-            <span class="card-tag tag-soon">Coming Soon</span>
-            <h3>AI Integrations</h3>
-            <p>
-              Connecting AI models to real services — calendar, messaging, documents, and more. Built as standalone integrations or combined into larger workflows.
-            </p>
-            <p style="font-size: 0.82rem; color: var(--text-faint); margin-bottom: 12px;">
-              Practical connectors that make existing tools significantly smarter.
-            </p>
-            <div class="card-tags">
-              <span class="card-tech">Claude API</span>
-              <span class="card-tech">APIs</span>
-              <span class="card-tech">Python</span>
-              <span class="card-tech">Integrations</span>
+            <div class="card-head"><span class="card-ref">CSI-007</span><span class="tag tag-queue">IN QUEUE</span></div>
+            <div class="card-body">
+              <h3>Short-Form Content Tools</h3>
+              <p>A pipeline for short-form video — AI-assisted ideation, hook generation, script writing, and scheduling, built around how content actually gets made rather than how tools assume it does.</p>
+              <p>Aimed at collapsing the gap between "I have an idea" and "this is ready to post." Queued behind the workflow automation work it'll build on.</p>
+              <div class="card-tech"><span>Claude API</span><span>Python</span><span>Content</span><span>Scripting</span></div>
             </div>
           </article>
 
-          <article class="card reveal reveal-delay-2" data-status="soon">
-            <div class="card-glow"></div>
-            <div class="card-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="3"/>
-                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          <!-- 008 — IN QUEUE -->
+          <article class="spec-card" data-status="queue">
+            <div class="callout" aria-hidden="true"><span class="callout-label">REF&nbsp;008 · QUEUE</span><span class="callout-line"></span></div>
+            <div class="card-fig" aria-hidden="true">
+              <svg viewBox="0 0 280 110" preserveAspectRatio="xMidYMid meet">
+                <path class="fig-stroke" d="M120 35 L95 55 L120 75"/>
+                <path class="fig-stroke" d="M160 35 L185 55 L160 75"/>
+                <line class="fig-accent" x1="148" y1="28" x2="132" y2="82"/>
               </svg>
             </div>
-            <span class="card-tag tag-soon">Coming Soon</span>
-            <h3>More in the Pipeline</h3>
-            <p>
-              New tools added regularly as ideas move from backlog to shipped. Got a suggestion or want to see something specific built?
-            </p>
-            <p style="font-size: 0.82rem; color: var(--text-faint); margin-bottom: 12px;">
-              Collaborations and suggestions welcome.
-            </p>
-            <div class="card-tags">
-              <span class="card-tech">TBD</span>
-              <span class="card-tech"><a href="contact.html" style="color: inherit; text-decoration: none;">Suggest one →</a></span>
+            <div class="card-head"><span class="card-ref">CSI-008</span><span class="tag tag-queue">IN QUEUE</span></div>
+            <div class="card-body">
+              <h3>AI Web Tools</h3>
+              <p>Small, single-purpose utilities — text processors, converters, generators — built fast with AI assistance and deployed as instant-load pages. No accounts, no tracking, just tools that work.</p>
+              <p>A rolling collection rather than one release. Each lands when it's useful enough to justify the URL.</p>
+              <div class="card-tech"><span>JavaScript</span><span>HTML</span><span>Claude API</span><span>Utilities</span></div>
             </div>
           </article>
 
+        </div>
+
+        <!-- ── BUILD NOTES ── -->
+        <div class="mt-xl" id="build-notes">
+          <div class="sec-head" data-reveal>
+            <p class="sec-label"><span class="sec-no">02</span> Build notes</p>
+            <h2 class="sec-title">The raw build log.</h2>
+          </div>
+          <div class="notes-strip" data-reveal>
+            <div class="ns-copy">
+              <h3>prototype.html — engineering drawing sheet</h3>
+              <p>The original spec-sheet prototype this whole site grew out of. LOG entries, revision markers, the title block — kept intact as a raw build log and the DNA of everything you're looking at now.</p>
+            </div>
+            <a href="prototype.html" class="btn">OPEN RAW LOG →</a>
+          </div>
         </div>
 
       </div>
@@ -259,84 +284,42 @@
     <!-- ── CTA ── -->
     <div class="cta-strip" aria-labelledby="cta-heading">
       <div class="container">
-        <h2 id="cta-heading" class="reveal">Want to collaborate or follow the build?</h2>
-        <p class="reveal reveal-delay-1">Ideas, feedback, and collaborations are always welcome.</p>
-        <div class="hero-actions reveal reveal-delay-2">
-          <a href="contact.html" class="btn btn-blue">Get in touch</a>
-          <a href="index.html" class="btn btn-outline">Back to Home</a>
+        <p class="sec-label" data-reveal><span class="sec-no">03</span> Open channel</p>
+        <h2 id="cta-heading" data-reveal>Want to collaborate, or see something specific built?</h2>
+        <p data-reveal>Ideas, feedback, and collaborations are always welcome — the bench has room.</p>
+        <div class="hero-actions" data-reveal>
+          <a href="contact.html" class="btn btn-solid">GET IN TOUCH</a>
+          <a href="index.html" class="btn">BACK TO HOME</a>
         </div>
       </div>
     </div>
 
   </main>
 
-  <!-- ── Footer ── -->
   <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <a href="index.html" class="footer-logo" aria-label="CSIntel home">CS<span>Intel</span></a>
-        <p>&copy; 2026 CSIntel</p>
-        <ul class="footer-links" role="list">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="https://github.com/seancurg-debug" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-        </ul>
-      </div>
+    <div class="tb-grid" aria-hidden="true">
+      <div class="tb-cell"><span class="tb-key">PROJECT</span><span class="tb-val">CSINTEL · AI PORTFOLIO</span></div>
+      <div class="tb-cell"><span class="tb-key">DRAWN BY</span><span class="tb-val">S. CURGENVEN</span></div>
+      <div class="tb-cell"><span class="tb-key">SHEET</span><span class="tb-val">02 / 03</span></div>
+      <div class="tb-cell"><span class="tb-key">REV</span><span class="tb-val acc">05</span></div>
+      <div class="tb-cell"><span class="tb-key">DATE</span><span class="tb-val" data-tb-date>—</span></div>
+    </div>
+    <div class="tb-bottom">
+      <a href="index.html" class="tb-logo">CS<b>Intel</b></a>
+      <span class="tb-copy">© 2026 CSINTEL · CONGLETON, UK</span>
+      <ul class="tb-links" role="list">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+        <li><a href="https://github.com/seancurg-debug" target="_blank" rel="noopener noreferrer">GITHUB</a></li>
+      </ul>
     </div>
   </footer>
 
-  <script>
-    // Scroll reveal
-    const revealEls = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    revealEls.forEach(el => observer.observe(el));
-    document.querySelectorAll('.page-hero .reveal').forEach(el => el.classList.add('visible'));
-
-    // Nav scrolled state
-    const navPill = document.getElementById('nav-pill');
-    window.addEventListener('scroll', () => {
-      navPill.classList.toggle('scrolled', window.scrollY > 40);
-    }, { passive: true });
-
-    // Mobile nav
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobile-nav');
-    hamburger.addEventListener('click', () => {
-      const isOpen = mobileNav.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', isOpen);
-    });
-    mobileNav.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        mobileNav.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-    // Filter
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const cards = document.querySelectorAll('#projects-grid .card');
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.dataset.filter;
-        cards.forEach(card => {
-          if (filter === 'all' || card.dataset.status === filter) {
-            card.classList.remove('hidden');
-          } else {
-            card.classList.add('hidden');
-          }
-        });
-      });
-    });
-  </script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/nav.js" defer></script>
+  <script src="js/animations.js" defer></script>
 </body>
 </html>

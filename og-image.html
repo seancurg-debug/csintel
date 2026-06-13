@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSIntel — OG Card</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0A0A0A;--accent:#E8521A;--ok:#4ADE80;--text:#F0EDE8;--muted:#9A9288;--faint:#5C564E;
+      --border:rgba(240,237,232,.22);--mono:'IBM Plex Mono',monospace;--sans:'Space Grotesk',sans-serif;
+    }
+    body{display:flex;align-items:center;justify-content:center;background:#000}
+    .card{
+      width:1200px;height:630px;background:var(--bg);position:relative;overflow:hidden;
+      font-family:var(--sans);color:var(--text);
+      background-image:linear-gradient(rgba(240,237,232,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(240,237,232,.03) 1px,transparent 1px);
+      background-size:60px 60px;
+    }
+    /* perspective grid floor */
+    .floor{position:absolute;left:0;right:0;bottom:0;height:300px;
+      background:
+        repeating-linear-gradient(to right,transparent 0 78px,rgba(240,237,232,.05) 78px 79px),
+        linear-gradient(to top,rgba(232,82,26,.07),transparent);
+      transform:perspective(400px) rotateX(60deg);transform-origin:bottom;opacity:.7}
+    .frame{position:absolute;inset:36px;border:1px solid var(--border)}
+    .frame::before{content:"";position:absolute;top:-1px;left:-1px;width:20px;height:20px;border-top:3px solid var(--accent);border-left:3px solid var(--accent)}
+    .frame::after{content:"";position:absolute;bottom:-1px;right:-1px;width:20px;height:20px;border-bottom:3px solid var(--accent);border-right:3px solid var(--accent)}
+    .inner{position:absolute;inset:36px;padding:64px 72px;display:flex;flex-direction:column;justify-content:space-between}
+    .topbar{display:flex;justify-content:space-between;align-items:flex-start;font-family:var(--mono);font-size:15px;letter-spacing:.18em;color:var(--faint)}
+    .wm{font-family:var(--sans);font-weight:700;font-size:30px;letter-spacing:.05em;color:var(--text)}
+    .wm b{color:var(--accent)}
+    .mid h1{font-size:78px;font-weight:700;letter-spacing:-.03em;line-height:1.02;max-width:18ch}
+    .mid h1 .acc{color:var(--accent)}
+    .rule{height:2px;width:120px;background:var(--accent);margin:30px 0 26px}
+    .mid p{font-family:var(--mono);font-size:21px;letter-spacing:.04em;color:var(--muted);max-width:46ch;line-height:1.6}
+    .botbar{display:flex;justify-content:space-between;align-items:flex-end;font-family:var(--mono);font-size:16px;letter-spacing:.16em;color:var(--faint)}
+    .botbar .live{color:var(--ok);display:flex;align-items:center;gap:10px}
+    .botbar .live::before{content:"";width:11px;height:11px;background:var(--ok)}
+    .botbar .acc{color:var(--accent)}
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <div class="floor"></div>
+    <div class="frame"></div>
+    <div class="inner">
+      <div class="topbar">
+        <span class="wm">CS<b>Intel</b></span>
+        <span>DOC CSI-2026 · REV 05</span>
+      </div>
+      <div class="mid">
+        <h1>Engineering software with <span class="acc">AI</span> as the tool.</h1>
+        <div class="rule"></div>
+        <p>The working portfolio of Sean Curgenven — Claude-powered tools, multi-agent systems, and workflow automation. Built &amp; documented in public.</p>
+      </div>
+      <div class="botbar">
+        <span class="live">STATUS: BUILDING</span>
+        <span>CONGLETON, UK · <span class="acc">csintel.co.uk</span></span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

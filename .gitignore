@@ -1,0 +1,5 @@
+# Local Claude tooling — not part of the deployed site
+.claude/
+design-system/
+__pycache__/
+*.pyc

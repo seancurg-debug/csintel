@@ -1,453 +1,184 @@
 <!DOCTYPE html>
-<!--
-DESIGN RATIONALE — 5 lines
-1. The page is formatted as an engineering drawing sheet: hairline rules, a status
-   legend, and a real title block (REV / DATE / AUTHOR / SHEET) as the footer.
-2. Two typefaces carry the whole system: Source Serif 4 for prose, IBM Plex Mono for
-   every piece of metadata. No other visual decoration exists.
-3. One accent — signal orange #E8521A — appears only on "shipped" markers. Scarcity
-   keeps it a signal, not a theme.
-4. Status markers are drawn in CSS (filled / half-filled / outline squares), so the
-   legend reads like a drawing key and survives any font or platform.
-5. Honesty is structural: "parked" is printed where every portfolio says "coming
-   soon", and the footer records the page itself as a revisioned document.
-
-SELF-CRITIQUE — 5 weaknesses found in the draft, all fixed before shipping
-W1: The container was margin:0 auto — centered, directly against "asymmetry over
-    centering". FIX: on desktop the sheet sits left, with a fixed left offset and
-    open space to the right, like a document on a desk.
-W2: Status was a bare colored word; color alone carried meaning (fails WCAG 1.4.1
-    and reads thin). FIX: drawn square markers (filled/half/outline) plus a legend
-    under the Build Log label — meaning survives in pure black and white.
-W3: First draft put the title block in the header, crowding the wordmark and
-    front-loading the gimmick. FIX: moved to the footer — where title blocks live
-    on real drawing sheets — leaving the header sparse.
-W4: Log metadata sat inline above each title on desktop, wasting the wider
-    viewport. FIX: ≥720px a 120px left rail holds LOG ID, date and status; entry
-    text keeps its own measure. Mobile keeps the stacked order.
-W5: Accent was spread across wordmark, statuses and hovers — three uses is a
-    palette, not a signal. FIX: accent now appears only on shipped markers and
-    their word; everything else is ink.
-
-MEMORABILITY TEST
-A visitor will remember that the page is literally a drawing sheet: it ends in an
-engineering title block — REV 0.4.0, dated, signed — and one entry honestly says
-"parked" where every other site would say "coming soon".
--->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CSIntel — the public build log of Sean, a UK-based self-taught developer documenting tools, agents and workflows built with Claude.">
-  <title>CSIntel — Build Log</title>
+  <meta name="theme-color" content="#0A0A0A">
+  <title>CSIntel — Raw Build Log | prototype.html</title>
+  <meta name="description" content="The raw engineering build log for CSIntel — LOG entries, revision history, and the spec-sheet prototype the site grew out of.">
+  <meta name="robots" content="noindex">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0A0A0A;--surface:#111;--accent:#E8521A;--amber:#F59E0B;--ok:#4ADE80;
+      --text:#F0EDE8;--muted:#9A9288;--faint:#5C564E;
+      --border:rgba(240,237,232,.10);--border-strong:rgba(240,237,232,.22);
+      --mono:'IBM Plex Mono',monospace;--sans:'Space Grotesk',sans-serif;--frame:14px;
+    }
+    @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+    body{
+      font-family:var(--mono);background:var(--bg);color:var(--text);line-height:1.6;
+      -webkit-font-smoothing:antialiased;overflow-x:hidden;padding:calc(var(--frame) + 30px) var(--frame) var(--frame);
+      background-image:linear-gradient(rgba(240,237,232,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(240,237,232,.025) 1px,transparent 1px);
+      background-size:48px 48px;
+    }
+    ::selection{background:var(--accent);color:#0A0A0A}
+    .frame{position:fixed;inset:var(--frame);border:1px solid var(--border-strong);pointer-events:none;z-index:5}
+    .frame::before{content:"";position:absolute;top:-1px;left:-1px;width:14px;height:14px;border-top:2px solid var(--accent);border-left:2px solid var(--accent)}
+    .frame::after{content:"";position:absolute;bottom:-1px;right:-1px;width:14px;height:14px;border-bottom:2px solid var(--accent);border-right:2px solid var(--accent)}
+    .sheet{max-width:1000px;margin:0 auto;position:relative;z-index:1}
 
-    :root {
-      --bg:        #FAF8F4;
-      --ink:       #1C1A16;
-      --ink-mid:   #4A453E;
-      --ink-low:   #7A7268;
-      --rule:      #C9C3B8;
-      --accent:    #E8521A;
-      --mono:      'IBM Plex Mono', 'Courier New', monospace;
-      --serif:     'Source Serif 4', Georgia, serif;
-    }
+    .top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:20px;padding:24px 0 28px;border-bottom:1px solid var(--border-strong)}
+    .wordmark{font-family:var(--sans);font-weight:700;font-size:1.4rem;letter-spacing:.05em}
+    .wordmark b{color:var(--accent)}
+    .top .meta{font-size:.6rem;letter-spacing:.14em;color:var(--faint);text-align:right;line-height:2}
+    .top .meta b{color:var(--muted);font-weight:400}
 
-    html {
-      background: var(--bg);
-      -webkit-text-size-adjust: 100%;
-    }
+    .lead{padding:34px 0;border-bottom:1px solid var(--border)}
+    .lead h1{font-family:var(--sans);font-size:clamp(1.6rem,4vw,2.6rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;max-width:20ch;margin-bottom:18px}
+    .lead h1 .acc{color:var(--accent)}
+    .lead p{color:var(--muted);max-width:64ch;font-size:.82rem;letter-spacing:.02em}
 
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: var(--serif);
-      font-size: 1rem;
-      line-height: 1.68;
-      padding: 0 22px;
-    }
+    .seclabel{display:flex;align-items:center;gap:12px;font-size:.62rem;letter-spacing:.28em;color:var(--accent);margin:40px 0 20px}
+    .seclabel::before{content:"";width:24px;height:1px;background:var(--accent)}
+    .seclabel .no{color:var(--faint)}
 
-    /* The sheet: mobile-first single column; on desktop it sits left, not centered */
-    .sheet {
-      max-width: 63ch;
-      margin: 0;
-    }
-    @media (min-width: 900px) {
-      .sheet {
-        margin: 0 0 0 11vw;
-      }
-    }
+    .log{border:1px solid var(--border-strong);background:var(--surface)}
+    .log-row{display:grid;grid-template-columns:90px 110px 1fr 110px;gap:18px;padding:18px 22px;border-bottom:1px solid var(--border);align-items:baseline}
+    .log-row:last-child{border-bottom:none}
+    .log-row .id{color:var(--accent);font-size:.7rem;letter-spacing:.1em}
+    .log-row .dt{color:var(--faint);font-size:.62rem}
+    .log-row .tx{font-size:.74rem;color:var(--muted);letter-spacing:.02em;line-height:1.7}
+    .log-row .tx b{color:var(--text);font-weight:500}
+    .log-row .st{font-size:.56rem;letter-spacing:.16em;text-align:right}
+    .s-ship{color:var(--ok)}.s-live{color:var(--accent)}.s-test{color:var(--amber)}.s-q{color:var(--faint)}
 
-    a {
-      color: inherit;
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-decoration-color: var(--rule);
-      text-underline-offset: 3px;
-      transition: text-decoration-color 0.15s ease;
-    }
-    a:hover { text-decoration-color: var(--ink); }
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border-strong);background:var(--surface)}
+    .cell{padding:22px 24px;border-left:1px solid var(--border)}
+    .cell:first-child{border-left:none}
+    .cell .k{font-size:.56rem;letter-spacing:.2em;color:var(--faint);margin-bottom:10px}
+    .cell .v{font-size:.78rem;color:var(--text);letter-spacing:.04em;line-height:1.9}
+    .cell .v .acc{color:var(--accent)}
 
-    /* ── Header ── */
-    header {
-      padding: 30px 0 24px;
-      border-bottom: 1px solid var(--ink);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    @media (min-width: 480px) {
-      header {
-        flex-direction: row;
-        align-items: baseline;
-        justify-content: space-between;
-      }
-    }
+    .rev{border:1px solid var(--border-strong)}
+    .rev-row{display:grid;grid-template-columns:70px 120px 1fr;gap:18px;padding:14px 22px;border-bottom:1px solid var(--border);font-size:.7rem}
+    .rev-row:last-child{border-bottom:none}
+    .rev-row .rv{color:var(--accent);letter-spacing:.1em}
+    .rev-row .rd{color:var(--faint);font-size:.62rem}
+    .rev-row .rn{color:var(--muted);font-size:.72rem}
 
-    .wordmark {
-      font-family: var(--mono);
-      font-size: 0.9375rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-decoration: none;
-    }
+    .titleblock{margin-top:46px;border:1px solid var(--border-strong)}
+    .tb-cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;border-bottom:1px solid var(--border-strong)}
+    .tb-c{padding:16px 20px;border-left:1px solid var(--border)}
+    .tb-c:first-child{border-left:none}
+    .tb-c .k{font-size:.52rem;letter-spacing:.22em;color:var(--faint);margin-bottom:7px}
+    .tb-c .v{font-size:.74rem;color:var(--text);letter-spacing:.06em}
+    .tb-c .v.acc{color:var(--accent)}
+    .tb-foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding:18px 22px}
+    .tb-foot a{color:var(--accent);text-decoration:none;font-size:.68rem;letter-spacing:.14em;border-bottom:1px solid transparent;transition:border-color .2s}
+    .tb-foot a:hover{border-color:var(--accent)}
+    .tb-foot .c{font-size:.6rem;letter-spacing:.12em;color:var(--faint)}
 
-    nav {
-      font-family: var(--mono);
-      font-size: 0.8125rem;
-    }
-    nav a {
-      text-decoration: none;
-      color: var(--ink-low);
-      margin-right: 18px;
-      transition: color 0.15s ease;
-    }
-    nav a:last-child { margin-right: 0; }
-    nav a:hover,
-    nav a[aria-current="page"] { color: var(--ink); }
+    .back{display:inline-flex;align-items:center;gap:8px;margin-top:30px;color:var(--muted);text-decoration:none;font-size:.68rem;letter-spacing:.16em;transition:color .2s}
+    .back:hover{color:var(--accent)}
 
-    /* ── Sections ── */
-    section {
-      padding: 34px 0;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .label {
-      font-family: var(--mono);
-      font-size: 0.6875rem;
-      font-weight: 500;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--ink-low);
-    }
-    h2.label { margin-bottom: 24px; }
-
-    /* ── Intro ── */
-    .intro p {
-      color: var(--ink-mid);
-      max-width: 58ch;
-    }
-    .intro strong { color: var(--ink); font-weight: 600; }
-
-    /* ── Status markers: drawn squares, no glyph dependency ── */
-    .marker {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      border: 1px solid var(--ink);
-      position: relative;
-      vertical-align: baseline;
-      margin-right: 7px;
-    }
-    .marker--shipped  { background: var(--accent); border-color: var(--accent); }
-    .marker--building::after {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 50%;
-      background: var(--ink);
-    }
-    .marker--parked { border-color: var(--ink-low); }
-
-    /* ── Build log ── */
-    .log-head {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 6px 20px;
-      margin-bottom: 24px;
-    }
-    .log-head h2 { margin-bottom: 0; }
-
-    .legend {
-      font-family: var(--mono);
-      font-size: 0.6875rem;
-      color: var(--ink-low);
-      letter-spacing: 0.04em;
-    }
-    .legend span { margin-right: 14px; white-space: nowrap; }
-    .legend span:last-child { margin-right: 0; }
-    .legend .marker { width: 7px; height: 7px; margin-right: 5px; }
-
-    .log { list-style: none; }
-
-    .entry {
-      padding: 26px 0;
-      border-top: 1px dashed var(--rule);
-    }
-    .entry:first-child { border-top: none; padding-top: 0; }
-
-    .entry-meta {
-      font-family: var(--mono);
-      font-size: 0.6875rem;
-      letter-spacing: 0.08em;
-      color: var(--ink-low);
-      margin-bottom: 8px;
-    }
-    .entry-meta .id {
-      font-weight: 500;
-      color: var(--ink-mid);
-      display: block;
-    }
-    .entry-meta .date { display: block; margin-top: 1px; }
-    .entry-meta .status {
-      display: block;
-      margin-top: 8px;
-      color: var(--ink);
-    }
-    .entry-meta .status--shipped { color: var(--accent); }
-    .entry-meta .status--parked  { color: var(--ink-low); }
-
-    .entry-title {
-      font-family: var(--serif);
-      font-size: 1.0625rem;
-      font-weight: 600;
-      line-height: 1.3;
-      margin-bottom: 2px;
-    }
-    .entry-tech {
-      font-family: var(--mono);
-      font-size: 0.6875rem;
-      color: var(--ink-low);
-      letter-spacing: 0.03em;
-      margin-bottom: 12px;
-    }
-    .entry-desc {
-      font-size: 0.9375rem;
-      color: var(--ink-mid);
-      max-width: 56ch;
-    }
-
-    /* Desktop: metadata moves into a left rail — asymmetric, spec-sheet structure */
-    @media (min-width: 720px) {
-      .entry {
-        display: grid;
-        grid-template-columns: 128px 1fr;
-        column-gap: 28px;
-      }
-      .entry-meta { margin-bottom: 0; padding-top: 4px; }
-      .entry-body { min-width: 0; }
-    }
-
-    /* ── Stack ── */
-    .stack {
-      font-family: var(--mono);
-      font-size: 0.8125rem;
-      line-height: 1.9;
-      color: var(--ink-mid);
-    }
-    .stack .label { display: inline; margin-right: 12px; }
-
-    /* ── Contact ── */
-    .contact {
-      font-family: var(--mono);
-      font-size: 0.875rem;
-      line-height: 2.1;
-    }
-    .contact .label { display: inline; margin-right: 12px; }
-
-    /* ── Footer: engineering-drawing title block ── */
-    footer { padding: 34px 0 48px; }
-
-    .titleblock {
-      border: 1px solid var(--ink);
-      font-family: var(--mono);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-    .titleblock .cell {
-      padding: 9px 12px 10px;
-      border-top: 1px solid var(--ink);
-      border-left: 1px solid var(--ink);
-      min-width: 0;
-    }
-    .titleblock .cell--full {
-      grid-column: 1 / -1;
-      border-top: none;
-    }
-    /* Cells that start a row carry no left border (2-col layout: title, then 2×2) */
-    .titleblock .cell--full,
-    .titleblock .cell:nth-child(2),
-    .titleblock .cell:nth-child(4) { border-left: none; }
-    .titleblock .k {
-      display: block;
-      font-size: 0.5625rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-low);
-      margin-bottom: 2px;
-    }
-    .titleblock .v {
-      display: block;
-      font-size: 0.75rem;
-      color: var(--ink);
-      letter-spacing: 0.04em;
-      overflow-wrap: break-word;
-    }
-    @media (min-width: 720px) {
-      /* One row of four below the title; only the row-leading cell drops its border */
-      .titleblock { grid-template-columns: 2fr 1fr 1fr 1fr; }
-      .titleblock .cell:nth-child(4) { border-left: 1px solid var(--ink); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      * { transition: none !important; }
+    @media (max-width:760px){
+      .log-row{grid-template-columns:1fr;gap:5px}
+      .log-row .st{text-align:left}
+      .grid2{grid-template-columns:1fr}
+      .cell{border-left:none;border-top:1px solid var(--border)}
+      .cell:first-child{border-top:none}
+      .tb-cols{grid-template-columns:1fr 1fr}
+      .tb-c{border-top:1px solid var(--border)}
+      .tb-c:nth-child(-n+2){border-top:none}
+      .tb-c:nth-child(odd){border-left:none}
+      .rev-row{grid-template-columns:1fr;gap:4px}
     }
   </style>
 </head>
 <body>
+  <div class="frame" aria-hidden="true"></div>
+
   <div class="sheet">
 
-    <header>
-      <a class="wordmark" href="prototype.html">CSINTEL</a>
-      <nav aria-label="Main">
-        <a href="#log" aria-current="page">Log</a>
-        <a href="tools.html">Tools</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
-
-    <section class="intro" aria-label="Introduction">
-      <p>
-        I'm <strong>Sean</strong>, a self-taught developer in the UK. I build tools,
-        agents and workflows with Claude, and I write down what actually happened —
-        what shipped, what's still in progress, and what I set aside. This site is
-        the log.
-      </p>
-    </section>
-
-    <section id="log" aria-labelledby="log-title">
-      <div class="log-head">
-        <h2 id="log-title" class="label">Build Log</h2>
-        <p class="legend" aria-hidden="true">
-          <span><i class="marker marker--shipped"></i>shipped</span>
-          <span><i class="marker marker--building"></i>building</span>
-          <span><i class="marker marker--parked"></i>parked</span>
-        </p>
+    <div class="top">
+      <div>
+        <div class="wordmark">CS<b>Intel</b></div>
+        <div style="font-size:.6rem;letter-spacing:.18em;color:var(--faint);margin-top:8px">RAW BUILD LOG · prototype.html</div>
       </div>
+      <div class="meta">
+        DOC&nbsp;//&nbsp;<b>CSI-2026-PROTO</b><br>
+        REV&nbsp;//&nbsp;<b>05</b><br>
+        SHEET&nbsp;//&nbsp;<b>00 — REFERENCE</b><br>
+        STATUS&nbsp;//&nbsp;<b style="color:var(--ok)">● ARCHIVED, LIVE</b>
+      </div>
+    </div>
 
-      <ul class="log" role="list">
+    <div class="lead">
+      <h1>The original <span class="acc">spec sheet</span> the site grew out of.</h1>
+      <p>This is the engineering-drawing prototype — LOG entries, revision markers, and the title block — kept intact as the raw build log. The production site at csintel.co.uk is this concept rendered cinematically. Everything you see there started here.</p>
+    </div>
 
-        <li class="entry">
-          <p class="entry-meta">
-            <span class="id">LOG 001</span>
-            <span class="date">2025-09-12</span>
-            <span class="status status--shipped"><i class="marker marker--shipped"></i>shipped</span>
-          </p>
-          <div class="entry-body">
-            <h3 class="entry-title">Research Assistant</h3>
-            <p class="entry-tech">TypeScript · Claude Agent SDK · parent/subagent orchestration</p>
-            <p class="entry-desc">
-              A multi-agent research tool. A parent agent takes a query, dispatches it
-              to specialised subagents, and assembles their findings into a single
-              structured report. Built in TypeScript on the Claude Agent SDK's
-              orchestration primitives.
-            </p>
-          </div>
-        </li>
+    <div class="seclabel"><span class="no">01</span> BUILD LOG — CHRONOLOGICAL</div>
+    <div class="log">
+      <div class="log-row"><span class="id">LOG 001</span><span class="dt">2025-07</span><span class="tx"><b>CSIntel Research Assistant</b> — multi-agent research tool on the Claude Agent SDK. Parent orchestrator spawns subagents, fans out, synthesises. The system the project is named for.</span><span class="st s-ship">SHIPPED</span></div>
+      <div class="log-row"><span class="id">LOG 002</span><span class="dt">2025-09</span><span class="tx"><b>Carlina's Café Chatbot</b> — restaurant AI concierge dropped into a fully branded café front end. Menu, hours, bookings in natural conversation.</span><span class="st s-live">LIVE DEMO</span></div>
+      <div class="log-row"><span class="id">LOG 003</span><span class="dt">2025-10</span><span class="tx"><b>Custom Claude Agents</b> — narrow, single-job agents deployed as standalone tools. Three live and in regular use.</span><span class="st s-ship">SHIPPED</span></div>
+      <div class="log-row"><span class="id">LOG 004</span><span class="dt">2026-02</span><span class="tx"><b>AI Recipe Generator</b> — vision-model ingredient recognition. Photograph the fridge, get a recipe. Mobile-first.</span><span class="st s-test">IN TESTING</span></div>
+      <div class="log-row"><span class="id">LOG 005</span><span class="dt">2026-03</span><span class="tx"><b>Chef Social App</b> — social recipe platform with AI enrichment. Recommendation engine in tuning.</span><span class="st s-test">IN TESTING</span></div>
+      <div class="log-row"><span class="id">LOG 006</span><span class="dt">2026-Q3</span><span class="tx"><b>Workflow Automation</b> — connectable AI pipelines. Next on the bench.</span><span class="st s-q">IN QUEUE</span></div>
+      <div class="log-row"><span class="id">LOG 007</span><span class="dt">2026-Q3</span><span class="tx"><b>Short-Form Content Tools</b> — ideation → script → schedule pipeline.</span><span class="st s-q">IN QUEUE</span></div>
+      <div class="log-row"><span class="id">LOG 008</span><span class="dt">2026-Q4</span><span class="tx"><b>AI Web Tools</b> — rolling collection of single-purpose utilities.</span><span class="st s-q">IN QUEUE</span></div>
+    </div>
 
-        <li class="entry">
-          <p class="entry-meta">
-            <span class="id">LOG 002</span>
-            <span class="date">2025-11-28</span>
-            <span class="status status--building"><i class="marker marker--building"></i>building</span>
-          </p>
-          <div class="entry-body">
-            <h3 class="entry-title">AI Recipe Generator</h3>
-            <p class="entry-tech">Claude vision</p>
-            <p class="entry-desc">
-              Photograph the inside of your fridge; Claude's vision model identifies
-              the ingredients and writes a recipe from what is actually there. The
-              ingredient recognition works; the recipe output still needs tuning.
-            </p>
-          </div>
-        </li>
-
-        <li class="entry">
-          <p class="entry-meta">
-            <span class="id">LOG 003</span>
-            <span class="date">2026-02-14</span>
-            <span class="status status--parked"><i class="marker marker--parked"></i>parked</span>
-          </p>
-          <div class="entry-body">
-            <h3 class="entry-title">Chef Social App</h3>
-            <p class="entry-tech">React · recipe sharing</p>
-            <p class="entry-desc">
-              A recipe-sharing app in React. Set aside, not abandoned — LOG 001 and
-              LOG 002 are the priority right now. It will come back when they don't
-              need daily attention.
-            </p>
-          </div>
-        </li>
-
-      </ul>
-    </section>
-
-    <section aria-labelledby="stack-title">
-      <p class="stack">
-        <span id="stack-title" class="label">Stack</span>
-        TypeScript · Python · React · Node.js · Claude Agent SDK · Claude API
-      </p>
-    </section>
-
-    <section id="contact" aria-labelledby="contact-title">
-      <p class="contact-line contact">
-        <span id="contact-title" class="label">Contact</span>
-        <a href="mailto:sean.curg@gmail.com">sean.curg@gmail.com</a>
-        &nbsp;·&nbsp;
-        <a href="https://github.com/seancurg-debug" rel="noopener">github.com/seancurg-debug</a>
-      </p>
-    </section>
-
-    <footer>
-      <div class="titleblock" role="contentinfo" aria-label="Document information">
-        <div class="cell cell--full">
-          <span class="k">Document</span>
-          <span class="v">CSINTEL — PUBLIC BUILD LOG</span>
-        </div>
-        <div class="cell">
-          <span class="k">Author</span>
-          <span class="v">SEAN · UK</span>
-        </div>
-        <div class="cell">
-          <span class="k">Rev</span>
-          <span class="v">0.4.0</span>
-        </div>
-        <div class="cell">
-          <span class="k">Updated</span>
-          <span class="v">2026-06-12</span>
-        </div>
-        <div class="cell">
-          <span class="k">Tooling</span>
-          <span class="v">HTML/CSS, NO FRAMEWORK</span>
+    <div class="seclabel"><span class="no">02</span> OPERATOR &amp; STACK</div>
+    <div class="grid2">
+      <div class="cell">
+        <div class="k">OPERATOR</div>
+        <div class="v">
+          NAME&nbsp;&nbsp;<span class="acc">/</span>&nbsp;&nbsp;Sean Curgenven<br>
+          ROLE&nbsp;&nbsp;<span class="acc">/</span>&nbsp;&nbsp;Builder, ex-Energy Analyst<br>
+          BASE&nbsp;&nbsp;<span class="acc">/</span>&nbsp;&nbsp;Congleton, UK · 53.16°N<br>
+          AGE&nbsp;&nbsp;&nbsp;<span class="acc">/</span>&nbsp;&nbsp;24
         </div>
       </div>
-    </footer>
+      <div class="cell">
+        <div class="k">STACK &amp; METHOD</div>
+        <div class="v">
+          AI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="acc">/</span>&nbsp;&nbsp;Claude API · Agent SDK<br>
+          LANG&nbsp;&nbsp;<span class="acc">/</span>&nbsp;&nbsp;Python · TypeScript<br>
+          UI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="acc">/</span>&nbsp;&nbsp;React · vanilla JS<br>
+          METHOD&nbsp;<span class="acc">/</span>&nbsp;Build → Test → Document
+        </div>
+      </div>
+    </div>
+
+    <div class="seclabel"><span class="no">03</span> REVISION HISTORY</div>
+    <div class="rev">
+      <div class="rev-row"><span class="rv">REV 01</span><span class="rd">2025-06</span><span class="rn">Initial portfolio — light theme, monochrome + blue.</span></div>
+      <div class="rev-row"><span class="rv">REV 02</span><span class="rd">2025-08</span><span class="rn">Rebuild on design system, expanded content.</span></div>
+      <div class="rev-row"><span class="rv">REV 03</span><span class="rd">2025-11</span><span class="rn">Dark mode + gradient brand, animated hero.</span></div>
+      <div class="rev-row"><span class="rv">REV 04</span><span class="rd">2026-04</span><span class="rn">Carlina's Café demo added at /carlinascafe.</span></div>
+      <div class="rev-row"><span class="rv">REV 05</span><span class="rd">2026-06</span><span class="rn">Full rebuild — technical drawing aesthetic, signal-orange, cinematic animation. Current.</span></div>
+    </div>
+
+    <div class="titleblock">
+      <div class="tb-cols">
+        <div class="tb-c"><div class="k">PROJECT</div><div class="v">CSINTEL · AI PORTFOLIO</div></div>
+        <div class="tb-c"><div class="k">DRAWN BY</div><div class="v">S. CURGENVEN</div></div>
+        <div class="tb-c"><div class="k">SHEET</div><div class="v">00 / REF</div></div>
+        <div class="tb-c"><div class="k">REV</div><div class="v acc">05</div></div>
+      </div>
+      <div class="tb-foot">
+        <span class="c">© 2026 CSINTEL · CONGLETON, UK · DRAWN NOT GENERATED</span>
+        <a href="index.html">← RETURN TO MAIN SITE</a>
+      </div>
+    </div>
+
+    <a href="tools.html" class="back">← BACK TO TOOLS INDEX</a>
 
   </div>
 </body>
