@@ -33,7 +33,9 @@
       --eb-red:   #FF3B3B;                /* rejected branch (kept) */
       --eb-card:  #111111;
       --eb-raise: #0C0C0C;
+      --eb-scale: 1;                      /* pipeline zoom — scaled up on wider screens */
       font-family: var(--mono);
+      min-height: calc(100vh - var(--nav-h) - var(--frame));
       padding-top: calc(var(--nav-h) + var(--frame) + 16px);
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M 40 0 L 0 0 0 40' fill='none' stroke='%231A1A1A' stroke-width='0.5'/%3E%3C/svg%3E");
     }
@@ -104,8 +106,8 @@
     .eb-metric-val.amber { color: var(--eb-amber); }
 
     /* ── 3. Visualisation area ── */
-    .eb-viz-wrap { display: flex; justify-content: center; padding: 28px 16px 0; overflow-x: auto; }
-    .eb-viz { position: relative; width: 730px; min-height: 520px; flex-shrink: 0; }
+    .eb-viz-wrap { display: flex; justify-content: center; padding: 28px 16px 0; overflow-x: auto; height: calc(520px * var(--eb-scale) + 28px); }
+    .eb-viz { position: relative; width: 730px; min-height: 520px; flex-shrink: 0; transform: scale(var(--eb-scale)); transform-origin: top center; }
 
     .eb-conn-svg { position: absolute; top: 0; left: 0; z-index: 1; pointer-events: none; overflow: visible; }
     .eb-conn { stroke: #1C1C1C; stroke-width: 1; stroke-dasharray: 4 3; }
@@ -318,11 +320,43 @@
     @keyframes eb-pulse3 { from { transform: translateX(0); } to { transform: translateX(-60px); } }
     @keyframes eb-pulse4 { from { transform: translateX(0); } to { transform: translateX(-60px); } }
 
+    /* ── Scale the instrument up on wider screens so it fills the
+          page and the text is readable. The pipeline scales as a single
+          unit, so the SVG connections stay aligned to the cards. ── */
+    @media (min-width: 769px) {
+      .eb-app { --eb-scale: 1.28; }
+      .eb-bar-ref { font-size: 11px; }
+      .eb-bar-title { font-size: 15px; }
+      .eb-bar-rev { font-size: 9px; }
+      .eb-bar-live { font-size: 10px; }
+      .eb-btn, .eb-speed { font-size: 9.5px; padding: 5px 12px; }
+      .eb-speed-label { font-size: 9px; }
+      .eb-metric-label { font-size: 8.5px; }
+      .eb-metric-val { font-size: 28px; }
+      .eb-ticker { padding: 7px 0; }
+      .eb-ticker-inner span { font-size: 10.5px; }
+      .eb-inspect { max-width: 980px; }
+      .eb-inspect-dot { font-size: 11px; }
+      .eb-inspect-label { font-size: 12px; }
+      .eb-inspect-sign { font-size: 12px; }
+      .eb-inspect-sec-label { font-size: 9.5px; }
+      .eb-inspect-sec-body { font-size: 11px; }
+      .eb-footer-built, .eb-footer-back { font-size: 9.5px; }
+    }
+    @media (min-width: 1280px) {
+      .eb-app { --eb-scale: 1.5; }
+      .eb-metric-val { font-size: 32px; }
+      .eb-ticker-inner span { font-size: 11.5px; }
+    }
+    @media (min-width: 1680px) {
+      .eb-app { --eb-scale: 1.7; }
+    }
+
     /* ── Responsive < 768px ── */
     @media (max-width: 768px) {
       .eb-conn-svg { display: none; }
-      .eb-viz-wrap { padding: 20px 12px 0; overflow-x: hidden; }
-      .eb-viz { width: 100%; min-height: auto; }
+      .eb-viz-wrap { padding: 20px 12px 0; overflow-x: hidden; height: auto; }
+      .eb-viz { width: 100%; min-height: auto; transform: none; }
       .eb-grid { grid-template-columns: 1fr; gap: 16px; padding: 0; }
       .eb-card { order: 0 !important; height: auto; min-height: 200px; }
       .eb-card:nth-child(n) { order: 0; }
